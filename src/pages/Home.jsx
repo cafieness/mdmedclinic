@@ -17,7 +17,7 @@ import pr6 from "../assets/procedure-6.png";
 
 function Home() {
   return (
-    <div className="bg-primary pt-32 sm:pt-20">
+    <div className="bg-primary pt-32 sm:pt-20 home">
       <div className="md:flex-col flex items-center justify-center ">
         <img className="w-1/6.5 mr-32 lg:mr-0 lg:mb-4 lg:mt-10 lg:w-3/5" src={meerim} alt="" />
         <div>
@@ -25,9 +25,9 @@ function Home() {
           <div className="text-2xl sm:text-xl lg:w-full sm:px-2 mb-12 w-500px text-center">
             Клиника косметологии и образования Мээрим Давлетовой
           </div>
-          <div className="sm:flex-col sm:items-center flex mb-24 items-baseline px-4">
+          <div className="lg:flex-col lg:items-center flex mb-24 items-baseline px-4">
             <Button name="Записаться на прием" primary />
-            <div className="sm:ml-0 sm:mt-5 sm:text-base home__right-bottom-detail ml-16 text-2xl underline cursor-pointer">
+            <div className="lg:ml-0 lg:mt-5 lg:text-base home__right-bottom-detail ml-16 text-2xl underline cursor-pointer">
               Подробнее
             </div>
           </div>

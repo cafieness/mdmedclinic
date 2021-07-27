@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import logo from "../assets/logo.png";
-import whatsapp from "../assets/whatsapp.png";
-import facebook from "../assets/facebook.png";
-import intstagram from "../assets/instagram.png";
+import logo from "../../assets/logo.png";
+import whatsapp from "../../assets/whatsapp.png";
+import facebook from "../../assets/facebook.png";
+import intstagram from "../../assets/instagram.png";
 
 function Footer() {
   return (
     <div className="bg-primary">
       <hr className="w-full border-t-2 border-black border-solid" />
-      <div className="py-20 flex  justify-evenly sm:flex-col sm:items-center">
+      <div className="py-20 flex  justify-evenly md:flex-col md:items-center">
         <div className="flex flex-col items-center mb-8">
           <img src={logo} alt="" className="mb-4" />
           <div className="flex">

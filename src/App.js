@@ -1,17 +1,24 @@
-import { Route } from "react-router-dom";
-import { Header, Footer } from "./components";
-
-import { Home, About } from "./pages";
+import { Header, Footer, Router } from "./components";
+import { useLocation } from 'react-router-dom'
 
 function App() {
+  const location = useLocation();
+  console.log(location.pathname);
+  let isFooter = true;
+
+  if(location.pathname=="/login" || location.pathname=="signup"){
+    isFooter=false;
+  }
+  
   return (
     <div className="App">
-      <div className="content">
-        <Header />
-        <Route path="/" component={Home} exact />
-        <Route path="/about" component={About} exact />
-        <Footer />
-      </div>
+      <Header />
+        <Router />
+        {
+          isFooter&&
+          <Footer />
+        }
+        
     </div>
   );
 }

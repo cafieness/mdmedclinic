@@ -13,4 +13,4 @@ function ProductCard({img, name,size,price}) {
     )
 }
 
-export default ProductCard
+export default ProductCard;
