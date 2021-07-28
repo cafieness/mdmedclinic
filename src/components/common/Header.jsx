@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect  } from "react";
-import { Link, useLocation, Switch } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";

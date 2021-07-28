@@ -120,11 +120,6 @@ body {
   
 
 }
-.login-bg{
-  background-image: url("../assets/login/bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .auth-input{
   border: solid black 1px;
   border-radius: 10px;
@@ -138,8 +133,13 @@ body {
 .button{
   width: 300px;
 }
-.auth-bg{
+.login-bg{
   background-image: url("../assets/login/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.signup-bg{
+  background-image: url("../assets/signup/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
