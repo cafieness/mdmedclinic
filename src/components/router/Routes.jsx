@@ -1,8 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import { Home, About } from "../../pages";
-import {Signup, Login} from "../../components";
+import { Home, About, Login, Signup } from "../../pages";
 
 function Routes() {
   return (

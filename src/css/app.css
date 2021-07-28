@@ -132,7 +132,17 @@ body {
   width: 300px;
 
 }
-
+.hidden-mobile{
+  display: none;
+}
+.button{
+  width: 300px;
+}
+.auth-bg{
+  background-image: url("../assets/login/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 @media only screen and (max-width: 1535px) and (min-width: 1280px) {
  
@@ -145,6 +155,9 @@ body {
   
 }
 @media only screen and (max-width: 768px) {
+  .hidden-mobile{
+    display: inline-block;
+  }
   .dropdown{
     transform: translate(-25%, 0%);
   
@@ -173,7 +186,7 @@ body {
       box-shadow:0 10px 27px rgba(0, 0, 0, 0.05);
   }
   .nav-menu{
-    top: 2em;
+    top: 3em;
   }
 
   .nav-menu.active {
@@ -184,12 +197,10 @@ body {
       display: block;
       cursor: pointer;
   }
-  
-
 
 }
 @media only screen and (max-width: 500px) {
  .home{
-  padding-top: 48px;
+  padding-top: 50px;
 }
 }

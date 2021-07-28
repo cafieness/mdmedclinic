@@ -47,7 +47,7 @@ function Header() {
   return (
     <nav class="nav flex justify-between items-center  py-2 px-48 lg:px-10  z-50 fixed bg-white w-full ">
       <Link to="/">
-        <div className="hidden sm:inline-block">cfasw</div>
+        <img src={logo} className="w-2/5 hidden-mobile" alt="" />
       </Link>
       <div
         className={
@@ -56,7 +56,7 @@ function Header() {
             : "nav-menu top-5 flex w-full items-center"
         }
       >
-        <Link to="/" className="nav-link hidden sm:inline-block">
+        <Link to="/" className="nav-link hidden-mobile">
           Главная
         </Link>
         <div className="nav-link " ref={refAbout}>
