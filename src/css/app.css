@@ -143,6 +143,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.signform-inp{
+  width: 300px;
+}
+
 
 @media only screen and (max-width: 1535px) and (min-width: 1280px) {
  
@@ -155,6 +159,10 @@ body {
   
 }
 @media only screen and (max-width: 768px) {
+  .procedure-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
   .hidden-mobile{
     display: inline-block;
   }

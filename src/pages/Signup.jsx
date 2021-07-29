@@ -7,28 +7,26 @@ import validator from "validator";
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState('')
-  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const validateEmail = (e) => {
     var email = e.target.value;
 
-    if (validator.isEmail(email)||email=="") {
+    if (validator.isEmail(email) || email == "") {
       setEmailError("");
     } else {
       setEmailError("email недействительный");
     }
-    
-
   };
   const validatePassword = (e) => {
     var password = e.target.value;
-    if(validator.isStrongPassword(password)||password==""){
+    if (validator.isStrongPassword(password) || password == "") {
       setPasswordError("");
-    }else{
+    } else {
       setPasswordError("пароль недостаточно силён");
-  }
-}
+    }
+  };
   const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
@@ -60,9 +58,7 @@ function Signup() {
           onChange={onChangeEmail}
           className="auth-input w-full focus:outline-none mb-4 text-black"
         />
-         <span className=" text-red-600">
-            {emailError}
-          </span>
+        <span className=" text-red-600">{emailError}</span>
         <label for="password" className="mb-4 self-start">
           Пароль
         </label>
@@ -75,10 +71,10 @@ function Signup() {
           onChange={onChangePassword}
           required
         />
-        <span className=" text-red-600 mb-4">
-            {passwordError}
-          </span>
-        <button className="button btn-primary rounded-2xl focus:outline-none">Зарегистрироваться</button>
+        <span className=" text-red-600 mb-4">{passwordError}</span>
+        <button className="button btn-primary rounded-2xl focus:outline-none">
+          Зарегистрироваться
+        </button>
         <div className="flex mt-4">
           <div>Уже есть аккаунт?⠀</div>
           <Link className="border-b border-black" to="/login">
@@ -90,4 +86,4 @@ function Signup() {
   );
 }
 
-export default Signup
+export default Signup;

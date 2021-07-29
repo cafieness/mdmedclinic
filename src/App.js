@@ -6,7 +6,7 @@ function App() {
   console.log(location.pathname);
   let isFooter = true;
 
-  if(location.pathname==="/login" || location.pathname==="signup"){
+  if(location.pathname==="/login" || location.pathname==="/signup"){
     isFooter=false;
   }
   
