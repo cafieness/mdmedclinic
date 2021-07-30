@@ -1,7 +1,16 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import { Home, About, Login, Signup, Contacts, Procedures } from "../../pages";
+import {
+  Home,
+  About,
+  Login,
+  Signup,
+  Contacts,
+  Procedures,
+  Procedure,
+} from "../../pages";
+import { procedures } from "../../procedures";
 
 function Routes() {
   return (
@@ -11,18 +20,9 @@ function Routes() {
       <Route path="/" component={Home} exact />
       <Route path="/about" component={About} />
       <Route path="/contacts" component={Contacts}></Route>
-      <Route
-        path="/procedure/skincare"
-        component={() => <Procedures t={`Уход за кожей`} />}
-      ></Route>
-      <Route
-        path="/procedure/apparat"
-        component={() => <Procedures t={`Аппаратная косметология`} />}
-      ></Route>
-      <Route
-        path="/procedure/inject"
-        component={() => <Procedures t={`Инъекционная косметология`} />}
-      ></Route>
+      <Route path="/procedures/:id" component={Procedures}></Route>
+    <Route path="/procedure/:name" component={Procedure}>
+    </Route>
     </Switch>
   );
 }

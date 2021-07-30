@@ -79,9 +79,9 @@ function Header() {
             Процедуры
           </button >
           <div  className={isProcedureOpen?"dropdown space-y-4":"hidden"} for="btnControl">
-              <Link to="/procedure/inject">Инъекционные процедуры</Link>
-              <Link to="/procedure/skincare">Уход за кожей</Link>
-              <Link to="/procedure/apparat">Аппаратная косметология</Link>
+              <Link to="/procedures/inject">Инъекционные процедуры</Link>
+              <Link to="/procedures/skincare">Уход за кожей</Link>
+              <Link to="/procedures/apparat">Аппаратная косметология</Link>
             </div>
         </div>
         <Link to="/gallery" className="nav-link">

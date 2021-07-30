@@ -146,7 +146,27 @@ body {
 .signform-inp{
   width: 300px;
 }
-
+.procedure-img{
+  width: 400px;
+}
+.procedure-description{
+  width: 500px;
+}
+.procedure-width{
+  width: 1000px;
+}
+.procedure-table td{
+  padding-top: 15px;
+}
+.procedure-table th{
+  padding-bottom: 15px;
+}
+.procedure-mobile-table{
+  display: none;
+}
+.procedure-mobile-table tr{
+  border-bottom:1px solid black ;
+}
 
 @media only screen and (max-width: 1535px) and (min-width: 1280px) {
  
@@ -155,14 +175,34 @@ body {
 @media only screen and (max-width: 1279px) {
   .nav-link{
     margin: 0 10px;
+  }.procedure-width{
+    width: 800px;
   }
   
 }
+@media only screen and (max-width: 1023px){
+  .procedure-width{
+    width: 600px;
+  }
+}
 @media only screen and (max-width: 768px) {
+  .procedure-mobile-table{
+    display: inline-block;
+  }
   .procedure-grid{
     display: grid;
     grid-template-columns: 1fr;
   }
+  .procedure-img{
+    width: 300px;
+  }
+  .procedure-description{
+    width: 400px;
+  }
+  .procedure-width{
+    width: 400px;
+  }
+  
   .hidden-mobile{
     display: inline-block;
   }
@@ -210,5 +250,11 @@ body {
 @media only screen and (max-width: 500px) {
  .home{
   padding-top: 50px;
+}
+.procedure-description{
+  width: 300px;
+}
+.procedure-width{
+  width: 300px;
 }
 }
