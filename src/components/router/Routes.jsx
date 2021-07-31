@@ -9,6 +9,7 @@ import {
   Contacts,
   Procedures,
   Procedure,
+  Gallery,
 } from "../../pages";
 import { procedures } from "../../procedures";
 
@@ -21,8 +22,8 @@ function Routes() {
       <Route path="/about" component={About} />
       <Route path="/contacts" component={Contacts}></Route>
       <Route path="/procedures/:id" component={Procedures}></Route>
-    <Route path="/procedure/:name" component={Procedure}>
-    </Route>
+      <Route path="/procedure/:name" component={Procedure}></Route>
+      <Route path="/gallery" component={Gallery} ></Route>
     </Switch>
   );
 }

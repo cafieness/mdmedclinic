@@ -29,7 +29,7 @@ function Home() {
           src={meerim}
           alt=""
         />
-        <div>
+        <div className="sm:w-320">
           <div className="text-5xl mb-8 font-bold sm:text-3xl text-center sm:w-full ">
             MD Clinic Professional
           </div>
@@ -67,7 +67,7 @@ function Home() {
         <p className="text-center text-4xl mb-24">Продукция</p>
         <ProductCarousel />
       </div>
-      <div id="home-sign-form" className="py-24 flex justify-center">
+      <div id="home-sign-form" className="py-24 flex flex-col items-center ">
         <SignForm img={imgForm} name="Записаться на прием" />
       </div>
     </div>

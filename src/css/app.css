@@ -168,6 +168,10 @@ body {
   border-bottom:1px solid black ;
 }
 
+.sign-form-width{
+  width: 500px;
+}
+
 @media only screen and (max-width: 1535px) and (min-width: 1280px) {
  
 }
@@ -178,14 +182,22 @@ body {
   }.procedure-width{
     width: 800px;
   }
+  .sign-form-width{
+    width: 380px;
+  }
   
 }
 @media only screen and (max-width: 1023px){
   .procedure-width{
     width: 600px;
   }
+  
 }
 @media only screen and (max-width: 768px) {
+  
+  .sign-form-width{
+    width: 320px;
+  }
   .procedure-mobile-table{
     display: inline-block;
   }
@@ -245,6 +257,9 @@ body {
       display: block;
       cursor: pointer;
   }
+  .gallery-grid{
+    grid-template-columns: 1fr;
+  }
 
 }
 @media only screen and (max-width: 500px) {
@@ -257,4 +272,9 @@ body {
 .procedure-width{
   width: 300px;
 }
+}
+@media only screen and (max-width:350px){
+  .contacts-px{
+    padding: 0 0;
+  }
 }
