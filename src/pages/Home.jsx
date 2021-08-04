@@ -25,7 +25,7 @@ function Home() {
     <div className="bg-primary pt-32 sm:pt-20 home">
       <div className="md:flex-col flex items-center justify-center ">
         <img
-          className="w-1/6.5 mr-32 lg:mr-0 lg:mb-4 lg:mt-10 lg:w-3/5"
+          className="home-main-image mr-32 lg:mr-0 lg:mb-4 lg:mt-10"
           src={meerim}
           alt=""
         />

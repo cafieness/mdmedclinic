@@ -10,20 +10,33 @@ import {
   Procedures,
   Procedure,
   Gallery,
+  Shop, 
+  Product,
+  ErrorPage,
+  Blog,
+  BlogPost,
+  Profile
 } from "../../pages";
-import { procedures } from "../../procedures";
+import { procedures } from "../../db";
 
 function Routes() {
   return (
     <Switch>
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
+      <Route path="/login" component={Login} exact/>
+      <Route path="/signup" component={Signup} exact />
       <Route path="/" component={Home} exact />
-      <Route path="/about" component={About} />
-      <Route path="/contacts" component={Contacts}></Route>
-      <Route path="/procedures/:id" component={Procedures}></Route>
-      <Route path="/procedure/:name" component={Procedure}></Route>
-      <Route path="/gallery" component={Gallery} ></Route>
+      <Route path="/about" component={About} exact />
+      <Route path="/contacts" component={Contacts} exact></Route>
+      <Route path="/procedures/:id" component={Procedures} exact></Route>
+      <Route path="/procedure/:name" component={Procedure} exact></Route>
+      <Route path="/gallery" component={Gallery} exact></Route>
+      <Route exact path="/shop" component={Shop}></Route>
+      <Route path="/shop/:id/:name" component={Product} exact></Route>
+      <Route path="/blog" component={Blog} exact></Route>
+      <Route path="/blog/:id/:name" component={BlogPost} exact></Route>
+      <Route path="/profile" component={Profile}></Route>
+
+      <Route component={ErrorPage}></Route>
     </Switch>
   );
 }

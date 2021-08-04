@@ -5,7 +5,7 @@ function App() {
   const location = useLocation();
   let isFooter = true;
 
-  if(location.pathname==="/login" || location.pathname==="/signup"){
+  if(location.pathname==="/login" || location.pathname==="/signup" || location.pathname==="/profile"|| location.pathname==="admin"){
     isFooter=false;
   }
   

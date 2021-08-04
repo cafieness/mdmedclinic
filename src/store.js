@@ -1,13 +1,16 @@
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import rootReducer from "./redux/reducers";
+import rootReducer from "./redux/";
+import { configureStore } from "@reduxjs/toolkit";
 
-const middleware = [thunk];
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+export default function configureAppStore(defaultState){
+  const store =  configureStore({
+    reducer: rootReducer,
+    preloadedState: defaultState
+  })
 
-export default store;
+  if (process.env.NODE_ENV !== 'production' && module.hot) {
+    module.hot.accept('./redux/', () => store.replaceReducer(rootReducer))
+  }
+
+  return store
+}

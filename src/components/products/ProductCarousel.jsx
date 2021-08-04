@@ -26,37 +26,31 @@ function ProductCarousel() {
         <ProductCard
           img="https://www.eldancosmetics.it/prodotti_small/1925_AcquaDetergente.jpg"
           name="Acqua detergente micellare"
-          size="150 ml"
           price="100500$"
         />
         <ProductCard
           img="https://www.eldancosmetics.it/prodotti_small/1925_AcquaDetergente.jpg"
           name="Acqua detergente micellare"
-          size="150 ml"
           price="100500$"
         />
         <ProductCard
           img="https://www.eldancosmetics.it/prodotti_small/1925_AcquaDetergente.jpg"
           name="Acqua detergente micellare"
-          size="150 ml"
           price="100500$"
         />
         <ProductCard
           img="https://www.eldancosmetics.it/prodotti_small/1925_AcquaDetergente.jpg"
           name="Acqua detergente micellare"
-          size="150 ml"
           price="100500$"
         />
         <ProductCard
           img="https://www.eldancosmetics.it/prodotti_small/1925_AcquaDetergente.jpg"
           name="Acqua detergente micellare"
-          size="150 ml"
           price="100500$"
         />
         <ProductCard
           img="https://www.eldancosmetics.it/prodotti_small/1925_AcquaDetergente.jpg"
           name="Acqua detergente micellare"
-          size="150 ml"
           price="100500$"
         />
       </Carousel>

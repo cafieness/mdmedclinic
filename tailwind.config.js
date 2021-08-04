@@ -12,14 +12,21 @@ module.exports = {
       'secondary': '#F8F7FF',
       'light-grey': '#F0EFEB',
       'about': '#EEF5F7',
+      'blog':'#9AAD8B'
      }),
+     stroke: theme => ({
+      'red': theme('colors.red.500'),
+      'green': theme('colors.green.500'),
+      'blue': theme('colors.blue.500'),
+    }),
     extend: {
       width: {
         '1/6.5': '30.7692%',
         '3.5/5': '70%',
         '500px': '500px',
         '320':'320px',
-        '300': '300px'
+        '300': '300px',
+        '450': '450px'
       },
       screens: {
         's':{ 'max': '639'},

@@ -1,9 +1,35 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Button } from "..";
+import Dialog from "@material-ui/core/Dialog";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 function SignForm({ img, name, contacts }) {
+  const [openDialog, setOpenDialog] = React.useState(false);
+
+
+  const dialogBody = (
+    <div className="p-10 flex flex-col items-center">
+      <FontAwesomeIcon className="text-5xl mb-8 text-green-400" icon={faCheck} />
+      <div>Вы успешно записались</div>
+    </div>
+  );
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setOpenDialog(false);
+    }, 2500);
+  }, [openDialog]);
+
+  function handleSubmit(e){
+    e.preventDefault();
+    setOpenDialog(true);
+    e.preventDefault();
+  }
+
   return (
-    <form
+    <form onSubmit={handleSubmit}
       className={
         contacts
           ? "sign-form-width bg-white flex justify-between rounded-2xl  sm:px-2"
@@ -30,8 +56,8 @@ function SignForm({ img, name, contacts }) {
           type="text"
           placeholder="Номер телефона"
         />
-        <Button name="Записаться" primary />
-
+        <button type="submit" className="button btn-primary rounded-2xl focus:outline-none">Записаться</button>
+        <Dialog open={openDialog} onClose={()=>setOpenDialog(false)}>{dialogBody}</Dialog>
         
       </div>
       <img

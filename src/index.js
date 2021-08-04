@@ -5,7 +5,9 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import "./css/tailwind.css";
 import "./css/app.css";
-import store from "./store";
+import configureAppStore from "./store";
+
+const store = configureAppStore()
 
 ReactDOM.render(
   <Provider store={store}>
