@@ -9,6 +9,7 @@ import { logout } from "../../redux/user";
 
 import { products } from "../../db";
 
+
 function Profile() {
   const [activeSection, setActiveSection] = useState("Профиль");
   const sections = ["Профиль", "Сменить пароль", "Мои заказы"];
@@ -16,6 +17,7 @@ function Profile() {
   const userInfo = useSelector((state) =>
     state.user.user ? state.user.user : false
   );
+  const order  = useSelector(state => state.product.product ? state.product.product : false);
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
   const [phone, setPhone] = useState(userInfo.phone);
@@ -23,6 +25,7 @@ function Profile() {
   const [newPassword, setNewPassword] = useState("");
 
   const [changeData, setChangeData] = useState(false);
+
 
   function handleNameChange(e) {
     setName(e.target.value);
@@ -187,22 +190,26 @@ function Profile() {
         {activeSection === "Мои заказы" && (
           <div className="ml-20">
             <div className="text-3xl mb-16">Мои заказы</div>
-            <div className="overflow-y-scroll h-600 w-1000">
-              {products.map((product) => (
-                <div className="orders-grid border-b-2 border-black py-2 justify-start">
-                  <img src={product.image} alt="" />
-                  <div className="justify-self-start">
-                    <div className="text-xl mb-2">{product.name}</div>
-                    <div>250ml</div>
-                    <div className="italic bold text-3xl mt-8">{product.price}</div>
-                  </div> 
-                  <div className="justify-self-end mr-3">
-                    <div className="text-2xl text-right">Дата заказа</div>
-                    <div className="text-3xl">1 июля, 2020</div>
-                  </div>
+            {order&&<div className="overflow-y-scroll h-600 w-1000">
+              
+              <div className="orders-grid border-b-2 border-black py-2 justify-start">
+                <img src={products[order.id-1].image} alt="" />
+                <div className="justify-self-start">
+                  <div className="text-xl mb-2">{products[order.id-1].name}</div>
+                  <div>{products[order.id-1].volume}</div>
+                  <div className="italic bold text-3xl mt-8">{products[order.id-1].price}</div>
+                </div> 
+                <div className="flex flex-col items-center">
+                  <div className="text-xl mb-16">Количество</div>
+                  <div className="italic text-3xl">{order.number}</div>
                 </div>
-              ))}
-            </div>
+                <div className="justify-self-end mr-3">
+                  <div className="text-2xl text-right">Дата заказа</div>
+                  <div className="text-3xl">1 июля, 2020</div>
+                </div>
+              </div>
+            </div>}
+              
           </div>
         )}
       </div>

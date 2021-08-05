@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
 
@@ -8,6 +9,8 @@ import { faPlus, faMinus, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { CSSTransition } from "react-transition-group";
 import { ProductCard } from "../../components";
 import Dialog from "@material-ui/core/Dialog";
+import { useDispatch, useSelector } from "react-redux";
+import { order } from "../../redux/product";
 
 function getProduct(id) {
   for (let i = 0; i < products.length; i++) {
@@ -24,17 +27,19 @@ function Product() {
   const [showDescription, setShowDescription] = useState(false);
   const [showApplication, setShowApplication] = useState(false);
   const [showIngridients, setShowIngridients] = useState(false);
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
 
   const [openDialog, setOpenDialog] = useState(false);
+  const isLoggedIn  = useSelector(state => state.user.user ? true : false);
 
   const similarProducts = [];
 
-  const dialogBody = (
+  const dialogBody = isLoggedIn?(
     <div className="p-10 flex flex-col items-center">
       <FontAwesomeIcon className="text-5xl mb-8 text-green-400" icon={faCheck} />
       <div>Добавлено в корзину</div>
     </div>
-  );
+  ):(<div className="p-10">Сначала нужно войти</div>);
 
   useEffect(() => {
      setTimeout(() => {
@@ -56,7 +61,23 @@ function Product() {
     }
   }
   getSimilarProducts();
-
+  const dispatch = useDispatch()
+  let time = new Date();
+ function handleSubmit(){
+    setOpenDialog(true);
+    
+    if(!isLoggedIn){
+      
+      setTimeout(() => {
+        setRedirectToLogin(true);
+      }, 2500);
+    }else{
+      dispatch(order({ product: { id: id, number: productCounter}}))
+    }
+ }
+ if(redirectToLogin){
+   return <Redirect to="/login"/>
+ }
   return (
     <div className="py-40 bg-primary sm:py-20">
       <div className="flex flex-col items-center">
@@ -99,7 +120,7 @@ function Product() {
               </button>
             </div>
             <button
-              onClick={() => setOpenDialog(true)}
+              onClick={handleSubmit}
               className="text-xl text-white bg-black py-3 hover:text-black hover:bg-white border-black border-2 transform duration-300 ease-in-out"
             >
               В корзину
