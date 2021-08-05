@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from "react";
-import { Button } from "..";
+import React, { useEffect,useState} from "react";
 import Dialog from "@material-ui/core/Dialog";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 function SignForm({ img, name, contacts }) {
-  const [openDialog, setOpenDialog] = React.useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
 
   const dialogBody = (
@@ -17,7 +16,7 @@ function SignForm({ img, name, contacts }) {
   );
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+     setTimeout(() => {
       setOpenDialog(false);
     }, 2500);
   }, [openDialog]);

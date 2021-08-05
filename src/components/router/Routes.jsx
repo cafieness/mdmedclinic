@@ -17,7 +17,6 @@ import {
   BlogPost,
   Profile
 } from "../../pages";
-import { procedures } from "../../db";
 
 function Routes() {
   return (

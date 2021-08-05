@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const user = createSlice({
     name: "user_md_clinic",
-    initialState: {token: "", user: null, isAdmin: true},
+    initialState: {token: "", user: null},
     reducers: {
         login: (state, action) => {
             state.token = action.payload.token

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { products } from "../../db";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +18,7 @@ function getProduct(id) {
 }
 
 function Product() {
-  const { id, name } = useParams();
+  const { id } = useParams();
   const product = getProduct(id);
   let [productCounter, setProductCounter] = useState(1);
   const [showDescription, setShowDescription] = useState(false);
@@ -37,7 +37,7 @@ function Product() {
   );
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+     setTimeout(() => {
       setOpenDialog(false);
     }, 2500);
   }, [openDialog]);
@@ -48,8 +48,8 @@ function Product() {
         break;
       }
       if (
-        product.category == products[i].category &&
-        product.name != products[i].name
+        product.category === products[i].category &&
+        product.name !== products[i].name
       ) {
         similarProducts.push(products[i]);
       }
@@ -86,7 +86,7 @@ function Product() {
             <div className="flex mb-10 py-4 border-b-2 border-t-2 justify-between border-black">
               <button
                 onClick={() =>
-                  productCounter == 1
+                  productCounter === 1
                     ? setProductCounter(1)
                     : setProductCounter(--productCounter)
                 }

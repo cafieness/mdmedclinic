@@ -1,23 +1,21 @@
 import React, { useState } from "react";
-import Button from "../../components/common/Button";
 import { Link } from "react-router-dom";
 
 import validator from "validator";
 
 
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const dispatch = useDispatch();
 
   const validateEmail = (e) => {
     var email = e.target.value;
 
-    if (validator.isEmail(email) || email == "") {
+    if (validator.isEmail(email) || email === "") {
       setEmailError("");
     } else {
       setEmailError("email недействительный");
@@ -25,7 +23,7 @@ function Signup() {
   };
   const validatePassword = (e) => {
     var password = e.target.value;
-    if (validator.isStrongPassword(password) || password == "") {
+    if (validator.isStrongPassword(password) || password === "") {
       setPasswordError("");
     } else {
       setPasswordError("пароль недостаточно силён");
@@ -44,7 +42,7 @@ function Signup() {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    if(emailError==""&&passwordError==""&&password!=""&&email!=""){
+    if(emailError===""&&passwordError===""&&password!==""&&email!==""){
       
     }
   };

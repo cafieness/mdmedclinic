@@ -14,15 +14,15 @@ function Footer() {
         <div className="flex flex-col items-center mb-8">
           <img src={logo} alt="" className="mb-4" />
           <div className="flex">
-            <a target="_blank" href="https://www.instagram.com/kosmetolog_davletova/?hl=en">
+            <Link target="_blank" to="https://www.instagram.com/kosmetolog_davletova/?hl=en">
               <img src={intstagram} alt="" className="h-8 mr-4" />
-            </a>
-            <a target="_blank" href="">
+            </Link>
+            <Link target="_blank" to="">
               <img src={whatsapp} alt="" className="h-8 mr-4" />
-            </a>
-            <a target="_blank" href="https://www.facebook.com/page.meerim.davletova/">
+            </Link>
+            <Link target="_blank" to="https://www.facebook.com/page.meerim.davletova/">
               <img src={facebook} alt="" className="h-8" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="mb-8">

@@ -22,7 +22,7 @@ function Blog() {
             <div className=" bg-white py-20">
                 <div className="w-full blogposts-width xl:grid-cols-2 grid grid-cols-3 justify-items-center">
                 {blogPosts.map(post=>(    
-                    (blogPosts[0]!=post)&&
+                    (blogPosts[0]!==post)&&
                     <div className="p-4 w-450 mb-8 sm:w-300">
                         <img src={post.image} alt="" />
                         <div className="text-2xl mb-4 mt-8 font-bold">{post.title}</div>

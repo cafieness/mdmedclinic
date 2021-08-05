@@ -195,6 +195,10 @@ body {
   border-radius: 20px;
   padding: 5px 15px;
 }
+.orders-grid{
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+}
 .shop-left-filter{
   width: 200px;
 }

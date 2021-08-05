@@ -15,9 +15,9 @@ function Login(props) {
   const isLoggedIn  = useSelector(state => state.user.user ? true : false);
 
   const validateEmail = (e) => {
-    var email = e.target.value;
+    let email = e.target.value;
 
-    if (validator.isEmail(email)||e.target.value=="") {
+    if (validator.isEmail(email)||e.target.value==="") {
       setEmailError("");
     } else {
       setEmailError("email недействительный");
@@ -38,7 +38,7 @@ function Login(props) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if(emailError==""&&password!=""&&email!=""){
+    if(emailError===""&&password!==""&&email!==""){
       dispatch(login2({token: "hi", user: {name:"Vasya", email: "vasya@mail.com", phone:"88005553535", id: "1", isAdmin:true}}))
     }
   };

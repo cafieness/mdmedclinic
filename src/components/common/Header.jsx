@@ -15,7 +15,16 @@ function Header() {
   const [navbar, setNavbar] = useState(false);
   const location = useLocation();
   const isLoggedIn = useSelector(state =>  state.user.user?true:false);
-  const isAdmin = useSelector(state => state.user.isAdmin?true:false)
+  const isAdmin = useSelector(state => {
+    if(!isLoggedIn){
+      return false;
+    }
+    if(state.user.user.isAdmin){
+      return true;
+    }else{
+      return false;
+    }
+})
 
   const refAbout = useRef(null);
   const refProcedure = useRef(null);

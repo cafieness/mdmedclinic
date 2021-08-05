@@ -11,11 +11,11 @@ function getPost(id) {
 }
 
 function BlogPost() {
-  const { id, name } = useParams();
+  const { id } = useParams();
 
   const post = getPost(id);
   return (
-    <div className="py-40 sm:py-28">
+    <div className="py-40">
         <div className="w-4/5 mx-auto">
         <img src={post.image} alt="" className=" float-left w-500 object-cover rounded-3xl m-10 md:m-0 md:mb-8" />
         <div >

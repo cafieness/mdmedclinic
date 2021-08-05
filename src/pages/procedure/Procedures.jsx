@@ -8,13 +8,13 @@ import { Link, useParams } from "react-router-dom";
 import {procedures} from '../../db';
 
 function checkProcedure(title){
-    if(title=="inject"){
+    if(title==="inject"){
         return procedures.inject
     }
-    if(title=="apparat"){
+    if(title==="apparat"){
         return procedures.apparat;
     }
-    if(title=="skincare"){
+    if(title==="skincare"){
         return procedures.skincare;
     }
 }
@@ -22,7 +22,7 @@ function checkProcedure(title){
 function Procedures() {
     let id = useParams();
     const procedure = checkProcedure(id.id);
-    const title = (id.id=="inject")? "Инъекционная косметология":(id.id=="apparat")?"Аппаратная косметология":"Уход за кожей"  
+    const title = (id.id==="inject")? "Инъекционная косметология":(id.id==="apparat")?"Аппаратная косметология":"Уход за кожей"  
   return (
     <div className="pt-40 sm:pt-24">
       <div className="flex flex-col items-center">
