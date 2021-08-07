@@ -10,7 +10,7 @@ import { CSSTransition } from "react-transition-group";
 import { ProductCard } from "../../components";
 import Dialog from "@material-ui/core/Dialog";
 import { useDispatch, useSelector } from "react-redux";
-import { order } from "../../redux/product";
+import { add } from "../../redux/cart";
 
 function getProduct(id) {
   for (let i = 0; i < products.length; i++) {
@@ -72,7 +72,7 @@ function Product() {
         setRedirectToLogin(true);
       }, 2500);
     }else{
-      dispatch(order({ product: { id: id, number: productCounter}}))
+      dispatch(add({product:product, units: productCounter}))
     }
  }
  if(redirectToLogin){

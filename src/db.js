@@ -385,7 +385,7 @@ const products = [
   {
     id: 1,
     name: "Интенсивный крем “Еста 40+”",
-    price: "$ 16.80",
+    price: 16.80,
     image: productImg,
     shortDesc: "Легкий крем с инновационным антиоксидантным комплексом",
     age: "40+",
@@ -403,7 +403,7 @@ const products = [
   {
     id: 2,
     name: "Крем 2",
-    price: "2000 сом",
+    price: 2000,
     image: productImg,
     shortDesc: "a",
     age: "",
@@ -418,7 +418,7 @@ const products = [
   {
     id: 3,
     name: "Крем 3",
-    price: "2000 сом",
+    price: 2000,
     image: productImg,
     shortDesc: "a",
     age: "",
@@ -433,7 +433,7 @@ const products = [
   {
     id: 4,
     name: "Крем 4",
-    price: "2000 сом",
+    price: 2000,
     image: productImg,
     shortDesc: "a",
     age: "",
@@ -448,7 +448,7 @@ const products = [
   {
     id: 5,
     name: "Крем 5",
-    price: "2000 сом",
+    price: 2000,
     image: productImg,
     shortDesc: "a",
     age: "",
@@ -463,7 +463,7 @@ const products = [
   {
     id: 6,
     name: "Крем 6",
-    price: "2000 сом",
+    price: 2000,
     image: productImg,
     shortDesc: "a",
     age: "",
@@ -478,7 +478,7 @@ const products = [
   {
     id: 7,
     name: "Крем 7",
-    price: "2000 сом",
+    price: 2000,
     image: productImg,
     shortDesc: "a",
     age: "",
@@ -493,7 +493,7 @@ const products = [
   {
     id: 8,
     name: "Крем 8",
-    price: "2000 сом",
+    price: 2000,
     image: productImg,
     shortDesc: "a",
     age: "",
@@ -508,7 +508,7 @@ const products = [
   {
     id: 9,
     name: "Крем 9",
-    price: "2000 сом",
+    price: 2000,
     image: productImg,
     shortDesc: "a",
     age: "",

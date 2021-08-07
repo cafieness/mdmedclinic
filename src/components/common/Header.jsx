@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faUser} from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user";
@@ -46,6 +46,8 @@ function Header() {
   }, [location]);
 
   const dispatch = useDispatch();
+
+  const cartLength = useSelector(state => state.cart.cart? state.cart.cart.length: false)
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -188,8 +190,9 @@ function Header() {
               </div>
             </div>
 
-            <Link to="/cart" className="nav-link">
+            <Link to="/basket" className="nav-link relative">
               <FontAwesomeIcon className="text-2xl" icon={faShoppingCart} />
+              <div className="top-3 italic left-3 absolute h-7 w-7 rounded-full bg-gray-300 text-center" hidden={cartLength<=0}>{cartLength}</div>
             </Link>
           </div>
         )}

@@ -17,7 +17,8 @@ function Profile() {
   const userInfo = useSelector((state) =>
     state.user.user ? state.user.user : false
   );
-  const order  = useSelector(state => state.product.product ? state.product.product : false);
+  const cart  = useSelector(state => state.cart.cart ? state.cart.cart : false);
+
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
   const [phone, setPhone] = useState(userInfo.phone);
@@ -190,26 +191,27 @@ function Profile() {
         {activeSection === "Мои заказы" && (
           <div className="ml-20">
             <div className="text-3xl mb-16">Мои заказы</div>
-            {order&&<div className="overflow-y-scroll h-600 w-1000">
+            <div className="overflow-y-scroll h-600 w-1000">
+            {cart&&cart.map( el=>(
               
               <div className="orders-grid border-b-2 border-black py-2 justify-start">
-                <img src={products[order.id-1].image} alt="" />
+                <img src={el.product.image} alt="" />
                 <div className="justify-self-start">
-                  <div className="text-xl mb-2">{products[order.id-1].name}</div>
-                  <div>{products[order.id-1].volume}</div>
-                  <div className="italic bold text-3xl mt-8">{products[order.id-1].price}</div>
+                  <div className="text-xl mb-2">{el.product.name}</div>
+                  <div>{el.product.volume}</div>
+                  <div className="italic bold text-3xl mt-8">{el.product.price}</div>
                 </div> 
                 <div className="flex flex-col items-center">
-                  <div className="text-xl mb-16">Количество</div>
-                  <div className="italic text-3xl">{order.number}</div>
+                  <div className="text-2xl mb-1">Количество</div>
+                  <div className="italic text-3xl">{el.units}</div>
                 </div>
                 <div className="justify-self-end mr-3">
                   <div className="text-2xl text-right">Дата заказа</div>
                   <div className="text-3xl">1 июля, 2020</div>
                 </div>
               </div>
-            </div>}
-              
+            ))}
+              </div>
           </div>
         )}
       </div>

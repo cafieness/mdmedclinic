@@ -15,7 +15,8 @@ import {
   ErrorPage,
   Blog,
   BlogPost,
-  Profile
+  Profile,
+  Basket
 } from "../../pages";
 
 function Routes() {
@@ -34,7 +35,7 @@ function Routes() {
       <Route path="/blog" component={Blog} exact></Route>
       <Route path="/blog/:id/:name" component={BlogPost} exact></Route>
       <Route path="/profile" component={Profile}></Route>
-
+      <Route path="/basket" component={Basket}></Route>
       <Route component={ErrorPage}></Route>
     </Switch>
   );

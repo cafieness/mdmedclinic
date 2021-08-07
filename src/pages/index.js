@@ -12,3 +12,4 @@ export { default as ErrorPage } from './ErrorPage';
 export { default as Blog } from './blog/Blog';
 export { default as BlogPost } from './blog/BlogPost';
 export { default as Profile } from './account/Profile';
+export { default as Basket } from './account/Basket';
