@@ -33,5 +33,5 @@ const cart = createSlice({
 })
 
 
-  export const {add} = cart.actions
+  export const {add,remove, updateUnits, increment, decrement} = cart.actions
 export default cart.reducer

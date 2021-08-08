@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "../../redux/user";
 
-import { products } from "../../db";
-
 
 function Profile() {
   const [activeSection, setActiveSection] = useState("Профиль");

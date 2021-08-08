@@ -385,7 +385,7 @@ const products = [
   {
     id: 1,
     name: "Интенсивный крем “Еста 40+”",
-    price: 16.80,
+    price: 2000,
     image: productImg,
     shortDesc: "Легкий крем с инновационным антиоксидантным комплексом",
     age: "40+",

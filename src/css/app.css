@@ -199,6 +199,20 @@ body {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 1fr;
 }
+.basket-table-th{
+  display: grid;
+   grid-template-columns: 2fr 4fr 2fr 1fr 1fr;
+}
+.basket-table-tr{
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr 1fr 1fr;
+  align-items: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .shop-left-filter{
   width: 200px;
 }
