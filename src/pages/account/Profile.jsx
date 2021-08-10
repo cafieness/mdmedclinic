@@ -6,6 +6,8 @@ import Dialog from "@material-ui/core/Dialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "../../redux/user";
+import { CheckDate } from "../../components";
+import { changeOrderStatus } from "../../redux/cart";
 
 
 function Profile() {
@@ -15,7 +17,8 @@ function Profile() {
   const userInfo = useSelector((state) =>
     state.user.user ? state.user.user : false
   );
-  const cart  = useSelector(state => state.cart.cart ? state.cart.cart : false);
+  const orderStatus = useSelector((state) => state.cart.orderStatus);
+  const order  = useSelector(state => state.orders.orders ? state.orders.orders : false);
 
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
@@ -24,6 +27,7 @@ function Profile() {
   const [newPassword, setNewPassword] = useState("");
 
   const [changeData, setChangeData] = useState(false);
+  console.log(order[0].date);
 
 
   function handleNameChange(e) {
@@ -70,7 +74,9 @@ function Profile() {
   }, [openDialog]);
 
   const dispatch = useDispatch();
-
+if(orderStatus===1){
+  dispatch(changeOrderStatus({status:-1}));
+}
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
@@ -190,9 +196,9 @@ function Profile() {
           <div className="ml-20">
             <div className="text-3xl mb-16">Мои заказы</div>
             <div className="overflow-y-scroll h-600 w-1000">
-            {cart&&cart.map( el=>(
-              
-              <div className="orders-grid border-b-2 border-black py-2 justify-start">
+            {order&&order.map( e=>(
+              e.order.map(el=>(
+                <div className="orders-grid border-b-2 border-black py-2 justify-start">
                 <img src={el.product.image} alt="" />
                 <div className="justify-self-start">
                   <div className="text-xl mb-2">{el.product.name}</div>
@@ -205,9 +211,11 @@ function Profile() {
                 </div>
                 <div className="justify-self-end mr-3">
                   <div className="text-2xl text-right">Дата заказа</div>
-                  <div className="text-3xl">1 июля, 2020</div>
+                  <CheckDate date={e.date} />
                 </div>
               </div>
+              ))
+              
             ))}
               </div>
           </div>

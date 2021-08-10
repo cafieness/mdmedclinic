@@ -99,7 +99,7 @@ function Header() {
 
   return (
     <nav
-      class={
+      className={
         navbar
           ? "active nav flex justify-between items-center  py-2 px-48 lg:px-10  z-50 fixed  w-full"
           : "nav flex justify-between items-center  py-2 px-48 lg:px-10  z-50 fixed  w-full "

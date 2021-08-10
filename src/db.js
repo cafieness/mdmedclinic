@@ -412,7 +412,7 @@ const products = [
     fullDescription: "",
     Application: "",
     Ingridients: "",
-    volume: "",
+    volume: "250 ml",
     category: "Крема",
   },
   {
@@ -427,7 +427,7 @@ const products = [
     fullDescription: "",
     Application: "",
     Ingridients: "",
-    volume: "",
+    volume: "250 ml",
     category: "Крема",
   },
   {
@@ -442,7 +442,7 @@ const products = [
     fullDescription: "",
     Application: "",
     Ingridients: "",
-    volume: "",
+    volume: "250 ml",
     category: "Крема",
   },
   {
@@ -457,7 +457,7 @@ const products = [
     fullDescription: "",
     Application: "",
     Ingridients: "",
-    volume: "",
+    volume: "250 ml",
     category: "",
   },
   {
@@ -472,7 +472,7 @@ const products = [
     fullDescription: "",
     Application: "",
     Ingridients: "",
-    volume: "",
+    volume: "250 ml",
     category: "",
   },
   {
@@ -487,7 +487,7 @@ const products = [
     fullDescription: "",
     Application: "",
     Ingridients: "",
-    volume: "",
+    volume: "250 ml",
     category: "",
   },
   {
@@ -502,7 +502,7 @@ const products = [
     fullDescription: "",
     Application: "",
     Ingridients: "",
-    volume: "",
+    volume: "250 ml",
     category: "",
   },
   {
@@ -517,7 +517,7 @@ const products = [
     fullDescription: "",
     Application: "",
     Ingridients: "",
-    volume: "",
+    volume: "250 ml",
     category: "",
   },
 ];

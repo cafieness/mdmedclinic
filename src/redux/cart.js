@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const cart = createSlice({
     name: "cart_md_clinic",
-    initialState: {cart: []},
+    initialState: {cart: [], orderStatus:-1},
     reducers: {
         add: (state, action) => {
            const index = state.cart.findIndex(el => el.product.id === action.payload.product.id)
@@ -29,9 +29,12 @@ const cart = createSlice({
             const index = state.cart.findIndex(el=>el.product.id===action.payload.id)
             state.cart[index].units--;
         },
+        changeOrderStatus: (state, action)=>{
+            state.orderStatus= action.payload.status;
+        }
     }
 })
 
 
-  export const {add,remove, updateUnits, increment, decrement} = cart.actions
+  export const {add,remove, updateUnits, increment, decrement, changeOrderStatus} = cart.actions
 export default cart.reducer
