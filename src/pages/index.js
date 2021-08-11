@@ -15,3 +15,4 @@ export { default as Profile } from './account/Profile';
 export { default as Basket } from './account/Basket';
 export { default as Payment } from './account/Payment'
 export { default as Admin } from './account/Admin';
+export { default as Education } from './Education';

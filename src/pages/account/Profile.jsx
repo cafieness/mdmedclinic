@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
+import { Modal } from "@material-ui/core";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -27,7 +28,6 @@ function Profile() {
   const [newPassword, setNewPassword] = useState("");
 
   const [changeData, setChangeData] = useState(false);
-  console.log(order[0].date);
 
 
   function handleNameChange(e) {
@@ -56,6 +56,11 @@ function Profile() {
   }
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [modal, setModal] = useState(0);
+  const [currentOrder, setCurrentOrder] = useState("");
+  
+
+  
 
   const dialogBody = (
     <div className="p-10 flex flex-col items-center">
@@ -66,6 +71,38 @@ function Profile() {
       <div>Вы успешно сохранили пароль</div>
     </div>
   );
+  const modalBody = (
+    <div className="flex items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-center">
+      <div className="bg-white w-900 px-14 pb-10 rounded-3xl py-6">
+        <div className="text-2xl text-center mb-8">Заказ №{modal}</div>
+          <div className="flex justify-between mb-6">
+            <div>Тип оплаты:</div>
+            <div>{currentOrder.method}</div>
+          </div>
+        <div className="grid grid-cols-4 border-b-2 pb-2.5 font-semibold text-gray-800 items-center">
+          <div>Наименование</div>
+          <div className="text-center">Цена за 1 шт</div>
+          <div  className="text-center">Количество</div>
+          <div  className="text-center">Общая сумма</div>
+        </div>
+        {currentOrder!==""&& currentOrder.order.map(el=>
+        <div className="grid grid-cols-4 border-b-2 mt-2 pb-2 items-center">
+          <div>{el.product.name}</div>
+          <div className="text-center">{el.product.price}</div>
+          <div className="text-center">{el.units}</div>
+          <div className="text-center">{el.product.price * el.units}</div>
+        </div>
+
+        )}
+        <div className="text-right font-semibold mt-6">Итого к оплате: {currentOrder.order.reduce((a, b) => (a = a + b.product.price * b.units), 0)}</div>
+      </div>
+    </div>
+  )
+    const showModal = (i, e) => {
+      setModal(i);
+      setCurrentOrder(e);
+    }
+  
 
   useEffect(() => {
     setTimeout(() => {
@@ -195,26 +232,26 @@ if(orderStatus===1){
         {activeSection === "Мои заказы" && (
           <div className="ml-20">
             <div className="text-3xl mb-16">Мои заказы</div>
-            <div className="overflow-y-scroll h-600 w-1000">
-            {order&&order.map( e=>(
-              e.order.map(el=>(
-                <div className="orders-grid border-b-2 border-black py-2 justify-start">
-                <img src={el.product.image} alt="" />
-                <div className="justify-self-start">
-                  <div className="text-xl mb-2">{el.product.name}</div>
-                  <div>{el.product.volume}</div>
-                  <div className="italic bold text-3xl mt-8">{el.product.price}</div>
-                </div> 
-                <div className="flex flex-col items-center">
-                  <div className="text-2xl mb-1">Количество</div>
-                  <div className="italic text-3xl">{el.units}</div>
+            <div className="overflow-y-scroll h-600 px-5">
+              <div className="grid grid-cols-4 mb-8 text-center">
+                <div className="text-xl">
+                  Номер заказа
                 </div>
-                <div className="justify-self-end mr-3">
-                  <div className="text-2xl text-right">Дата заказа</div>
-                  <CheckDate date={e.date} />
-                </div>
+                <div className="text-xl">Тип оплаты</div>
+                <div className="text-xl">Статус</div>
               </div>
-              ))
+            {order&&order.map( (e, index)=>(  
+              <div className="grid grid-cols-4 items-center text-center">
+                <div >{index+1}</div>
+                <div>{e.method}</div>
+                <div>{e.status?"Выполнен":"Не выполнен"}</div>
+                <button onClick={()=>showModal(index+1, e)} className="btn-primary rounded-3xl my-2 w-300">Просмотреть заказ</button>
+                <Modal
+                  open={modal===index+1}
+                  onClose={()=>setModal(false)}>
+                 {modalBody}
+                </Modal>
+              </div>
               
             ))}
               </div>

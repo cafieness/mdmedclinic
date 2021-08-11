@@ -18,7 +18,8 @@ import {
   Profile,
   Basket,
   Admin,
-  Payment
+  Payment,
+  Education
 } from "../../pages";
 
 function Routes() {
@@ -36,13 +37,15 @@ function Routes() {
       <Route path="/shop/:id/:name" component={Product} exact></Route>
       <Route path="/blog" component={Blog} exact></Route>
       <Route path="/blog/:id/:name" component={BlogPost} exact></Route>
-      <Route path="/profile" component={Profile}></Route>
-      <Route path="/basket" component={Basket}></Route>
-      <Route to="/payment" component={Payment}></Route>
-      <Route to="/admin" component={Admin}></Route>
-
-
+      <Route path="/profile" component={Profile} exact></Route>
+      <Route path="/basket" component={Basket} exact></Route>
+      
+      <Route path="/payment" component={Payment} exact></Route>
+      <Route path="/admin" component={Admin} exact></Route>
+      <Route path="/education" component={Education}></Route>
+      
       <Route component={ErrorPage}></Route>
+     
     </Switch>
   );
 }

@@ -29,13 +29,12 @@ function Payment() {
       <div>Заказ отправлен.<br/>Зайдите в мои заказы,<br/> чтобы проверить заказ</div>
     </div>
   );
-  const time= new Date();
   const handleSubmit = () => {
     if (phonePattern.test(phone) && address != "" && paymentMethod!=="") {
       setOpenDialog(true);
       setTimeout(() => {
         setOpenDialog(false);
-        dispatch(add({order:cart, date: time}));
+        dispatch(add({order:cart, method:paymentMethod,status:false}));
         cart.map(el=> dispatch(remove({id:el.product.id})));
       dispatch(changeOrderStatus({ status: 1 }));
       }, 2500);
@@ -84,8 +83,8 @@ function Payment() {
               </div>
             ))}
             <div className="italic text-xl mt-8 text-right">
-              К оплате:{" "}
-              {cart.reduce((a, b) => (a = a + b.product.price * b.units), 0)}{" "}
+              К оплате:
+              {cart.reduce((a, b) => (a = a + b.product.price * b.units), 0)}
               сом
             </div>
           </div>
