@@ -21,9 +21,9 @@ function Profile() {
   const orderStatus = useSelector((state) => state.cart.orderStatus);
   const order  = useSelector(state => state.orders.orders ? state.orders.orders : false);
 
-  const [name, setName] = useState(userInfo.name);
+  const [name, setName] = useState(userInfo.fullname);
   const [email, setEmail] = useState(userInfo.email);
-  const [phone, setPhone] = useState(userInfo.phone);
+  const [phone, setPhone] = useState(userInfo.phoneNumber);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
