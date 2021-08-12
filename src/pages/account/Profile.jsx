@@ -9,7 +9,8 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "../../redux/user";
 import { CheckDate } from "../../components";
 import { changeOrderStatus } from "../../redux/cart";
-
+import validator from "validator"
+import {SimpleError} from "../../components"
 
 function Profile() {
   const [activeSection, setActiveSection] = useState("Профиль");
@@ -29,27 +30,12 @@ function Profile() {
 
   const [changeData, setChangeData] = useState(false);
 
-
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-  function handlePhoneChange(e) {
-    setPhone(e.target.value);
-  }
-  function handleOldPasswordChange(e) {
-    setOldPassword(e.target.value);
-  }
-  function handleNewPasswordChange(e) {
-    setNewPassword(e.target.value);
-  }
-
   function saveChanges() {
+    //send migration then display errors and reset data if needed
     setChangeData(false);
   }
   function savePassword() {
+    //open dialog and put the mutation results
     setOpenDialog(true);
     setOldPassword("");
     setNewPassword("");
@@ -59,7 +45,32 @@ function Profile() {
   const [modal, setModal] = useState(0);
   const [currentOrder, setCurrentOrder] = useState("");
   
+  const [emailError, setEmailError] = useState("");
 
+  const validateEmail = (e) =>{
+    const email = e.target.value
+    setEmail(email)
+    if (email === ""){
+      setEmailError("Пожалуйста введите новую почту")
+      return;
+    }
+    if (!validator.isEmail(email)){
+      setEmailError("Эта почта не действительна")
+      return;
+    }
+    setEmailError("")
+  }
+
+  const [nameError, setNameError] = useState();
+  const validateName = (e) =>{
+    const name = e.target.value
+    setName(name)
+    if (name.length < 3) {
+      setNameError("Введите свое имя")
+      return
+    }
+    setNameError("")
+  }
   
 
   const dialogBody = (
@@ -144,36 +155,40 @@ if(orderStatus===1){
 
         {activeSection === "Профиль" && (
           <div className="ml-20">
-            <div className="text-3xl mb-16">Мой профиль</div>
-            <div>
-              <div className="text-xl mb-8">
+            <div className="text-3xl mb-12">Мой профиль</div>
+            <p className="text-gray-400 text-base my-4">Если вы хотите изменить свои данные кликните кнопку изменить данные, измените их и кликните Сохранить</p>
+            <div className="flex flex-col space-y-6 text-lg">
+              <div>
                 <label>Имя: </label>
                 <input
                   type="text"
-                  onChange={handleNameChange}
+                  onChange={validateName}
                   value={name}
                   readOnly={!changeData}
-                  className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none ml-6"
+                  className="input-general"
                 />
+                <SimpleError error={nameError}/>
               </div>
-              <div className="text-xl mb-8">
+              
+              <div>
                 <label>Email: </label>
                 <input
                   type="text"
-                  onChange={handleEmailChange}
+                  onChange={validateEmail}
                   readOnly={!changeData}
                   value={email}
-                  className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none ml-6"
+                  className="input-general"
                 />
+                <SimpleError error={emailError} />
               </div>
-              <div className="text-xl mb-8">
+              <div>
                 <label>Номер телефона: </label>
                 <input
                   type="text"
-                  onChange={handlePhoneChange}
+                  onChange={e => setPhone(e.target.value)}
                   readOnly={!changeData}
                   value={phone}
-                  className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none ml-6"
+                  className="input-general"
                 />
               </div>
               {!changeData && (
@@ -203,7 +218,7 @@ if(orderStatus===1){
                 <label>Старый пароль: </label>
                 <input
                   type="password"
-                  onChange={handleOldPasswordChange}
+                  onChange={e => setOldPassword(e.target.value)}
                   value={oldPassword}
                   className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none ml-6"
                 />
@@ -212,7 +227,7 @@ if(orderStatus===1){
                 <label>Новый пароль: </label>
                 <input
                   type="password"
-                  onChange={handleNewPasswordChange}
+                  onChange={e=> setNewPassword(e.target.value)}
                   value={newPassword}
                   className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none ml-8"
                 />
