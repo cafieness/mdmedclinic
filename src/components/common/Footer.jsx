@@ -10,8 +10,8 @@ function Footer() {
   return (
     <div className="bg-primary">
       <hr className="w-full border-t-2 border-black border-solid" />
-      <div className="py-20 flex  justify-evenly md:flex-col md:items-center">
-        <div className="flex flex-col items-center mb-8">
+      <div className="py-6 flex space-x-10  mx-auto justify-center md:flex-col md:items-center">
+        <div className="flex flex-col items-center md:mb-8">
           <img src={logo} alt="" className="mb-4" />
           <div className="flex">
             <Link target="_blank" to="https://www.instagram.com/kosmetolog_davletova/?hl=en">
@@ -25,13 +25,13 @@ function Footer() {
             </Link>
           </div>
         </div>
-        <div className="mb-8">
+        <div >
           <p className="font-bold text-2xl mb-8">Контакты</p>
           <p className="mb-4">Телефон: 8-800-555-35-35</p>
           <p className="mb-4">Почта: mdclinic@gmail.com</p>
           <p className="mb-4">Адрес: ул. Уметалиева, 81</p>
         </div>
-        <div className="mb-8">
+        <div >
           <p className="font-bold text-2xl mb-8">Процедуры</p>
           <div className="flex flex-col">
             <Link to="/procedure/inject" className="mb-4">

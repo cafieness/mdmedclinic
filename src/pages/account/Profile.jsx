@@ -94,7 +94,7 @@ function Profile() {
         </div>
 
         )}
-        <div className="text-right font-semibold mt-6">Итого к оплате: {currentOrder.order.reduce((a, b) => (a = a + b.product.price * b.units), 0)}</div>
+        <div className="text-right font-semibold mt-6">Итого к оплате: {currentOrder!==""&& currentOrder.order.reduce((a, b) => (a = a + b.product.price * b.units), 0)}</div>
       </div>
     </div>
   )
@@ -242,12 +242,12 @@ if(orderStatus===1){
               </div>
             {order&&order.map( (e, index)=>(  
               <div className="grid grid-cols-4 items-center text-center">
-                <div >{index+1}</div>
+                <div >{order.length-index}</div>
                 <div>{e.method}</div>
                 <div>{e.status?"Выполнен":"Не выполнен"}</div>
-                <button onClick={()=>showModal(index+1, e)} className="btn-primary rounded-3xl my-2 w-300">Просмотреть заказ</button>
+                <button onClick={()=>showModal(order.length-index, e)} className="btn-primary rounded-3xl my-2 w-300">Просмотреть заказ</button>
                 <Modal
-                  open={modal===index+1}
+                  open={modal===order.length-index}
                   onClose={()=>setModal(false)}>
                  {modalBody}
                 </Modal>

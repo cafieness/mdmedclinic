@@ -26,7 +26,7 @@ function Education() {
               reprehenderit in voluptate velit esse cillum dolore eu fugiat
               nulla pariatur.{" "}
             </div>
-            <div className="text-white hidden md:block mt-8">
+            <div className="text-gray-900 hidden md:block mt-8">
               <div className="text-2xl">Длительность:</div>
               <div className=" font-bold my-2">20 занятий</div>
               <div className="text-2xl">Стоимость:</div>
