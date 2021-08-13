@@ -62,15 +62,15 @@ function Payment() {
   }
 
   return (
-    <div className="bg-primary py-40">
-      <div className="w-4/5 mx-auto flex">
-        <div className="border-r-2 border-black pr-20">
-          <div className="text-3xl mb-20">Ваш заказ</div>
+    <div className="bg-primary sm:py-16 md:py-24 py-40">
+      <div className="mx-16 flex md:flex-col items-center">
+        <div className="md:border-r-0 md:border-b-2 md:py-4 md:px-0 px-4 border-r-2 border-black">
+          <div className="text-3xl">Ваш заказ</div>
           <div
-            className={cart.length > 2 ? "overflow-y-scroll h-500" : "h-500 "}
+            className="md:flex-col"
           >
             {cart.map((el) => (
-              <div className="border-b-2 flex py-2">
+              <div className="border-b-2 flex md:flex-col md:mx-0 mx-4 py-2">
                 <img src={el.product.image} alt="" />
                 <div className="ml-8">
                   <div className="text-2xl mb-4 italic font-bold">{`${el.product.name}, ${el.product.volume}`}</div>
@@ -82,7 +82,7 @@ function Payment() {
                 </div>
               </div>
             ))}
-            <div className="italic text-xl mt-8 text-right">
+            <div className="italic text-xl mt-8 md:mx-0 mx-4 text-right">
               К оплате:
               {cart.reduce((a, b) => (a = a + b.product.price * b.units), 0)}
               сом
@@ -90,8 +90,8 @@ function Payment() {
           </div>
         </div>
 
-        <div className="ml-20 text-xl">
-          <div>
+        <div className="ml-20 md:mx-4 text-xl flex-1 md:flex-col md:flex md:mt-4">
+         {false&&( <div>
             <div className=" mb-4">Адрес</div>
             <input
               type="text"
@@ -100,7 +100,7 @@ function Payment() {
               value={address}
               required
             />
-          </div>
+          </div>)}
           <div>
             <div className=" mb-4">Номер телефона</div>
             <input
@@ -113,7 +113,7 @@ function Payment() {
           </div>
           <div>
             <div>Способ оплаты</div>
-            <div className="ml-12 mb-10 mt-4">
+            <div className="ml-12 md:ml-0 mb-10 mt-4">
               <div className="flex flex-col">
                 <div>
                   <input
@@ -127,12 +127,6 @@ function Payment() {
                   />
                   <label for="наличными">Наличными курьеру</label>
                 </div>
-                <input
-                  type="text"
-                  className="outline-none rounded-3xl p-2 px-4 w-300 mb-6 mt-4"
-                  placeholder="Введите сумму для сдачи"
-                  required
-                />
               </div>
               <div className="flex flex-col">
                 <div>
@@ -152,7 +146,7 @@ function Payment() {
             </div>
           </div>
           <div hidden={errorMessage} className="mb-2 text-red-600">Необходимо заполнить все поля</div>
-          <button className="btn-primary rounded-3xl" onClick={handleSubmit}>
+          <button className="btn-primary rounded-3xl mx-auto" onClick={handleSubmit}>
             Отправить
           </button>
 
