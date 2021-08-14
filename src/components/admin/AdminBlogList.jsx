@@ -1,5 +1,6 @@
+import { Dialog } from "@material-ui/core";
 import { gql } from "graphql-request";
-import React from "react";
+import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import send_mutation, { send_simple_query } from "../../api";
 
@@ -59,6 +60,40 @@ function AdminBlogList() {
     );
   };
 
+  const [toDeletePostID, setToDeletePostID] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const deleteDialogBody = () => {
+    return (
+      <div className="flex p-10 flex-col font-semibold rounded-md items-center">
+        <h3 className="text-lg mb-8">
+          Вы действительно хотите удалить эту статью?
+        </h3>
+        <div className="flex justify-between items-center w-full">
+          <button
+            className="btn-ar bg-yellow-200 hover:ring-blue-600"
+            onClick={() => {
+              setOpenDialog(false);
+              setToDeletePostID(null);
+            }}
+          >
+            Нет, она еще нужна
+          </button>
+          <button
+            className="btn-ar bg-red-200 hover:ring-red-600"
+            onClick={() => {
+              delete_post_handler(toDeletePostID);
+              setToDeletePostID(null);
+              setOpenDialog(false);
+            }}
+          >
+            Да, удалите ее
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="relative w-full h-full">
       {isError && errorComponent()}
@@ -84,13 +119,25 @@ function AdminBlogList() {
                 </button>
                 <button
                   className="btn-ar bg-red-600 text-white hover:ring-red-800 font-semibold"
-                  onClick={() => delete_post_handler(el.id)}
+                  onClick={() => {
+                    setToDeletePostID(el.id);
+                    setOpenDialog(true);
+                  }}
                 >
                   Удалить
                 </button>
               </div>
             ))}
           </div>
+          <Dialog
+            open={openDialog}
+            onClose={() => {
+              setToDeletePostID(null);
+              setOpenDialog(false);
+            }}
+          >
+            {deleteDialogBody()}
+          </Dialog>
         </div>
       )}
     </div>
