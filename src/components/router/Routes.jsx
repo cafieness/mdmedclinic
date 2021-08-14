@@ -10,7 +10,7 @@ import {
   Procedures,
   Procedure,
   Gallery,
-  Shop, 
+  Shop,
   Product,
   ErrorPage,
   Blog,
@@ -19,13 +19,13 @@ import {
   Basket,
   Admin,
   Payment,
-  Education
+  Education,
 } from "../../pages";
 
 function Routes() {
   return (
     <Switch>
-      <Route path="/login" component={Login} exact/>
+      <Route path="/login" component={Login} exact />
       <Route path="/signup" component={Signup} exact />
       <Route path="/" component={Home} exact />
       <Route path="/about" component={About} exact />
@@ -39,13 +39,12 @@ function Routes() {
       <Route path="/blog/:id/:name" component={BlogPost} exact></Route>
       <Route path="/profile" component={Profile} exact></Route>
       <Route path="/basket" component={Basket} exact></Route>
-      
+
       <Route path="/payment" component={Payment} exact></Route>
-      <Route path="/admin" component={Admin} exact></Route>
+      <Route path="/admin/:tab?" component={Admin} exact></Route>
       <Route path="/education" component={Education}></Route>
-      
+
       <Route component={ErrorPage}></Route>
-     
     </Switch>
   );
 }
