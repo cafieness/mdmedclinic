@@ -32,3 +32,4 @@ const send_mutation = (query, params) => {
 };
 
 export default send_mutation;
+export { client, send_simple_query, send_mutation };
