@@ -55,12 +55,24 @@ function Home() {
       <div className=" bg-secondary flex py-24 items-center flex-col ">
         <p className="text-4xl mb-24 text-center">Популярные процедуры</p>
         <div className="grid grid-cols-3  sm:grid-cols-1">
-          <ProcedureCard img={pr1} text="Отбеливание" />
-          <ProcedureCard img={pr2} text="Лечение угревой болезни" />
-          <ProcedureCard img={pr3} text="Омоложение" />
-          <ProcedureCard img={pr4} text="Лечение выпадающих волос" />
-          <ProcedureCard img={pr5} text="Похудение" />
-          <ProcedureCard img={pr6} text="Эпиляция" />
+          <Link to="/procedure/Отбеливание">
+            <ProcedureCard img={pr1} text="Отбеливание" />
+          </Link>
+          <Link to="/procedure/Лечение угревой болезни">
+            <ProcedureCard img={pr2} text="Лечение угревой болезни" />
+          </Link>
+          <Link to="/procedure/Омоложение">
+            <ProcedureCard img={pr3} text="Омоложение" />
+          </Link>
+          <Link to="/procedure/Лечение выпадающих волос">
+            <ProcedureCard img={pr4} text="Лечение выпадающих волос" />
+          </Link>
+          <Link to="/procedure/Похудение">
+            <ProcedureCard img={pr5} text="Похудение" />
+          </Link>
+          <Link to="/procedure/Эпиляция">
+            <ProcedureCard img={pr6} text="Эпиляция" />
+          </Link>
         </div>
       </div>
       <div className="bg-light-grey py-24 flex flex-col items-center ">
