@@ -59,7 +59,7 @@ function Footer() {
       <hr className="w-full border-t-2 border-black border-solid"/>
       <div className="flex justify-evenly md:flex-col">
         <div className="md:mb-2">All rights reserved by MD Clinic, 2021</div>
-        <div>Developers: Camila Choroeva</div>
+        <div>Developers: Camila Choroeva, Arthur Talkanbaev</div>
       </div>
     </div>
   );

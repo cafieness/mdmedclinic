@@ -1,7 +1,7 @@
 import { GraphQLClient } from "graphql-request";
 import store from "./store";
 
-const API_URL = "http://192.168.31.136:8000/api/";
+const API_URL = "http://localhost:8000/api/";
 
 const setHeaders = () => {
   let token = store.getState().user.token;
