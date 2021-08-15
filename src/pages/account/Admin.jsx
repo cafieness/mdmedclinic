@@ -50,7 +50,7 @@ function Admin() {
       <div className="hidden mdh:flex mx-6">
         <div className="flex flex-col font-semibold text-gray-900 mb-4 ">
           <h2 className="pl-3 mb-8">Админ панель</h2>
-          <div className="flex flex-col space-y-3 mr-6 pr-3 border-black border-r-2">
+          <div className="flex flex-col space-y-3 mr-6 pr-3 border-[#1f1f1f] border-r-2">
             {tabs.map((el) => (
               <Link
                 to={"/admin/" + el.key}

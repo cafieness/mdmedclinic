@@ -2,6 +2,7 @@ import { Dialog } from "@material-ui/core";
 import { gql } from "graphql-request";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import send_mutation, { send_simple_query } from "../../api";
 
 const get_posts_query = gql`
@@ -103,7 +104,20 @@ function AdminBlogList() {
           <h2 className="text-3xl font-semibold text-gray-900 mb-4">
             Управление блогом
           </h2>
+          <div className="flex flex-row-reverse mb-4">
+            <Link
+              to="/admin/editBlog"
+              className="btn-ar bg-green-600 text-white font-semibold mr-10 hover:shadow-md"
+            >
+              Создать статью
+            </Link>
+          </div>
           <div className="flex flex-col space-y-3">
+            {data.length === 0 && (
+              <div className="absolute font-semibold top-1/2 right-1/2  transform translate-x-1/2 -translate-y-1/2">
+                Пока статей нет
+              </div>
+            )}
             {data.map((el) => (
               <div className="flex p-3 bg-gray-50 rounded-md hover:shadow-md transition duration-200 items-center space-x-2">
                 <img
