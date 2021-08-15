@@ -28,9 +28,13 @@ const send_simple_query = (query) => {
   return client.request(query);
 };
 
+const send_var_query = (query, vars) => {
+  return client.request(query, vars);
+};
+
 const send_mutation = (query, params) => {
   return client.request(query, params);
 };
 
 export default send_mutation;
-export { client, send_simple_query, send_mutation };
+export { client, send_simple_query, send_mutation, send_var_query };

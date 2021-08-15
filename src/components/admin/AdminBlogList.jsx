@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import send_mutation, { send_simple_query } from "../../api";
+import { errorComponent, loadingComponent } from "./HelperComps";
 
 const get_posts_query = gql`
   {
@@ -45,22 +46,6 @@ function AdminBlogList() {
     });
   };
 
-  const errorComponent = () => {
-    return (
-      <div className="absolute font-semibold top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2">
-        Произошла ошибка {JSON.stringify(error)}
-      </div>
-    );
-  };
-
-  const loadingComponent = () => {
-    return (
-      <div className="absolute font-semibold top-1/2 right-1/2  transform translate-x-1/2 -translate-y-1/2">
-        Загрузка...
-      </div>
-    );
-  };
-
   const [toDeletePostID, setToDeletePostID] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -97,7 +82,7 @@ function AdminBlogList() {
 
   return (
     <div className="relative w-full h-full">
-      {isError && errorComponent()}
+      {isError && errorComponent(error)}
       {isLoading || (delete_post.isLoading && loadingComponent())}
       {isSuccess && (
         <div className="">

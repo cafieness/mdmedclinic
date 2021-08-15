@@ -1,7 +1,7 @@
 const readStatus = (status) => {
   switch (status) {
     case "PENDING":
-      return "В ождилании";
+      return "В ожидании";
     case "ACCEPTED":
       return "Заказ принят";
     case "READY":
@@ -14,4 +14,16 @@ const readStatus = (status) => {
       return "Неверный статус";
   }
 };
-export { readStatus };
+
+const readPaymentType = (type) => {
+  switch (type) {
+    case "CASH":
+      return "Наличными";
+    case "EWALLET":
+      return "Эл-сом";
+    default:
+      return "Неверный тип";
+  }
+};
+
+export { readStatus, readPaymentType };
