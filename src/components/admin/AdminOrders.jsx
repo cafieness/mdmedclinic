@@ -37,15 +37,22 @@ const get_orders_query = gql`
 const render_order_list_comp = (data, select_order) => {
   return (
     <div className="table-auto table my-4">
-      <thead className="">
-        <tr className="text-center font-semibold text-lg text-gray-900 mb-4">
-          <th className="table-cell">Номер заказа</th>
-          <th className="table-cell">Имя заказчика</th>
-          <th className="table-cell">Номер телефона</th>
-          <th className="table-cell"></th>
-          <th className="table-cell"></th>
-        </tr>
-      </thead>
+      {data.length === 0 && (
+        <div className="absolute top-1/2 left-[55%] transform -translate-x-1/2 -translate-y-1/2 text-gray-900 font-bold">
+          Заказов в данной категории пока нет
+        </div>
+      )}
+      {data.length !== 0 && (
+        <thead className="">
+          <tr className="text-center font-semibold text-lg text-gray-900 mb-4">
+            <th className="table-cell">Номер заказа</th>
+            <th className="table-cell">Имя заказчика</th>
+            <th className="table-cell">Номер телефона</th>
+            <th className="table-cell"></th>
+            <th className="table-cell"></th>
+          </tr>
+        </thead>
+      )}
       <tbody className="">
         {data.map((el) => (
           <tr className="text-center items-center hover:shadow-md">
@@ -213,7 +220,11 @@ function AdminOrders() {
 
       {isError && errorComponent(error)}
       {(isLoading || isFetching) && loadingComponent()}
-      {isSuccess && render_order_list_comp(data, setSelectedOrder)}
+      {isSuccess &&
+        data &&
+        !isLoading &&
+        !isFetching &&
+        render_order_list_comp(data, setSelectedOrder)}
       {selectedOrder && RenderOrderModal(selectedOrder, setSelectedOrder)}
     </div>
   );
