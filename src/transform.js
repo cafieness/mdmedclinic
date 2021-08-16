@@ -26,4 +26,15 @@ const readPaymentType = (type) => {
   }
 };
 
-export { readStatus, readPaymentType };
+const readHiddenStatus = (st) => {
+  switch (st) {
+    case "VISIBLE":
+      return "Активные";
+    case "HIDDEN":
+      return "Скрытые";
+    default:
+      return "Неверный тип";
+  }
+};
+
+export { readStatus, readPaymentType, readHiddenStatus };

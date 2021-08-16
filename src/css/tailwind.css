@@ -8,6 +8,6 @@
   }
 
   .btn-ar {
-    @apply rounded-lg px-3 py-2 transition ease-in-out duration-200 ring-1 ring-transparent;
+    @apply rounded-lg px-3 py-2 transition ease-in-out duration-200 ring-1 ring-transparent active:scale-95;
   }
 }

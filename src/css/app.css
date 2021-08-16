@@ -49,7 +49,6 @@ body {
   font-size: 24px;
 }
 
-
 .bar {
   display: block;
   width: 25px;
@@ -71,8 +70,6 @@ body {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-
-
 .hamburger {
   display: none;
 }
@@ -86,11 +83,11 @@ body {
   transition: all 0.3s ease-in-out;
   background-color: #101010;
 }
-.nav{
-  z-index: 9999;
+.nav {
+  z-index: 1001;
   transition: ease-in-out 0.3s;
 }
-.nav.active{
+.nav.active {
   background: white;
   transition: ease-in-out 0.3s;
 }
@@ -112,7 +109,7 @@ body {
 .hamburger.active .bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
-.dropdown{
+.dropdown {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -122,100 +119,97 @@ body {
   font-size: 20px;
   border-radius: 15px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  
-
 }
-.auth-input{
+.auth-input {
   border: solid black 1px;
   border-radius: 10px;
   padding: 15px;
   width: 300px;
-
 }
-.hidden-mobile{
+.hidden-mobile {
   display: none;
 }
-.button{
+.button {
   width: 300px;
 }
-.login-bg{
+.login-bg {
   background-image: url("../assets/login/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
-.signup-bg{
+.signup-bg {
   background-image: url("../assets/signup/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
-.education-bg{
+.education-bg {
   background-image: url("../assets/education/main.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
-.signform-inp{
+.signform-inp {
   width: 300px;
 }
-.bg-ed-3{
-  background-color: #F4E4F0;
+.bg-ed-3 {
+  background-color: #f4e4f0;
 }
-.ed-exp-text{
+.ed-exp-text {
   font-size: 128px;
 }
 
-.procedure-img{
+.procedure-img {
   width: 400px;
 }
-.procedure-description{
+.procedure-description {
   width: 500px;
 }
-.procedure-width{
+.procedure-width {
   width: 1000px;
 }
-.procedure-table td{
+.procedure-table td {
   padding-top: 15px;
 }
-.procedure-table th{
+.procedure-table th {
   padding-bottom: 15px;
 }
-.procedure-mobile-table{
+.procedure-mobile-table {
   display: none;
 }
-.procedure-mobile-table tr{
-  border-bottom:1px solid black ;
+.procedure-mobile-table tr {
+  border-bottom: 1px solid black;
 }
-.product-table{
+.product-table {
   width: 450px;
 }
-.product-table tr{
+.product-table tr {
   padding: 15px 0;
   border-top: 1px solid black;
 }
-.product-right-description{
+.product-right-description {
   width: 400px;
 }
-.product-width{
+.product-width {
   width: 1300px;
 }
-.sign-form-width{
+.sign-form-width {
   width: 500px;
 }
-.shop-filter-active{
+.shop-filter-active {
   color: white;
   background-color: #101010;
   border: 1px solid black;
   border-radius: 20px;
   padding: 5px 15px;
 }
-.orders-grid{
+.orders-grid {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 1fr;
 }
-.basket-table-th{
+.basket-table-th {
   display: grid;
-   grid-template-columns: 2fr 4fr 2fr 1fr 1fr;
+  grid-template-columns: 2fr 4fr 2fr 1fr 1fr;
 }
-.basket-table-tr{
+.basket-table-tr {
   display: grid;
   grid-template-columns: 2fr 4fr 2fr 1fr 1fr;
   align-items: center;
@@ -225,10 +219,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.shop-left-filter{
+.shop-left-filter {
   width: 200px;
 }
-.shop-right-filter{
+.shop-right-filter {
   width: 120px;
 }
 .showDescription-enter {
@@ -248,188 +242,191 @@ input::-webkit-inner-spin-button {
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
 }
-.error-title{
+.error-title {
   font-size: 200px;
 }
-.shop-filter-width{
+.shop-filter-width {
   width: 180px;
 }
-.home-main-image{
+.home-main-image {
   width: 600px;
 }
-.first-blog-width{
+.first-blog-width {
   width: 600px;
 }
-.blog-post-absolute{
+.blog-post-absolute {
   position: absolute;
-   top: 90%;
+  top: 90%;
 }
 
 @media only screen and (max-width: 1535px) {
-  .product-width{
+  .product-width {
     width: 1100px;
   }
-  .product-table{
+  .product-table {
     width: 350px;
   }
-  .home-main-image{
+  .home-main-image {
     width: 500px;
   }
-  .first-blog-width{
+  .first-blog-width {
     width: 450px;
   }
 }
 
 @media only screen and (max-width: 1279px) {
-  .product-width{
+  .product-width {
     width: 900px;
   }
-  .product-table{
+  .product-table {
     width: 300px;
   }
-  .product-right-description{
+  .product-right-description {
     width: 300px;
   }
-  .nav-link{
+  .nav-link {
     margin: 0 10px;
-  }.procedure-width{
+  }
+  .procedure-width {
     width: 800px;
   }
-  .sign-form-width{
+  .sign-form-width {
     width: 380px;
   }
-  .blog-image{
+  .blog-image {
     width: 400px;
   }
-  
 }
-@media only screen and (max-width: 1023px){
-  .blogposts-width{
+@media only screen and (max-width: 1023px) {
+  .blogposts-width {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
-  .procedure-width{
+  .procedure-width {
     width: 600px;
   }
-  .product-table, .product-left-description, .product-right-description, .product-width{
+  .product-table,
+  .product-left-description,
+  .product-right-description,
+  .product-width {
     width: 500px;
   }
-  .home-main-image{
+  .home-main-image {
     width: 400px;
   }
 }
 @media only screen and (max-width: 768px) {
-  .sm-grid-cols-1{
+  .sm-grid-cols-1 {
     grid-template-columns: 1fr;
   }
-  .first-blog-width{
+  .first-blog-width {
     width: 300px;
   }
-  .home-main-image{
+  .home-main-image {
     width: 320px;
   }
-  .shop-grid{
+  .shop-grid {
     grid-template-columns: 1fr 1fr;
   }
-  .product-table, .product-left-description, .product-right-description, .product-width{
+  .product-table,
+  .product-left-description,
+  .product-right-description,
+  .product-width {
     width: 280px;
   }
-  .product-width img{
+  .product-width img {
     width: 300px;
   }
-  .product-similar{
+  .product-similar {
     grid-template-columns: 1fr;
   }
-  .error-title{
+  .error-title {
     font-size: 100px;
   }
-  .sign-form-width{
+  .sign-form-width {
     width: 320px;
   }
-  .procedure-mobile-table{
+  .procedure-mobile-table {
     display: inline-block;
   }
-  .procedure-grid{
+  .procedure-grid {
     display: grid;
     grid-template-columns: 1fr;
   }
-  .procedure-img{
+  .procedure-img {
     width: 300px;
   }
-  .procedure-description{
+  .procedure-description {
     width: 400px;
   }
-  .procedure-width{
+  .procedure-width {
     width: 400px;
   }
-  
-  .hidden-mobile{
+
+  .hidden-mobile {
     display: inline-block;
   }
-  .dropdown{
+  .dropdown {
     transform: translate(-25%, 0%);
-  
   }
-  
-  .dc1{
+
+  .dc1 {
     position: absolute;
     left: 20%;
   }
-  .dc2{
+  .dc2 {
     position: absolute;
     left: 0%;
   }
   .nav-menu {
-      position: fixed;
-      left: -100%;
-      top: 4em;
-      flex-direction: column;
-      background-color: #fff;
-      width: 100%;
-      padding: 50px 0;
-      font-size: 24px;
-      border-radius: 10px;
-      text-align: center;
-      transition: 0.3s;
-      box-shadow:0 10px 27px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    left: -100%;
+    top: 4em;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    padding: 50px 0;
+    font-size: 24px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
   }
-  .nav-menu{
+  .nav-menu {
     top: 3em;
   }
 
   .nav-menu.active {
-      left: 0;
+    left: 0;
   }
 
   .hamburger {
-      display: block;
-      cursor: pointer;
+    display: block;
+    cursor: pointer;
   }
-  .gallery-grid{
+  .gallery-grid {
     grid-template-columns: 1fr;
   }
-  
-
 }
 @media only screen and (max-width: 500px) {
- .home{
-  padding-top: 50px;
+  .home {
+    padding-top: 50px;
+  }
+  .procedure-description {
+    width: 300px;
+  }
+  .procedure-width {
+    width: 300px;
+  }
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
 }
-.procedure-description{
-  width: 300px;
-}
-.procedure-width{
-  width: 300px;
-}
-.shop-grid{
-  grid-template-columns: 1fr;
-}
-}
-@media only screen and (max-width:350px){
-  .contacts-px{
+@media only screen and (max-width: 350px) {
+  .contacts-px {
     padding: 0 0;
   }
 }
 
-.text-stroke{
+.text-stroke {
   -webkit-text-stroke: 0.3px #101010;
 }
