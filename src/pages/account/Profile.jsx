@@ -1,134 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import Dialog from "@material-ui/core/Dialog";
-import { Modal } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "../../redux/user";
-import { CheckDate } from "../../components";
-import { changeOrderStatus } from "../../redux/cart";
-import validator from "validator"
-import {SimpleError} from "../../components"
+import { ProfileData, PasswordChange, Orders} from '../../components';
 
 function Profile() {
+  const dispatch = useDispatch();
   const [activeSection, setActiveSection] = useState("Профиль");
   const sections = ["Профиль", "Сменить пароль", "Мои заказы"];
   const isLoggedIn = useSelector((state) => (state.user.user ? true : false));
-  const userInfo = useSelector((state) =>
-    state.user.user ? state.user.user : false
-  );
-  const orderStatus = useSelector((state) => state.cart.orderStatus);
-  const order  = useSelector(state => state.orders.orders ? state.orders.orders : false);
 
-  const [name, setName] = useState(userInfo.fullname);
-  const [email, setEmail] = useState(userInfo.email);
-  const [phone, setPhone] = useState(userInfo.phoneNumber);
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-
-  const [changeData, setChangeData] = useState(false);
-
-  function saveChanges() {
-    //send migration then display errors and reset data if needed
-    setChangeData(false);
-  }
-  function savePassword() {
-    //open dialog and put the mutation results
-    setOpenDialog(true);
-    setOldPassword("");
-    setNewPassword("");
-  }
-
-  const [openDialog, setOpenDialog] = useState(false);
-  const [modal, setModal] = useState(0);
-  const [currentOrder, setCurrentOrder] = useState("");
-  
-  const [emailError, setEmailError] = useState("");
-
-  const validateEmail = (e) =>{
-    const email = e.target.value
-    setEmail(email)
-    if (email === ""){
-      setEmailError("Пожалуйста введите новую почту")
-      return;
-    }
-    if (!validator.isEmail(email)){
-      setEmailError("Эта почта не действительна")
-      return;
-    }
-    setEmailError("")
-  }
-
-  const [nameError, setNameError] = useState();
-  const validateName = (e) =>{
-    const name = e.target.value
-    setName(name)
-    if (name.length < 3) {
-      setNameError("Введите свое имя")
-      return
-    }
-    setNameError("")
-  }
-  
-
-  const dialogBody = (
-    <div className="p-10 flex flex-col items-center">
-      <FontAwesomeIcon
-        className="text-5xl mb-8 text-green-400"
-        icon={faCheck}
-      />
-      <div>Вы успешно сохранили пароль</div>
-    </div>
-  );
-  const modalBody = (
-    <div className="flex items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-center">
-      <div className="bg-white w-900 px-14 pb-10 rounded-3xl py-6">
-        <div className="text-2xl text-center mb-8">Заказ №{modal}</div>
-          <div className="flex justify-between mb-6">
-            <div>Тип оплаты:</div>
-            <div>{currentOrder.method}</div>
-          </div>
-        <div className="grid grid-cols-4 border-b-2 pb-2.5 font-semibold text-gray-800 items-center">
-          <div>Наименование</div>
-          <div className="text-center">Цена за 1 шт</div>
-          <div  className="text-center">Количество</div>
-          <div  className="text-center">Общая сумма</div>
-        </div>
-        {currentOrder!==""&& currentOrder.order.map(el=>
-        <div className="grid grid-cols-4 border-b-2 mt-2 pb-2 items-center">
-          <div>{el.product.name}</div>
-          <div className="text-center">{el.product.price}</div>
-          <div className="text-center">{el.units}</div>
-          <div className="text-center">{el.product.price * el.units}</div>
-        </div>
-
-        )}
-        <div className="text-right font-semibold mt-6">Итого к оплате: {currentOrder!==""&& currentOrder.order.reduce((a, b) => (a = a + b.product.price * b.units), 0)}</div>
-      </div>
-    </div>
-  )
-    const showModal = (i, e) => {
-      setModal(i);
-      setCurrentOrder(e);
-    }
-  
-
-  useEffect(() => {
-    setTimeout(() => {
-      setOpenDialog(false);
-    }, 2500);
-  }, [openDialog]);
-
-  const dispatch = useDispatch();
-if(orderStatus===1){
-  dispatch(changeOrderStatus({status:-1}));
-}
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
-
   return (
     <div className="bg-primary py-40 h-screen">
       <div className="flex items-start">
@@ -154,124 +39,14 @@ if(orderStatus===1){
         </div>
 
         {activeSection === "Профиль" && (
-          <div className="ml-20">
-            <div className="text-3xl mb-12">Мой профиль</div>
-            <p className="text-gray-400 text-base my-4">Если вы хотите изменить свои данные кликните кнопку изменить данные, измените их и кликните Сохранить</p>
-            <div className="flex flex-col space-y-6 text-lg">
-              <div>
-                <label>Имя: </label>
-                <input
-                  type="text"
-                  onChange={validateName}
-                  value={name}
-                  readOnly={!changeData}
-                  className="input-general"
-                />
-                <SimpleError error={nameError}/>
-              </div>
-              
-              <div>
-                <label>Email: </label>
-                <input
-                  type="text"
-                  onChange={validateEmail}
-                  readOnly={!changeData}
-                  value={email}
-                  className="input-general"
-                />
-                <SimpleError error={emailError} />
-              </div>
-              <div>
-                <label>Номер телефона: </label>
-                <input
-                  type="text"
-                  onChange={e => setPhone(e.target.value)}
-                  readOnly={!changeData}
-                  value={phone}
-                  className="input-general"
-                />
-              </div>
-              {!changeData && (
-                <button
-                  onClick={() => setChangeData(true)}
-                  className="button btn-primary rounded-2xl focus:outline-none"
-                >
-                  Изменить данные
-                </button>
-              )}
-              {changeData && (
-                <button
-                  onClick={saveChanges}
-                  className="button btn-primary rounded-2xl focus:outline-none"
-                >
-                  Сохранить
-                </button>
-              )}
-            </div>
-          </div>
-        )}
+          <ProfileData />
+           )}
         {activeSection === "Сменить пароль" && (
-          <div className="ml-20">
-            <div className="text-3xl mb-16">Сменить пароль</div>
-            <div>
-              <div className="text-xl mb-8">
-                <label>Старый пароль: </label>
-                <input
-                  type="password"
-                  onChange={e => setOldPassword(e.target.value)}
-                  value={oldPassword}
-                  className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none ml-6"
-                />
-              </div>
-              <div className="text-xl mb-8">
-                <label>Новый пароль: </label>
-                <input
-                  type="password"
-                  onChange={e=> setNewPassword(e.target.value)}
-                  value={newPassword}
-                  className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none ml-8"
-                />
-              </div>
-              <button
-                onClick={savePassword}
-                className="button btn-primary rounded-2xl focus:outline-none"
-              >
-                Сохранить
-              </button>
-              <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-                {dialogBody}
-              </Dialog>
-            </div>
-          </div>
-        )}
+          <PasswordChange /> 
+          )}
         {activeSection === "Мои заказы" && (
-          <div className="ml-20">
-            <div className="text-3xl mb-16">Мои заказы</div>
-            <div className="overflow-y-scroll h-600 px-5">
-              <div className="grid grid-cols-4 mb-8 text-center">
-                <div className="text-xl">
-                  Номер заказа
-                </div>
-                <div className="text-xl">Тип оплаты</div>
-                <div className="text-xl">Статус</div>
-              </div>
-            {order&&order.map( (e, index)=>(  
-              <div className="grid grid-cols-4 items-center text-center">
-                <div >{order.length-index}</div>
-                <div>{e.method}</div>
-                <div>{e.status?"Выполнен":"Не выполнен"}</div>
-                <button onClick={()=>showModal(order.length-index, e)} className="btn-primary rounded-3xl my-2 w-300">Просмотреть заказ</button>
-                <Modal
-                  open={modal===order.length-index}
-                  onClose={()=>setModal(false)}>
-                 {modalBody}
-                </Modal>
-              </div>
-              
-            ))}
-              </div>
-          </div>
-        )}
+          <Orders />
+           )}
       </div>
     </div>
   );
