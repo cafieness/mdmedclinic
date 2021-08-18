@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { SimpleError } from "../";
 import validator from "validator";
-import { useDispatch, useSelector } from "react-redux";
 
 import { useMutation, useQuery } from "react-query";
 import send_mutation, { send_var_query } from "../../api";
 import { gql } from "graphql-request";
 
 import { errorComponent, loadingComponent } from "../admin/HelperComps";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../redux/user";
 
 const get_user_query = gql`
   query {
     user {
       me {
+        id
+        isAdmin
         fullname
         email
         phoneNumber
@@ -26,8 +29,10 @@ const change_user_mut = gql`
     user {
       updateUser(input: { email: $email, name: $name, phone: $phone }) {
         user {
+          id
           email
           fullname
+          isAdmin
           phoneNumber
         }
       }
@@ -43,10 +48,13 @@ function ProfileData() {
       } = await send_var_query(get_user_query);
       return me;
     });
-  const [email, setEmail] = useState(data.email);
-  const [phone, setPhone] = useState(data.phoneNumber);
+
+  const user = useSelector((state) => state.user.user);
+
+  const [email, setEmail] = useState(user.email);
+  const [phone, setPhone] = useState(user.phoneNumber);
   const [changeData, setChangeData] = useState(false);
-  const [name, setName] = useState(data.fullname);
+  const [name, setName] = useState(user.fullname);
 
   const [emailError, setEmailError] = useState("");
 
@@ -79,21 +87,18 @@ function ProfileData() {
     send_mutation(change_user_mut, { phone: phone, name: name, email: email })
   );
 
+  const dispactch = useDispatch();
+
   function saveChanges() {
     mutate(
       { phone, name, email },
       {
-        onSuccess: () => {
-          refetch();
-          setName(data.fullname);
-          setEmail(data.email);
-          setPhone(data.phoneNumber);
+        onSuccess: (mut_data) => {
           setChangeData(false);
+          dispactch(setUser(mut_data.user.updateUser.user));
         },
-        onError: () => {
-        }
+        onError: () => {},
       }
-      
     );
   }
 

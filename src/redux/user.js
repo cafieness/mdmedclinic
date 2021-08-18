@@ -16,10 +16,14 @@ const user = createSlice({
             state.token = ""
             localStorage.removeItem("token")
             localStorage.removeItem("user")
-        } 
+        },
+        setUser: (state, action) => {
+            state.user = action.payload
+            localStorage.setItem("user", JSON.stringify(state.user))
+        }
     }
 })
 
-export const {login, logout} = user.actions
+export const {login, logout, setUser} = user.actions
 
 export default user.reducer
