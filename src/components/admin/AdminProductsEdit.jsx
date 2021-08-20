@@ -2,6 +2,7 @@ import { gql } from "graphql-request";
 import React from "react";
 import { useMutation } from "react-query";
 import send_mutation from "../../api";
+import { useURLQuery } from "../../transform";
 import { errorComponent, loadingComponent } from "./HelperComps";
 
 const add_product_muts = gql`
@@ -52,10 +53,14 @@ function AdminProducts() {
     mutate(data);
   };
 
+  const query = useURLQuery();
+  const action = query.get("action");
+  const product_id = query.get("id");
+
   return (
     <div>
       <h2 className="text-3xl font-bold text-gray-900 mb-8">
-        Добавить продукцию
+        {action === "edit" ? "Редактировать продукт" : "Новый продукт"}
       </h2>
       <div>
         {isLoading && loadingComponent()}

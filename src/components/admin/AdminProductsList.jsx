@@ -1,9 +1,12 @@
 import { Dialog } from "@material-ui/core";
 import { gql } from "graphql-request";
 import React, { useState } from "react";
+import { Fragment } from "react";
 import { useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import send_mutation, { client, send_simple_query } from "../../api";
+import { useURLQuery } from "../../transform";
 import {
   errorComponent,
   handleGQLError,
@@ -72,8 +75,25 @@ const resDialog = (closeDialog, result) => {
       <h3 className="text-lg mb-8">
         {result.isError ? "Произошла ошибка" : "Операция выполнена"}
       </h3>
-      {result.isError && <div>{JSON.stringify(result.error)}</div>}
-      <button className="mt-8 btn-ar" onClick={() => closeDialog(false)}>
+      {result.isError &&
+        result.res.includes(
+          "constraint error when attempting to delete struct"
+        ) && (
+          <h3 className="text-3xl font-semibold mx-10">
+            Если вы видите это сообщение, скорее всего вы пытаетесь удалить
+            продукт, от которго зависит много данных. Удаление приведет к потере
+            данных. Оставьте этот продукт как есть. Кнопка закрыть снизу
+          </h3>
+        )}
+      {result.isError && (
+        <div>
+          <span dangerouslySetInnerHTML={{ __html: result.res }} />
+        </div>
+      )}
+      <button
+        className="mt-8 btn-ar bg-red-300 text-xl font-semibold"
+        onClick={() => closeDialog(false)}
+      >
         Закрыть
       </button>
     </div>
@@ -81,9 +101,8 @@ const resDialog = (closeDialog, result) => {
 };
 
 function AdminProductsList() {
-  const { error, data, isLoading, isSuccess, isFetching, isError } = useQuery(
-    "get_products",
-    async () => {
+  const { error, data, isLoading, isSuccess, isFetching, isError, refetch } =
+    useQuery("get_products", async () => {
       try {
         const { getProducts } = await client.request(get_porducts_query);
         return getProducts;
@@ -91,8 +110,7 @@ function AdminProductsList() {
         console.log(error);
         return {};
       }
-    }
-  );
+    });
 
   const [resultDialog, setResultDialog] = useState(false);
   const [mutRes, setMutRes] = useState({
@@ -117,18 +135,30 @@ function AdminProductsList() {
   });
 
   const handleDelete = () => {
-    mutate(toDeletePID, {
-      onSuccess: (data) => {
-        setResultDialog(true);
-        setMutRes({ isSuccess: true, isError: false, res: data });
-      },
-      onError: (error) => {
-        console.log(error);
-        handleGQLError(error);
-        setResultDialog(false);
-        setMutRes({ isSuccess: false, isError: true, res: error });
-      },
-    });
+    mutate(
+      { id: toDeletePID },
+      {
+        onSuccess: (data) => {
+          if (data.response && data.response.status === 500) {
+            setResultDialog(true);
+            setMutRes({
+              isSuccess: false,
+              isError: true,
+              res: data.response.error,
+            });
+            return;
+          }
+          setResultDialog(true);
+
+          setMutRes({ isSuccess: true, isError: false, res: data });
+          refetch();
+        },
+        onError: (error) => {
+          setResultDialog(true);
+          setMutRes({ isSuccess: false, isError: true, res: error });
+        },
+      }
+    );
   };
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -136,9 +166,17 @@ function AdminProductsList() {
 
   return (
     <div className="flex flex-col">
-      <h2 className="text-3xl font-bold text-gray-900 mb-8">
+      <h2 className="text-3xl font-bold text-gray-900 mb-4">
         Список продукции
       </h2>
+      <div className="flex flex-row-reverse mx-4 mb-6">
+        <Link
+          className="bg-green-600 text-white font-semibold btn-ar"
+          to="/admin/productEdit?action=new"
+        >
+          Новый продукт
+        </Link>
+      </div>
       {isError && !isLoading && !isFetching && errorComponent(error)}
       {isLoading && isFetching && loadingComponent()}
       {openDialog && (
@@ -154,7 +192,8 @@ function AdminProductsList() {
       )}
       {resultDialog && (
         <Dialog
-          open={openDialog}
+          maxWidth="lg"
+          open={resultDialog}
           onClose={() => {
             setToDeletePID(null);
             setOpenDialog(false);
@@ -164,9 +203,12 @@ function AdminProductsList() {
         </Dialog>
       )}
       {isSuccess && !isFetching && !isLoading && (
-        <div className="flex flex-col mx-6 space-y-2">
+        <div className="flex flex-col mx-6 space-y-2 mb-8">
           {data.map((el) => (
-            <div className="flex bg-white rounded-md hover:shadow-md px-4 py-3">
+            <div
+              className="flex bg-white rounded-md hover:shadow-md px-4 py-3 items-center space-x-2"
+              key={el.id}
+            >
               <img
                 src={el.image}
                 className="rounded-full h-20 w-20 object-cover"
@@ -175,11 +217,14 @@ function AdminProductsList() {
               <p className="flex-1 font-semibold text-gray-900">
                 {el.name} {el.volume}ml {el.price} сом
               </p>
-              <button className="btn-ar bg-yellow-500  font-semibold hover:ring-yellow-300">
+              <Link
+                className="btn-ar bg-yellow-500  font-semibold hover:ring-yellow-300 my-auto"
+                to={"/admin/productEdit?action=edit&id=" + el.id}
+              >
                 Изменить
-              </button>
+              </Link>
               <button
-                className="btn-ar bg-red-600 text-white hover:ring-red-800 font-semibold"
+                className="btn-ar bg-red-600 text-white hover:ring-red-800 font-semibold my-auto"
                 onClick={() => {
                   setToDeletePID(el.id);
                   setOpenDialog(true);
