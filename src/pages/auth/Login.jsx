@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Button from "../../components/common/Button";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 import validator from "validator";
 
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/user";
-import { useMutation, useQuery } from "react-query";
+import { login, logout } from "../../redux/user";
+import { useMutation } from "react-query";
 import { gql } from "graphql-request";
 import send_mutation from "../../api";
+import { useURLQuery } from "../../transform";
 
 const login_mutation = ({ email, password }) => {
   return send_mutation(
@@ -37,8 +38,7 @@ function Login(props) {
   const [passwordError, setPasswordError] = useState("");
   const [authError, setAuthError] = useState("");
 
-  const { error, isError, isLoading, isSuccess, mutateAsync, data, status } =
-    useMutation(login_mutation);
+  const { mutate, isLoading } = useMutation(login_mutation);
 
   const isLoggedIn = useSelector((state) => (state.user.user ? true : false));
 
@@ -77,20 +77,44 @@ function Login(props) {
 
   const dispatch = useDispatch();
 
+  const [error, setError] = useState();
+  const history = useHistory();
   const handleLogin = (e) => {
     e.preventDefault();
     if (emailError === "" && password !== "" && email !== "") {
-      mutateAsync({ email: email, password: password }).then((res) => {
-        if (status === "success") {
-          console.log(data);
-          dispatch(login(data.login));
-          return;
+      mutate(
+        { email: email, password: password },
+        {
+          onError: (err) => {
+            const error = err.response.errors[0].message;
+            if (error === "Invalid credentials") {
+              setError("Неверный пароль");
+              return;
+            }
+            if (error === "No user") {
+              setError("Пользователя с таким email не существует");
+              return;
+            }
+            setError(error);
+          },
+          onSuccess: (data) => {
+            dispatch(login(data.login));
+            setTimeout(() => {
+              if (query.get("from")) {
+                history.push(query.get("from"));
+              } else {
+                history.push("/");
+              }
+            }, 1000);
+          },
         }
-      });
+      );
     }
   };
 
-  if (isLoggedIn) {
+  const query = useURLQuery();
+
+  if (isLoggedIn && !query.get("reauth")) {
     return <Redirect to="/profile" />;
   }
   return (
@@ -133,11 +157,7 @@ function Login(props) {
           {passwordError}
         </span>
         {isLoading && <div>Загрузка...</div>}
-        {isError && (
-          <span className="text-base text-red-600 mb-2">
-            {JSON.stringify(error)}
-          </span>
-        )}
+        {error && <span className="text-base text-red-600 mb-2">{error}</span>}
         <span className="mt-2"></span>
         <Button name="Войти" primary />
         <div className="my-2">или</div>

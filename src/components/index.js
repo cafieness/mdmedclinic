@@ -12,3 +12,4 @@ export { default as ProfileData } from "./profile/ProfileData";
 
 export { default as Router } from "./router/Routes";
 export { default as SimpleError } from "./common/SimpleError";
+export { default as Loading } from "./common/Loading";

@@ -36,5 +36,15 @@ const send_mutation = (query, params) => {
   return client.request(query, params);
 };
 
+const reqV2 = async (query, params, onSuccess, onError) => {
+  try {
+    const data = await client.request(query, params);
+    onSuccess(data);
+    return;
+  } catch (error) {
+    onError(error);
+  }
+};
+
 export default send_mutation;
-export { client, send_simple_query, send_mutation, send_var_query };
+export { client, send_simple_query, send_mutation, send_var_query, reqV2 };

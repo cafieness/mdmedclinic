@@ -1,3 +1,5 @@
+import { useHistory, useLocation } from "react-router";
+
 const readStatus = (status) => {
   switch (status) {
     case "PENDING":
@@ -37,4 +39,22 @@ const readHiddenStatus = (st) => {
   }
 };
 
-export { readStatus, readPaymentType, readHiddenStatus };
+function useURLQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+function useLoginRedirect(from) {
+  const history = useHistory();
+  const loginRedirect = () => {
+    history.push("/login?reauth=true&from=" + from);
+  };
+  return loginRedirect;
+}
+
+export {
+  readStatus,
+  readPaymentType,
+  readHiddenStatus,
+  useURLQuery,
+  useLoginRedirect,
+};

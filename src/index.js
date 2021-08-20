@@ -9,6 +9,10 @@ import store from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { GuardProvider } from "react-router-guards";
+import { adminGuard } from "./components/router/Routes";
+import { ErrorPage } from "./pages";
+import { Loading } from "./components";
 const queryClient = new QueryClient();
 
 ReactDOM.render(
@@ -16,7 +20,13 @@ ReactDOM.render(
     <PersistGate loading={null} persistor={persistStore(store)}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <App />
+          <GuardProvider
+            guards={[adminGuard]}
+            error={ErrorPage}
+            loading={Loading}
+          >
+            <App />
+          </GuardProvider>
         </BrowserRouter>
       </QueryClientProvider>
     </PersistGate>
