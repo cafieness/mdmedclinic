@@ -5,7 +5,8 @@ import {
   BlogList,
   Courses,
   Orders,
-  Products,
+  ProductsList,
+  ProductEditor,
 } from "../../components/admin";
 
 function Admin() {
@@ -35,7 +36,9 @@ function Admin() {
       case "courses":
         return <Courses />;
       case "products":
-        return <Products />;
+        return <ProductsList />;
+      case "productEdit":
+        return <ProductEditor />;
       default:
         return <BlogList />;
     }

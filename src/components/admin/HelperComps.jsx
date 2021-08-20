@@ -16,4 +16,19 @@ const loadingComponent = () => {
   );
 };
 
-export { errorComponent, loadingComponent };
+const handleGQLError = (error, loginRedirect) => {
+  const errors = error.response.errors;
+  if (errors.length === 1) {
+    switch (errors[0].message) {
+      case "Auth required":
+      case "JWT token expired":
+        loginRedirect();
+        return;
+
+      default:
+        break;
+    }
+  }
+};
+
+export { errorComponent, loadingComponent, handleGQLError };

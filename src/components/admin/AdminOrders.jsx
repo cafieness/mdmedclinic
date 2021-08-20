@@ -1,10 +1,14 @@
-import { Dialog, Modal } from "@material-ui/core";
+import { Dialog } from "@material-ui/core";
 import { gql } from "graphql-request";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { send_var_query } from "../../api";
-import { readPaymentType, readStatus } from "../../transform";
-import { errorComponent, loadingComponent } from "./HelperComps";
+import { readPaymentType, readStatus, useLoginRedirect } from "../../transform";
+import {
+  errorComponent,
+  handleGQLError,
+  loadingComponent,
+} from "./HelperComps";
 
 const get_orders_query = gql`
   query getOrders($st: Status!) {
@@ -196,6 +200,14 @@ function AdminOrders() {
     refetch();
     setSelectedOrder(null);
   }, [status]);
+
+  const loginRedirect = useLoginRedirect("/admin/orders");
+
+  useEffect(() => {
+    if (isError) {
+      handleGQLError(error, loginRedirect);
+    }
+  }, [error, isError, loginRedirect]);
 
   const [selectedOrder, setSelectedOrder] = useState(null);
 
