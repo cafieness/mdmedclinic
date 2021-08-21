@@ -7,30 +7,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { readFilter } from "../../transform";
 
-
 import { useQuery } from "react-query";
 import { send_var_query } from "../../api";
-import { errorComponent, loadingComponent } from "../../components/admin/HelperComps";
+import {
+  errorComponent,
+  loadingComponent,
+} from "../../components/admin/HelperComps";
 
 const get_products = `
 query getProducts($filter: ProductFilter!, $page: Int!, $productCategory:String){
   getProducts(input:{filter:$filter,pagination:{page:$page,pageSize:16}, 
     productCategory:$productCategory}){
-    image
-    category{
+    products{
+      image
       name
+      price
+      category{
+        name
+        id
+      }
+      volume
     }
-    id
-    name
-    price
-    volume
+    pagination{
+      currentPage
+      pageSize
+      totalCount
+    }
   }
 }
 
-`
+`;
 
 function Shop() {
-  
   const [activeLeftFilter, setActiveLeftFilter] = useState("Все");
   const [activeRightFilter, setActiveRightFilter] = useState("Все");
   const [page, setPage] = useState(1);
@@ -48,32 +56,40 @@ function Shop() {
     "Маски",
   ];
   const rightFilterButtons = ["Все", "Новинки", "Популярное"];
-  
 
   const [showMobileFilter, setShowMobileFilter] = useState(false);
 
-  function handleCategoryFilter(name){
+  function handleCategoryFilter(name) {
     setActiveLeftFilter(name);
     setShowMobileFilter(false);
   }
   const { data, error, refetch, isSuccess, isError, isLoading, isFetching } =
-    useQuery("get_user", async () => {
-      const {
-        getProducts,
-      } = await send_var_query(get_products, {filter:readFilter(activeRightFilter), page, productCategory: activeLeftFilter});
-      return getProducts;
-    },
-    {
-      onSuccess: (data)=>{
+    useQuery(
+      "get_user",
+      async () => {
+        const { getProducts } = await send_var_query(get_products, {
+          filter: readFilter(activeRightFilter),
+          page,
+          productCategory: activeLeftFilter,
+        });
+        return getProducts;
+      },
+      {
+        onSuccess: (data) => {},
       }
-    });
-    useEffect(() => {
-      refetch();
-    }, [page, activeLeftFilter, activeRightFilter]);
-    
+    );
+  useEffect(() => {
+    refetch();
+  }, [page, activeLeftFilter, activeRightFilter]);
 
   return (
-    <div className={data&&data.length<5?"bg-primary pt-40 pb-28 sm:pt-28 h-screen":"bg-primary pt-40 pb-28 sm:pt-28"}>
+    <div
+      className={
+        data && data.products.length < 5
+          ? "bg-primary pt-40 pb-28 sm:pt-28 h-screen"
+          : "bg-primary pt-40 pb-28 sm:pt-28"
+      }
+    >
       <div className="flex  flex-col items-center w-4/5 xl:w-full xl:px-10 mx-auto">
         <div className=" flex items-start">
           <div className="md:hidden pr-10 mt-24 grid gap-8 mr-20 xl:mr-10 border-black border-r-2">
@@ -134,10 +150,13 @@ function Shop() {
               </div>
             </div>
             <div className="grid grid-cols-4 gap-10 xl:grid-cols-3 shop-grid mb-10">
-            {isError && errorComponent(error)}
-            {(isLoading || isFetching) && isError && loadingComponent()}
-              {isSuccess&&data&&!isLoading&&!isFetching &&(
-                data.map((product) => (
+              {isError && errorComponent(error)}
+              {(isLoading || isFetching) && isError && loadingComponent()}
+              {isSuccess &&
+                data &&
+                !isLoading &&
+                !isFetching &&
+                data.products.map((product) => (
                   <Link to={`/shop/${product.id}/${product.name}`}>
                     <ProductCard
                       name={product.name}
@@ -145,12 +164,24 @@ function Shop() {
                       img={product.image}
                     />
                   </Link>
-                ))
-              )}
+                ))}
             </div>
           </div>
         </div>
-        <Pagination count={10} className="self-end" onChange={(el,value)=>{setPage(value)}} />
+        {isSuccess && data && !isLoading && !isFetching && (
+          <Pagination
+            disabled={data.pagination.totalCount <= 16}
+            count={
+              data.pagination.totalCount % 16 === 0
+                ? data.pagination.totalCount / 16
+                : data.pagination.totalCount / 16 + 1
+            }
+            className="self-end"
+            onChange={(el, value) => {
+              setPage(value);
+            }}
+          />
+        )}
       </div>
     </div>
   );

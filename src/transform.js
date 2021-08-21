@@ -43,7 +43,7 @@ const readFilter = (filter) => {
   switch(filter){
     case "Все":
       return "ALL"
-    case "Популярные":
+    case "Популярное":
       return "POPULAR"
     case "Новинки":
       return "NEW"  
