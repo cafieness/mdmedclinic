@@ -11,6 +11,8 @@ function Profile() {
   const sections = ["Профиль", "Сменить пароль", "Мои заказы"];
   const isLoggedIn = useSelector((state) => (state.user.user ? true : false));
 
+  
+
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }

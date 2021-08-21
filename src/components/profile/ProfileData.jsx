@@ -48,7 +48,6 @@ function ProfileData() {
       } = await send_var_query(get_user_query);
       return me;
     });
-
   const user = useSelector((state) => state.user.user);
 
   const [email, setEmail] = useState(user.email);
