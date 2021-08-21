@@ -18,14 +18,16 @@ const get_porducts_query = gql`
     getProducts(
       input: { filter: ALL, pagination: { page: 1, pageSize: 1000 } }
     ) {
-      id
-      name
-      image
-      category {
+      products {
+        id
         name
+        image
+        category {
+          name
+        }
+        volume
+        price
       }
-      volume
-      price
     }
   }
 `;
@@ -104,8 +106,10 @@ function AdminProductsList() {
   const { error, data, isLoading, isSuccess, isFetching, isError, refetch } =
     useQuery("get_products", async () => {
       try {
-        const { getProducts } = await client.request(get_porducts_query);
-        return getProducts;
+        const {
+          getProducts: { products },
+        } = await client.request(get_porducts_query);
+        return products;
       } catch (error) {
         console.log(error);
         return {};
