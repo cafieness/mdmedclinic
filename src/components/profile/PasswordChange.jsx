@@ -3,11 +3,10 @@ import Dialog from "@material-ui/core/Dialog";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import send_mutation, { send_var_query } from "../../api";
+import send_mutation from "../../api";
 
 import { useMutation, useQuery } from "react-query";
 import { gql } from "graphql-request";
-import { useSelector } from "react-redux";
 
 const change_password_mut = gql`
   mutation ChangeUserData($oldPassword: String!, $newPassword: String!) {

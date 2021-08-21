@@ -6,11 +6,12 @@ const cart = createSlice({
     initialState: {cart: [], orderStatus:-1},
     reducers: {
         add: (state, action) => {
+        console.log(action.payload.product)
            const index = state.cart.findIndex(el => el.product.id === action.payload.product.id)
            if (index == -1){
                state.cart = [action.payload, ...state.cart]
            } else {
-               state.cart[index].units = action.payload.units
+               state.cart[index].amount = action.payload.amount
            }
             
         },
@@ -19,15 +20,15 @@ const cart = createSlice({
         },
         updateUnits: (state, action)=>{
             const index = state.cart.findIndex(el=>el.product.id===action.payload.id)
-            state.cart[index].units = action.payload.units;
+            state.cart[index].amount = action.payload.amount;
         },
         increment: (state, action)=>{
             const index = state.cart.findIndex(el=>el.product.id===action.payload.id)
-            state.cart[index].units++;
+            state.cart[index].amount++;
         },
         decrement: (state, action)=>{
             const index = state.cart.findIndex(el=>el.product.id===action.payload.id)
-            state.cart[index].units--;
+            state.cart[index].amount--;
         },
         changeOrderStatus: (state, action)=>{
             state.orderStatus= action.payload.status;

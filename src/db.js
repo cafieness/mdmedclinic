@@ -30,11 +30,6 @@ import injectImg11 from "./assets/procedure/inject/11.png";
 import injectImg12 from "./assets/procedure/inject/12.png";
 import injectImg13 from "./assets/procedure-4.png";
 
-
-
-
-import productImg from "./assets/product-sample.png";
-
 import blogImg1 from "./assets/blog/main.png";
 import blogImg2 from "./assets/blog/2.png";
 
@@ -459,146 +454,6 @@ const procedures = {
   ],
 };
 
-const products = [
-  {
-    id: 1,
-    name: "Интенсивный крем “Еста 40+”",
-    price: 2000,
-    image: productImg,
-    shortDesc: "Легкий крем с инновационным антиоксидантным комплексом",
-    age: "40+",
-    skinType: "Сухая , комбинированная, нормальная, чувствительная",
-    areaOfapplication: "Лицо",
-    fullDescription:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
-    Application:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
-    Ingridients:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
-    volume: "250 ml",
-    category: "Крема",
-  },
-  {
-    id: 2,
-    name: "Крем 2",
-    price: 2000,
-    image: productImg,
-    shortDesc: "a",
-    age: "",
-    skinType: "",
-    areaOfapplication: "",
-    fullDescription: "",
-    Application: "",
-    Ingridients: "",
-    volume: "250 ml",
-    category: "Крема",
-  },
-  {
-    id: 3,
-    name: "Крем 3",
-    price: 2000,
-    image: productImg,
-    shortDesc: "a",
-    age: "",
-    skinType: "",
-    areaOfapplication: "",
-    fullDescription: "",
-    Application: "",
-    Ingridients: "",
-    volume: "250 ml",
-    category: "Крема",
-  },
-  {
-    id: 4,
-    name: "Крем 4",
-    price: 2000,
-    image: productImg,
-    shortDesc: "a",
-    age: "",
-    skinType: "",
-    areaOfapplication: "",
-    fullDescription: "",
-    Application: "",
-    Ingridients: "",
-    volume: "250 ml",
-    category: "Крема",
-  },
-  {
-    id: 5,
-    name: "Крем 5",
-    price: 2000,
-    image: productImg,
-    shortDesc: "a",
-    age: "",
-    skinType: "",
-    areaOfapplication: "",
-    fullDescription: "",
-    Application: "",
-    Ingridients: "",
-    volume: "250 ml",
-    category: "",
-  },
-  {
-    id: 6,
-    name: "Крем 6",
-    price: 2000,
-    image: productImg,
-    shortDesc: "a",
-    age: "",
-    skinType: "",
-    areaOfapplication: "",
-    fullDescription: "",
-    Application: "",
-    Ingridients: "",
-    volume: "250 ml",
-    category: "",
-  },
-  {
-    id: 7,
-    name: "Крем 7",
-    price: 2000,
-    image: productImg,
-    shortDesc: "a",
-    age: "",
-    skinType: "",
-    areaOfapplication: "",
-    fullDescription: "",
-    Application: "",
-    Ingridients: "",
-    volume: "250 ml",
-    category: "",
-  },
-  {
-    id: 8,
-    name: "Крем 8",
-    price: 2000,
-    image: productImg,
-    shortDesc: "a",
-    age: "",
-    skinType: "",
-    areaOfapplication: "",
-    fullDescription: "",
-    Application: "",
-    Ingridients: "",
-    volume: "250 ml",
-    category: "",
-  },
-  {
-    id: 9,
-    name: "Крем 9",
-    price: 2000,
-    image: productImg,
-    shortDesc: "a",
-    age: "",
-    skinType: "",
-    areaOfapplication: "",
-    fullDescription: "",
-    Application: "",
-    Ingridients: "",
-    volume: "250 ml",
-    category: "",
-  },
-];
 const blogPosts = [
   {
     id:1,
@@ -653,4 +508,4 @@ const blogPosts = [
   
 ];
 
-export { procedures, products, blogPosts };
+export { procedures, blogPosts };

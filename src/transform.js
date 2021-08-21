@@ -39,6 +39,16 @@ const readHiddenStatus = (st) => {
   }
 };
 
+const readFilter = (filter) => {
+  switch(filter){
+    case "Все":
+      return "ALL"
+    case "Популярные":
+      return "POPULAR"
+    case "Новинки":
+      return "NEW"  
+  }
+}
 function useURLQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -57,4 +67,5 @@ export {
   readHiddenStatus,
   useURLQuery,
   useLoginRedirect,
+  readFilter
 };

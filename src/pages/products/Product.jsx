@@ -1,28 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-
 import { useParams } from "react-router-dom";
-
-import { products } from "../../db";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { CSSTransition } from "react-transition-group";
-import { ProductCard } from "../../components";
 import Dialog from "@material-ui/core/Dialog";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../redux/cart";
+import { useQuery } from "react-query";
+import { send_var_query } from "../../api";
+import { errorComponent, loadingComponent } from "../../components/admin/HelperComps";
 
-function getProduct(id) {
-  for (let i = 0; i < products.length; i++) {
-    if (id == products[i].id) {
-      return products[i];
+const get_product = `
+  query getProduct($id: ID!) {
+    getProductById(id: $id) {
+      age
+      id
+      application
+      fullDesc
+      image
+      ingridients
+      name
+      price
+      skinType
+      volume
     }
   }
-}
+`;
 
 function Product() {
   const { id } = useParams();
-  const product = getProduct(id);
+  const cart = useSelector(state => state.cart.cart)
+
+  const { data, error, refetch, isSuccess, isError, isLoading, isFetching } =
+    useQuery(
+      "get_user",
+      async () => {
+        const { getProductById } = await send_var_query(get_product, {
+          id: id,
+        });
+        return getProductById;
+      },
+      {
+        onSuccess: (data) => {
+        },
+      }
+    );
   let [productCounter, setProductCounter] = useState(1);
   const [showDescription, setShowDescription] = useState(false);
   const [showApplication, setShowApplication] = useState(false);
@@ -30,80 +53,75 @@ function Product() {
   const [redirectToLogin, setRedirectToLogin] = useState(false);
 
   const [openDialog, setOpenDialog] = useState(false);
-  const isLoggedIn  = useSelector(state => state.user.user ? true : false);
+  const isLoggedIn = useSelector((state) => (state.user.user ? true : false));
 
   const similarProducts = [];
 
-  const dialogBody = isLoggedIn?(
+  const dialogBody = isLoggedIn ? (
     <div className="p-10 flex flex-col items-center">
-      <FontAwesomeIcon className="text-5xl mb-8 text-green-400" icon={faCheck} />
+      <FontAwesomeIcon
+        className="text-5xl mb-8 text-green-400"
+        icon={faCheck}
+      />
       <div>Добавлено в корзину</div>
     </div>
-  ):(<div className="p-10">Сначала нужно войти</div>);
+  ) : (
+    <div className="p-10">Сначала нужно войти</div>
+  );
 
   useEffect(() => {
-     setTimeout(() => {
+    setTimeout(() => {
       setOpenDialog(false);
     }, 2500);
   }, [openDialog]);
 
-  function getSimilarProducts() {
-    for (let i = 0; i < products.length; i++) {
-      if (similarProducts.length === 6) {
-        break;
-      }
-      if (
-        product.category === products[i].category &&
-        product.name !== products[i].name
-      ) {
-        similarProducts.push(products[i]);
-      }
-    }
-  }
-  getSimilarProducts();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   let time = new Date();
- function handleSubmit(){
+  function handleSubmit() {
     setOpenDialog(true);
-    
-    if(!isLoggedIn){
-      
+    if (!isLoggedIn) {
       setTimeout(() => {
         setRedirectToLogin(true);
       }, 2500);
-    }else{
-      dispatch(add({product:product, units: productCounter}))
+    } else {
+      console.log(cart)
+      dispatch(add({ product: data, amount: productCounter }));
     }
- }
- if(redirectToLogin){
-   return <Redirect to="/login"/>
- }
+  }
+  if (redirectToLogin) {
+    return <Redirect to="/login" />;
+  }
   return (
     <div className="py-40 bg-primary sm:py-20">
-      <div className="flex flex-col items-center">
+      {isError && errorComponent(error)}
+            {(isLoading || isFetching) && isError && loadingComponent()}
+      {isSuccess&&data&&!isLoading&&!isFetching &&(<div className="flex flex-col items-center">
         <div className="product-width md:flex-col flex justify-between items-center ">
           <div className=" md:order-3 product-left-description md:flex-col md:flex md:items-center  md:mr-0 mr-10">
-            <div className="text-3xl mb-10 italic">{product.name}</div>
-            <div className="mb-8 italic">{product.shortDesc}</div>
+            <div className="text-3xl mb-10 italic">{data.name}</div>
             <table className="product-table">
               <tr className="flex justify-between">
                 <th>Зона применения</th>
-                <td>{product.areaOfapplication}</td>
+                <td>Лицо</td>
               </tr>
               <tr className="flex justify-between">
                 <th className="text-left w-1/2">Типы кожи</th>
-                <td className="text-right">{product.skinType}</td>
+                <td className="text-right">{data.skinType}</td>
               </tr>
               <tr className="flex justify-between">
                 <th>Возраст</th>
-                <td>{product.age}</td>
+                <td>{data.age}</td>
               </tr>
             </table>
           </div>
-          <img className="md:order-1 md:w-4/5 md:mb-10  w-2/3" src={product.image} alt="" />
+          <img
+            className="md:order-1 md:w-4/5 md:mb-10  w-2/3"
+            src={data.image}
+            alt=""
+          />
           <div className="md:order-2 md:mb-16  product-right-description ml-10 md:ml-0 flex flex-col">
-            <div className="text-4xl italic">{product.price}</div>
-            <div className="italic my-4">{product.volume}</div>
+            <div className="text-4xl italic">{data.price} сом</div>
+            <div className="italic my-4">{data.volume} мл.</div>
             <div className="flex mb-10 py-4 border-b-2 border-t-2 justify-between border-black">
               <button
                 onClick={() =>
@@ -125,7 +143,9 @@ function Product() {
             >
               В корзину
             </button>
-            <Dialog open={openDialog} onClose={()=>setOpenDialog(false)}>{dialogBody}</Dialog>
+            <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+              {dialogBody}
+            </Dialog>
           </div>
         </div>
         <div className="product-width mt-20">
@@ -142,7 +162,7 @@ function Product() {
               classNames="showDescription"
               unmountOnExit
             >
-              <div className="italic my-4 ">{product.fullDescription}</div>
+              <div className="italic my-4 ">{data.fullDesc}</div>
             </CSSTransition>
           </div>
           <div className="py-4 px-4 border-b-2 border-black">
@@ -158,7 +178,7 @@ function Product() {
               classNames="showDescription"
               unmountOnExit
             >
-              <div className="italic my-4 ">{product.Application}</div>
+              <div className="italic my-4 ">{data.application}</div>
             </CSSTransition>
           </div>
           <div className="py-4 px-4 border-b-2 border-black">
@@ -174,24 +194,12 @@ function Product() {
               classNames="showDescription"
               unmountOnExit
             >
-              <div className="italic my-4 ">{product.Ingridients}</div>
+              <div className="italic my-4 ">{data.ingridients}</div>
             </CSSTransition>
           </div>
         </div>
-        <div className="flex flex-col items-center">
-          <div className="italic text-2xl mt-20 mb-14 sm:text-xl">
-            Другие продукты из серии
-          </div>
-          <div className="grid grid-cols-3 gap-20 md:grid-cols-2 product-similar">
-            {similarProducts.map((pr) => (
-              <a href={`/shop/${pr.id}/${pr.name}`}>
-                <ProductCard name={pr.name} img={pr.image} price={pr.price} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+       </div>
+    )}</div>
   );
 }
 
