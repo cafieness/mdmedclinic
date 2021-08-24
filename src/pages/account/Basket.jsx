@@ -53,11 +53,7 @@ function Basket() {
   }
 
   return (
-    <div
-      className={
-        cart.length >= 2 ? "py-40 bg-primary " : "h-screen py-40 bg-primary"
-      }
-    >
+    <div className="bg-primary pt-16 pb-10 mdh:pt-40">
       <div className="w-4/5 mx-auto">
         <div className="text-4xl mb-10 text-center">Ваш заказ</div>
         {cart.length > 0 && (
@@ -111,33 +107,31 @@ function Basket() {
                   </div>
                 ))}
                 <div className="mt-20">
-                <div className="italic text-right">
-                  Итого к оплате:{" "}
-                  {cart.reduce(
-                    (a, b) => (a = a + b.product.price * b.amount),
-                    0
-                  )}{" "}
-                  сом
-                </div>
-                <div className="flex mt-20 justify-between items-center">
-                  <Link to="/shop" className="text-xl italic mt-10">
-                    {`<`} Вернуться к покупкам
-                  </Link>
-                  <Link to="/payment">
-                    <button
-                      onClick={dispatch(changeOrderStatus({ status: 0 }))}
-                      className="btn-primary rounded-3xl"
-                    >
-                      Оформить заказ
-                    </button>
-                  </Link>
+                  <div className="italic text-right">
+                    Итого к оплате:{" "}
+                    {cart.reduce(
+                      (a, b) => (a = a + b.product.price * b.amount),
+                      0
+                    )}{" "}
+                    сом
+                  </div>
+                  <div className="flex mt-20 justify-between items-center">
+                    <Link to="/shop" className="text-xl italic mt-10">
+                      {`<`} Вернуться к покупкам
+                    </Link>
+                    <Link to="/payment">
+                      <button
+                        onClick={dispatch(changeOrderStatus({ status: 0 }))}
+                        className="btn-primary rounded-3xl"
+                      >
+                        Оформить заказ
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            
-              </div>
-              
             </div>
-            
+
             <div className="hidden md:flex md:flex-col md:items-center">
               {cart.map((el) => (
                 <div className="flex flex-col items-center border-b-2 pb-4">
@@ -204,5 +198,3 @@ function Basket() {
 }
 
 export default Basket;
-
-

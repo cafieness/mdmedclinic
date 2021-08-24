@@ -105,7 +105,7 @@ function Orders() {
           <div className="text-3xl mb-8 mdh:mb-12 ml-4 mdh:ml-16 ">
             Мои заказы
           </div>
-          <div className="px-1 mdh:px-5">
+          <div className="px-1 mdh:px-16">
             <div className="grid grid-cols-7 mb-4 text-center">
               <div className="font-semibold text-gray-800 ">Номер заказа</div>
               <div className="font-semibold text-gray-800 col-span-2">
