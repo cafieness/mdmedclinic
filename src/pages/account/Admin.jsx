@@ -8,6 +8,7 @@ import {
   ProductsList,
   ProductEditor,
   Categories,
+  BlogEdit,
 } from "../../components/admin";
 
 function Admin() {
@@ -43,6 +44,8 @@ function Admin() {
         return <ProductEditor />;
       case "categories":
         return <Categories />;
+      case "blogEdit":
+        return <BlogEdit />;
       default:
         return <BlogList />;
     }
