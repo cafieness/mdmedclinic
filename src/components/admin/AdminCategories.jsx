@@ -5,7 +5,6 @@ import { useMutation, useQuery } from "react-query";
 import send_mutation, { send_simple_query } from "../../api";
 import { errorComponent, loadingComponent } from "./HelperComps";
 import { Dialog } from "@material-ui/core";
-import { add } from "../../redux/cart";
 
 const get_cats = gql`
   {

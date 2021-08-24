@@ -1,29 +1,60 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { blogPosts } from "../../db";
+import { gql } from "graphql-request";
+import { useQuery } from "react-query";
+import { send_var_query } from "../../api";
+import {
+  loadingComponent,
+  errorComponent,
+} from "../../components/admin/HelperComps";
 
-function getPost(id) {
-  for (let i = 0; i < blogPosts.length; i++) {
-    if (id == blogPosts[i].id) {
-      return blogPosts[i];
+const get_post = gql`
+  query getPost($id: ID!) {
+    getBlogPost(id: $id) {
+      id
+      body
+      image
+      title
     }
   }
-}
+`;
 
 function BlogPost() {
   const { id } = useParams();
 
-  const post = getPost(id);
+  const { data, isLoading, isFetching, isError, error, isSuccess } = useQuery(
+    "get_post",
+    async () => {
+      const { getBlogPost } = await send_var_query(get_post, { id });
+      return getBlogPost;
+    }
+  );
+
   return (
     <div className="py-40">
-        <div className="w-4/5 mx-auto">
-        <img src={post.image} alt="" className=" float-left w-500 object-cover rounded-3xl m-10 md:m-0 md:mb-8" />
-        <div >
-          <div className="text-4xl sm:text-2xl font-bold pt-20 mb-8 md:text-center">{post.title}</div>
-          <div >{post.fullDesc}</div>
+      {(isLoading || isFetching) && loadingComponent()}
+      {!isLoading && !isFetching && isError && errorComponent(error)}
+      {isSuccess && !data && (
+        <div className="relative h-screen max-w-[100vw] overflow-hidden overscroll-x-contain">
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center italic font-semibold text-gray-800 text-5xl">
+            Такой статьи увы нет
+          </div>
         </div>
+      )}
+      {isSuccess && !isLoading && !isFetching && data && (
+        <div className="mx-6 mdh:mx-20 lgh:mx-32 flex flex-col">
+          <img
+            src={data.image}
+            alt=""
+            className="rounded-3xl mx-auto max-w-[80vw]"
+          />
+
+          <h1 className="text-4xl sm:text-2xl font-bold pt-20 mb-8 md:text-center">
+            {data.title}
+          </h1>
+          <p>{data.body}</p>
         </div>
-        
+      )}
     </div>
   );
 }
