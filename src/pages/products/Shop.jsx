@@ -94,7 +94,7 @@ function Shop() {
   }, [page, activeLeftFilter, activeRightFilter]);
 
   useEffect(() => {
-    if (data.getCategories) {
+    if (data && data.getCategories) {
       let filters = data.getCategories.map((el) => el.name);
       setLeftFilterButtons(["Все", ...filters]);
     }

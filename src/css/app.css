@@ -49,6 +49,11 @@ body {
   font-size: 24px;
 }
 
+.btn-primary-logic {
+  background: linear-gradient(to right, rgba(191, 105, 157, 62%), #523b6a);
+  color: white;
+}
+
 .bar {
   display: block;
   width: 25px;

@@ -63,37 +63,39 @@ function PasswordChange() {
           setPasswordError("");
         },
         onError: () => {
-          setPasswordError("Вы неправильно ввели пароль или новый пароль менее 8 символов")
+          setPasswordError(
+            "Вы неправильно ввели пароль или новый пароль менее 8 символов"
+          );
         },
       }
     );
   }
   return (
-    <div className="ml-20">
-      <div className="text-3xl mb-16">Сменить пароль</div>
-      <div>
-        <div className="text-xl mb-8">
+    <div className="mx-8 my-8 flex flex-col items-center w-4/5 mx-auto">
+      <div className="text-3xl mb-16 text-center">Сменить пароль</div>
+      <div className="flex flex-col mx-auto">
+        <div className="text-xl mb-8 flex flex-col space-y-2">
           <label>Старый пароль: </label>
           <input
             type="password"
             onChange={(e) => setOldPassword(e.target.value)}
             value={oldPassword}
-            className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none ml-6"
+            className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none"
           />
         </div>
-        <div className="text-xl mb-8">
+        <div className="text-xl mb-4 flex space-y-2 flex-col">
           <label>Новый пароль: </label>
           <input
             type="password"
             onChange={(e) => setNewPassword(e.target.value)}
             value={newPassword}
-            className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none ml-8"
+            className="bg-white py-2 px-4 rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none"
           />
         </div>
         <div className="my-4 text-red-600">{passwordError}</div>
         <button
           onClick={savePassword}
-          className="button btn-primary rounded-2xl focus:outline-none"
+          className="button btn-primary mx-auto max-w-[80vw] rounded-2xl focus:outline-none"
         >
           Сохранить
         </button>
