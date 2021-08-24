@@ -4,3 +4,4 @@ export { default as Orders } from "./AdminOrders";
 export { default as Courses } from "./AdminCourses";
 export { default as ProductsList } from "./AdminProductsList";
 export { default as ProductEditor } from "./AdminProductsEdit";
+export { default as Categories } from "./AdminCategories";

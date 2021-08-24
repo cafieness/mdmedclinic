@@ -7,6 +7,7 @@ import {
   Orders,
   ProductsList,
   ProductEditor,
+  Categories,
 } from "../../components/admin";
 
 function Admin() {
@@ -16,6 +17,7 @@ function Admin() {
     { name: "Записи на курсы", key: "courses" },
     { name: "Записи на посещение", key: "visits" },
     { name: "Продукция", key: "products" },
+    { name: "Категории", key: "categories" },
   ];
 
   const { tab } = useParams();
@@ -39,6 +41,8 @@ function Admin() {
         return <ProductsList />;
       case "productEdit":
         return <ProductEditor />;
+      case "categories":
+        return <Categories />;
       default:
         return <BlogList />;
     }

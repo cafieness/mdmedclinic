@@ -318,7 +318,7 @@ function AdminProducts() {
               <select
                 name="categoryId"
                 id=""
-                className="bg-white rounded-full px-3 py-2 w-1/2"
+                className="bg-white rounded-full px-3 py-2 w-1/2 form-select"
                 defaultValue="0"
               >
                 <option value="0" hidden>
