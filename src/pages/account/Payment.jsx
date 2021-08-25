@@ -78,26 +78,24 @@ function Payment() {
     setAddress(el.target.value);
   };
 
-  const { mutate, error } = useMutation(
-    ({ orderedProducts, paymentType }) =>
-      send_mutation(add_order_mut, {
-        orderedProducts: orderedProducts,
-        paymentType: paymentType,
-      })
+  const { mutate, error } = useMutation(({ orderedProducts, paymentType }) =>
+    send_mutation(add_order_mut, {
+      orderedProducts: orderedProducts,
+      paymentType: paymentType,
+    })
   );
   const transformCart = (cart) => {
-    const orders=[];
-    cart.map(el=>{
-        orders.push({quantity:el.amount,productId:el.product.id});
-      }
-    )
+    const orders = [];
+    cart.map((el) => {
+      orders.push({ quantity: el.amount, productId: el.product.id });
+    });
     return orders;
-  }
+  };
 
   const handleSubmit = () => {
     if (phonePattern.test(phone) && paymentMethod !== "") {
       mutate(
-        {orderedProducts: transformCart(cart), paymentType: paymentMethod },
+        { orderedProducts: transformCart(cart), paymentType: paymentMethod },
         {
           onSuccess: () => {
             setOpenDialog(true);
@@ -120,7 +118,7 @@ function Payment() {
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
-  if(status){
+  if (status) {
     return <Redirect to="/profile" />;
   }
 
@@ -132,7 +130,11 @@ function Payment() {
           <div className="md:flex-col w-500px md:w-full">
             {cart.map((el) => (
               <div className="border-b-2 flex md:flex-col md:mx-0 mx-4 py-2">
-                <img src={el.product.image} alt="" />
+                <img
+                  src={el.product.image}
+                  className="w-32 h-32 rounded-xl"
+                  alt=""
+                />
                 <div className="ml-8">
                   <div className="text-2xl mb-4 italic font-bold">{`${el.product.name}, ${el.product.volume}`}</div>
 
@@ -144,9 +146,10 @@ function Payment() {
               </div>
             ))}
             <div className="italic text-xl mt-8 md:mx-0 mx-4 text-right">
-              К оплате: 
-               {cart.reduce((a, b) => (a = a + b.product.price * b.amount), 0)+" "}
-                сом
+              К оплате:
+              {cart.reduce((a, b) => (a = a + b.product.price * b.amount), 0) +
+                " "}
+              сом
             </div>
           </div>
         </div>

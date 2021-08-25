@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
-import send_mutation, { send_var_query } from "../../api";
+import send_mutation, { send_simple_query, send_var_query } from "../../api";
 import { useURLQuery } from "../../transform";
 import { errorComponent, loadingComponent } from "./HelperComps";
 import { Dialog } from "@material-ui/core";
@@ -25,6 +25,7 @@ const get_product_query = gql`
       skinType
       volume
       id
+      areaOfApplication
     }
   }
 `;
@@ -41,6 +42,7 @@ const add_product_muts = gql`
     $price: Float!
     $skinType: String!
     $volume: Int!
+    $areaOfApplication: String!
   ) {
     admin {
       createProduct(
@@ -55,6 +57,7 @@ const add_product_muts = gql`
           price: $price
           skinType: $skinType
           volume: $volume
+          areaOfApplication: $areaOfApplication
         }
       ) {
         id
@@ -73,9 +76,26 @@ const update_product_mut = gql`
   }
 `;
 
+const get_categories = gql`
+  {
+    getCategories {
+      id
+      name
+    }
+  }
+`;
+
 function AdminProducts() {
   const { mutate, isError, isSuccess, isLoading, error } = useMutation(
     (params) => send_mutation(add_product_muts, params)
+  );
+
+  const { data: categories, isSuccess: is_cat_loaded } = useQuery(
+    "get_categories",
+    async () => {
+      const { getCategories } = await send_simple_query(get_categories);
+      return getCategories;
+    }
   );
 
   const {
@@ -96,6 +116,7 @@ function AdminProducts() {
     console.log(data);
     data.price = parseFloat(data.price);
     data.volume = parseInt(data.volume);
+    data.categoryId = parseInt(data.categoryId);
     if (action === "edit") {
       update_mut(data, {
         onSettled: () => {
@@ -114,6 +135,7 @@ function AdminProducts() {
   const handleChange = (e) => {
     const data = Object.fromEntries(new FormData(e.target.form).entries());
     setProductData(data);
+    console.log(data);
   };
 
   const query = useURLQuery();
@@ -293,12 +315,32 @@ function AdminProducts() {
 
             <div className="flex justify-between">
               <label className="mr-3 font-semibold">ID Категории:</label>
+              <select
+                name="categoryId"
+                id=""
+                className="bg-white rounded-full px-3 py-2 w-1/2 form-select"
+                defaultValue="0"
+              >
+                <option value="0" hidden>
+                  Категория
+                </option>
+                {is_cat_loaded &&
+                  categories.map((el) => (
+                    <option key={el.id} value={el.id} className="">
+                      {el.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+
+            <div className="flex justify-between">
+              <label className="mr-3 font-semibold">Зона применения:</label>
               <input
                 type="text"
                 className="inp-ar"
                 spellCheck="false"
                 autoComplete="false"
-                name="categoryId"
+                name="areaOfApplication"
               />
             </div>
           </div>

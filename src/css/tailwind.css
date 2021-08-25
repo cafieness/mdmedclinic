@@ -4,7 +4,7 @@
 
 @layer components {
   .input-general {
-    @apply bg-white py-2 px-4 min-w-min rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none mx-6;
+    @apply bg-white py-2 px-4  rounded-full ring-1 ring-gray-400 focus:ring-2 focus:ring-purple-500 transition duration-500 ease-in-out focus:outline-none mx-6;
   }
 
   .btn-ar {
@@ -12,6 +12,6 @@
   }
 
   .inp-ar {
-    @apply rounded-full px-3 py-2 focus:outline-none text-gray-500 focus:text-gray-900 ring ring-transparent focus:ring-green-600 transition duration-300 ease-in-out;
+    @apply rounded-full px-3 py-2 focus:outline-none border-gray-300 text-gray-500 focus:text-gray-900 ring ring-transparent focus:ring-green-600 transition duration-300 ease-in-out;
   }
 }

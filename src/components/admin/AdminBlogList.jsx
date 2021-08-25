@@ -91,7 +91,7 @@ function AdminBlogList() {
           </h2>
           <div className="flex flex-row-reverse mb-4">
             <Link
-              to="/admin/editBlog"
+              to="/admin/blogEdit?action=new"
               className="btn-ar bg-green-600 text-white font-semibold mr-10 hover:shadow-md"
             >
               Создать статью
@@ -113,9 +113,12 @@ function AdminBlogList() {
                 <p className="flex-1 text-gray-900 font-semibold text-center">
                   {el.title}
                 </p>
-                <button className="btn-ar bg-yellow-500  font-semibold hover:ring-yellow-300">
+                <Link
+                  className="btn-ar bg-yellow-500  font-semibold hover:ring-yellow-300"
+                  to={"/admin/blogEdit?action=edit&id=" + el.id}
+                >
                   Изменить
-                </button>
+                </Link>
                 <button
                   className="btn-ar bg-red-600 text-white hover:ring-red-800 font-semibold"
                   onClick={() => {

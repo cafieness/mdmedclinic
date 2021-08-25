@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { logout } from "../../redux/user";
-import { ProfileData, PasswordChange, Orders} from '../../components';
+import { ProfileData, PasswordChange, Orders } from "../../components";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -11,21 +11,19 @@ function Profile() {
   const sections = ["Профиль", "Сменить пароль", "Мои заказы"];
   const isLoggedIn = useSelector((state) => (state.user.user ? true : false));
 
-  
-
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
   return (
-    <div className="bg-primary py-40 h-screen">
-      <div className="flex items-start">
-        <div className=" mt-24 ml-20 pr-20 grid gap-8 border-black border-r-2">
+    <div className="bg-primary pt-10 mdh:pt-40 min-h-[100vh] min-w-[100vw]">
+      <div className="flex flex-col mdh:flex-row items-start">
+        <div className="mx-auto mdh:mx-0 mdh:ml-8 mt-24  grid gap-8 mdh:pr-4 border-black mdh:border-r-2">
           {sections.map((name) => (
             <button
               className={
                 activeSection === name
                   ? "shop-filter-active shop-left-filter"
-                  : "shop-left-filter hover:bg-black hover:text-white transform ease-in-out duration-200 py-1 rounded-3xl"
+                  : "shop-left-filter hover:bg-black hover:text-white transform ease-in-out duration-200 py-1 rounded-3xl focus:outline-none"
               }
               onClick={() => setActiveSection(name)}
             >
@@ -40,15 +38,9 @@ function Profile() {
           </button>
         </div>
 
-        {activeSection === "Профиль" && (
-          <ProfileData />
-           )}
-        {activeSection === "Сменить пароль" && (
-          <PasswordChange /> 
-          )}
-        {activeSection === "Мои заказы" && (
-          <Orders />
-           )}
+        {activeSection === "Профиль" && <ProfileData />}
+        {activeSection === "Сменить пароль" && <PasswordChange />}
+        {activeSection === "Мои заказы" && <Orders />}
       </div>
     </div>
   );

@@ -106,50 +106,50 @@ function ProfileData() {
       {isError && errorComponent(error)}
       {(isLoading || isFetching) && isError && loadingComponent()}
       {isSuccess && data && !isLoading && !isFetching && (
-        <div className="ml-20">
-          <div className="text-3xl mb-12">Мой профиль</div>
+        <div className="mx-6 my-8 ">
+          <div className="text-3xl mb-4 mdh:mb-12">Мой профиль</div>
           <p className="text-gray-400 text-base my-4">
             Если вы хотите изменить свои данные кликните кнопку изменить данные,
             измените их и кликните Сохранить
           </p>
-          <div className="flex flex-col space-y-6 text-lg">
-            <div>
+          <div className="flex flex-col space-y-6 text-lg mdh:mx-12">
+            <div className="flex flex-col mdh:flex-row mdh:items-center justify-between space-y-2 ">
               <label>Имя: </label>
               <input
                 type="text"
                 onChange={validateName}
                 value={name}
                 readOnly={!changeData}
-                className="input-general"
+                className="input-general mdh:w-1/3"
               />
               <SimpleError error={nameError} />
             </div>
 
-            <div>
+            <div className="flex flex-col mdh:flex-row mdh:items-center justify-between space-y-2">
               <label>Email: </label>
               <input
                 type="text"
                 onChange={validateEmail}
                 readOnly={!changeData}
                 value={email}
-                className="input-general"
+                className="input-general mdh:w-1/3"
               />
               <SimpleError error={emailError} />
             </div>
-            <div>
+            <div className="flex flex-col mdh:flex-row mdh:items-center justify-between space-y-2">
               <label>Номер телефона: </label>
               <input
                 type="text"
                 onChange={(e) => setPhone(e.target.value)}
                 readOnly={!changeData}
                 value={phone}
-                className="input-general"
+                className="input-general mdh:w-1/3"
               />
             </div>
             {!changeData && (
               <button
                 onClick={() => setChangeData(true)}
-                className="button btn-primary rounded-2xl focus:outline-none"
+                className="button btn-primary max-w-[80vw] rounded-2xl focus:outline-none mx-auto"
               >
                 Изменить данные
               </button>

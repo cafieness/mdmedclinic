@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart, faUser} from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user";
+import { useLoginRedirect } from "../../transform";
 
 function Header() {
   const [isToggle, setIsToggle] = useState(false);
@@ -14,17 +15,17 @@ function Header() {
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [navbar, setNavbar] = useState(false);
   const location = useLocation();
-  const isLoggedIn = useSelector(state =>  state.user.user?true:false);
-  const isAdmin = useSelector(state => {
-    if(!isLoggedIn){
+  const isLoggedIn = useSelector((state) => (state.user.user ? true : false));
+  const isAdmin = useSelector((state) => {
+    if (!isLoggedIn) {
       return false;
     }
-    if(state.user.user.isAdmin){
+    if (state.user.user.isAdmin) {
       return true;
-    }else{
+    } else {
       return false;
     }
-})
+  });
 
   const refAbout = useRef(null);
   const refProcedure = useRef(null);
@@ -47,7 +48,9 @@ function Header() {
 
   const dispatch = useDispatch();
 
-  const cartLength = useSelector(state => state.cart.cart? state.cart.cart.length: false)
+  const cartLength = useSelector((state) =>
+    state.cart.cart ? state.cart.cart.length : false
+  );
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -96,6 +99,8 @@ function Header() {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [isAccountOpen]);
+
+  const history = useHistory();
 
   return (
     <nav
@@ -185,14 +190,27 @@ function Header() {
               </button>
               <div className={isAccountOpen ? "dropdown space-y-4" : "hidden"}>
                 <Link to="/profile">Профиль</Link>
-                {isAdmin&&<Link to="/admin">Админ панель</Link>}
-                <div className="cursor-pointer" onClick={()=>dispatch(logout())}>Выйти</div>
+                {isAdmin && <Link to="/admin">Админ панель</Link>}
+                <div
+                  className="cursor-pointer"
+                  onClick={() => {
+                    dispatch(logout());
+                    history.push("/");
+                  }}
+                >
+                  Выйти
+                </div>
               </div>
             </div>
 
             <Link to="/basket" className="nav-link relative">
               <FontAwesomeIcon className="text-2xl" icon={faShoppingCart} />
-              <div className="top-3 italic left-3 absolute h-7 w-7 rounded-full bg-gray-300 text-center" hidden={cartLength<=0}>{cartLength}</div>
+              <div
+                className="top-3 italic left-3 absolute h-7 w-7 rounded-full bg-gray-300 text-center"
+                hidden={cartLength <= 0}
+              >
+                {cartLength}
+              </div>
             </Link>
           </div>
         )}
