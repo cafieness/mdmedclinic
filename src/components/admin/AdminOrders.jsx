@@ -1,8 +1,8 @@
 import { Dialog } from "@material-ui/core";
 import { gql } from "graphql-request";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { send_var_query } from "../../api";
+import { useMutation, useQuery } from "react-query";
+import send_mutation, { send_var_query } from "../../api";
 import { readPaymentType, readStatus, useLoginRedirect } from "../../transform";
 import {
   errorComponent,
@@ -33,6 +33,16 @@ const get_orders_query = gql`
           id
           phoneNumber
         }
+      }
+    }
+  }
+`;
+
+const propogate_query = gql`
+  mutation PropogateOrder($id: ID!, $status: Status!) {
+    admin {
+      updateStatus(orderId: $id, input: { status: $status }) {
+        id
       }
     }
   }
@@ -78,7 +88,7 @@ const render_order_list_comp = (data, select_order) => {
   );
 };
 
-function propagate_order(status) {
+function propagate_order(status, propogate_mut) {
   var msg;
   switch (status) {
     case "PENDING":
@@ -99,19 +109,40 @@ function propagate_order(status) {
     default:
       break;
   }
+  var new_status;
+  switch (status) {
+    case "PENDING":
+      new_status = "ACCEPTED";
+      break;
+    case "ACCEPTED":
+      new_status = "READY";
+      break;
+    case "READY":
+      new_status = "CLOSED";
+      break;
+    case "CLOSED":
+      new_status = null;
+      break;
+    case "CANCELLED":
+      new_status = "PENDING";
+      break;
+    default:
+      break;
+  }
   return (
     <button
       className={
         "btn-ar " +
         (msg ? "!ring-green-600 font-semibold hover:bg-green-300" : "")
       }
+      onClick={() => propogate_mut(new_status)}
     >
       {msg}
     </button>
   );
 }
 
-function RenderOrderModal(order, close_order) {
+function RenderOrderModal(order, close_order, propogate_mut) {
   return (
     <Dialog
       open={order}
@@ -173,12 +204,15 @@ function RenderOrderModal(order, close_order) {
           }, 0)}
         </p>
         <div className="flex space-x-4">
-          {order.status !== "CLOSED" && (
-            <button className="btn-ar !ring-red-600 hover:bg-red-300 font-semibold text-black">
+          {order.status !== "CLOSED" && order.status !== "CANCELLED" && (
+            <button
+              className="btn-ar !ring-red-600 hover:bg-red-300 font-semibold text-black"
+              onClick={() => propogate_mut("CANCELLED")}
+            >
               Отменить заказ
             </button>
           )}
-          {propagate_order(order.status)}
+          {propagate_order(order.status, propogate_mut)}
         </div>
       </div>
     </Dialog>
@@ -211,6 +245,30 @@ function AdminOrders() {
 
   const [selectedOrder, setSelectedOrder] = useState(null);
 
+  const { mutate: propogate_mut } = useMutation(async ({ new_status, id }) => {
+    const {
+      admin: { update },
+    } = await send_mutation(propogate_query, { id: id, status: new_status });
+    return update;
+  });
+
+  const propogate_order = (new_status) => {
+    var id = selectedOrder.id;
+    propogate_mut(
+      { new_status, id },
+      {
+        onError: (err) => {
+          console.log(err);
+        },
+        onSuccess: (data) => {
+          refetch();
+          setSelectedOrder(null);
+          console.log(data);
+        },
+      }
+    );
+  };
+
   return (
     <div className="flex flex-col">
       <h2 className="text-3xl font-semibold text-gray-900 mb-4">Заказы</h2>
@@ -237,7 +295,8 @@ function AdminOrders() {
         !isLoading &&
         !isFetching &&
         render_order_list_comp(data, setSelectedOrder)}
-      {selectedOrder && RenderOrderModal(selectedOrder, setSelectedOrder)}
+      {selectedOrder &&
+        RenderOrderModal(selectedOrder, setSelectedOrder, propogate_order)}
     </div>
   );
 }
