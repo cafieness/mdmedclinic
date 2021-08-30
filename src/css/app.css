@@ -152,6 +152,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.education-bg-2{
+  background-image: url("../assets/education/bg-2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .signform-inp {
   width: 300px;
 }

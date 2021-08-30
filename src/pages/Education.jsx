@@ -1,5 +1,6 @@
 import React from "react";
 import meerim from "../assets/education/meerim.png";
+import aizada from "../assets/education/aizada.jpg";
 import program from "../assets/education/program.png";
 import formpic from "../assets/education/form.jpg";
 import { SignForm } from "../components";
@@ -8,29 +9,29 @@ import Scroll from "react-scroll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 
-
 const ScrollLink = Scroll.Link;
 
 function Education() {
   return (
     <div className="">
-      <div className="education-bg py-40 h-screen flex items-center ">
+      <div className="education-bg py-40 min-h-[900px] h-screen flex items-center ">
         <div className="w-4/5 sm:w-full sm:ml-3 mx-auto flex justify-between md:justify-center">
           <div>
-            <div className="text-4xl mb-10">Курс косметолога</div>
+            <div className="text-4xl mb-10 sm:mb-4">Курс Косметолога Дерматолога</div>
             <div className="w-450 sm:w-300">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur.{" "}
+              Предназначена для Косметологов, кто хочет получить серьезную
+              практической базу по косметологии с расширенным спектром процедур.
+              Расширенный курс включает в себя инъекционную и аппаратную
+              косметологию, где специалист познакомится с наивысшим уровнем
+              индустрии. После чего, происходит закрепление полученных навыков с
+              отдельным преподавателем, что позволит каждую тему проработать
+              несколько раз.{" "}
             </div>
-            <div className="text-gray-900 hidden md:block mt-8">
+            <div className="text-gray-900 hidden md:block mt-4">
               <div className="text-2xl">Длительность:</div>
-              <div className=" font-bold my-2">20 занятий</div>
+              <div className=" font-bold my-2">от 15 дней</div>
               <div className="text-2xl">Стоимость:</div>
-              <div className="font-bold my-2">300$</div>
+              <div className="font-bold my-2">от 30000 сом</div>
             </div>
             <ScrollLink
               to="education-sign-form"
@@ -38,16 +39,16 @@ function Education() {
               smooth={true}
               duration={500}
             >
-            <button className="btn-primary rounded-3xl mt-10 sm:w-300 w-450">
-              Записаться на обучение
-            </button>
+              <button className="btn-primary rounded-3xl mt-10 sm:w-300 w-450">
+                Записаться на обучение
+              </button>
             </ScrollLink>
           </div>
           <div className="text-white md:hidden">
             <div className="text-4xl">Длительность:</div>
-            <div className="text-3xl font-bold my-4">20 занятий</div>
+            <div className="text-3xl font-bold my-4">от 15 дней</div>
             <div className="text-4xl">Стоимость:</div>
-            <div className="text-3xl font-bold my-4">300$</div>
+            <div className="text-3xl font-bold my-4">от 30000 сом</div>
           </div>
         </div>
       </div>
@@ -58,21 +59,74 @@ function Education() {
           <div className="bg-white w-500px sm:w-300 p-10 rounded-t-3xl ml-20 md:mt-16 md:ml-0">
             <div className="text-2xl mb-8">Мээрим Давлетова</div>
             <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur.
+              Главный врач и владелица одноименного “Центра Косметологии и
+              Образования Мээрим Давлетовой”. Ей доверяют самые известные лица
+              Кыргызстана и любят за то, что она одинаково успешно работает как
+              иглой, так и новейшими аппаратами. В кабинете у Мээрим Давлетовой
+              точно не надо бояться получить чего-то лишнего: по её пациентам
+              сложно догадаться, что они часто бывают у косметолога. Ее обширный
+              10-тилетний опыт подкрепленный знаниями с разных уголков мира,
+              такие как Израиль, Корея и Германия, сейчас обеспечивают
+              здоровьем, красотой и образованием тысячи Кыргызстанцев. Ее конек
+              — естественный эффект и индивидуальный подход.
             </div>
           </div>
         </div>
       </div>
+      <div className="education-bg-2 min-h-[900px] py-40 h-screen flex items-center ">
+        <div className="w-4/5 sm:w-full sm:ml-3 mx-auto flex justify-between md:justify-center">
+          <div>
+            <div className="text-4xl mb-10">Курс Косметолога Эстетиста</div>
+            <div className="w-450 sm:w-300">
+              Предназначена для людей, желающих получить необходимые навыки для
+              работы косметологом, а также уметь выполнять не только базовые
+              операции, такие как маски, чистки, компрессы, но и выполнять
+              комплексную 12-ти этапную чистку лица по Израильской Технологии.{" "}
+            </div>
+            <div className="text-gray-900 hidden md:block mt-8">
+              <div className="text-2xl">Длительность:</div>
+              <div className=" font-bold my-2">15 дней</div>
+              <div className="text-2xl">Стоимость:</div>
+              <div className="font-bold my-2">30000 сом</div>
+            </div>
+            <ScrollLink
+              to="education-sign-form"
+              spy={true}
+              smooth={true}
+              duration={500}
+            >
+              <button className="btn-primary rounded-3xl mt-10 sm:w-300 w-450">
+                Записаться на обучение
+              </button>
+            </ScrollLink>
+          </div>
+          <div className=" md:hidden">
+            <div className="text-4xl">Длительность:</div>
+            <div className="text-3xl font-bold my-4">от 15 дней</div>
+            <div className="text-4xl">Стоимость:</div>
+            <div className="text-3xl font-bold my-4">от 30000 сом</div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-about py-40 flex flex-col items-center">
+        <div className="text-5xl mb-24 lg:text-3xl">Преподаватель</div>
+        <div className="flex md:flex-col justify-between w-3/5 xl:w-4/5  mx-auto items-center">
+          <img src={aizada} alt="" className="rounded-3xl" />
+          <div className="bg-white w-500px sm:w-300 p-10 rounded-t-3xl ml-20 md:mt-16 md:ml-0">
+            <div className="text-2xl mb-8">Айзада Давлетова</div>
+            <div>
+              Одна из бьюти-покровительниц Бишкека, растит уже второе поколение
+              ухоженных красавиц и молодых людей. Пациенты стараются приходить к
+              ней не в одиночку, передавая своих подрастающих детей в ее
+              бережные руки. Руководящий врач “Центра Косметологии и Образования
+              Мээрим Давлетовой” не только знает азы косметологии, но и блестяще
+              использует свои коммуникативные и организаторские навыки. За 6 лет
+              работы собственноручно обучила
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-ed-3 py-20 flex flex-col items-center">
         <div className="text-5xl mb-24 lg:text-3xl text-center sm:mx-2">
           Что ожидать от обучения
@@ -130,32 +184,23 @@ function Education() {
         </div>
         <div className="flex w-3/5  xl:w-4/5 mx-auto justify-between items-center lg:flex-col">
           <div className="lg:order-2">
-            <div className="bg-white p-5 w-450 sm:w-300 text-center rounded-3xl mb-16">
-              <div className="mb-4 text-2xl">Индивидуальный подход</div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua
-              </div>
+            <div className="bg-white p-5 w-450 text-2xl sm:w-300 text-center rounded-3xl mb-4">
+              Индивидуальный подход
             </div>
-            <div className="bg-white p-5 w-450 sm:w-300 text-center rounded-3xl mb-16">
-              <div className="mb-4 text-2xl">Индивидуальный подход</div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua
-              </div>
+            <div className="bg-white p-5 w-450 text-2xl sm:w-300 text-center rounded-3xl mb-4">
+              Профессиональная косметика премиум класса
             </div>
-            <div className="bg-white p-5 w-450 sm:w-300 text-center rounded-3xl">
-              <div className="mb-4 text-2xl">Индивидуальный подход</div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua
-              </div>
+            <div className="bg-white p-5 w-450 text-2xl sm:w-300 text-center rounded-3xl mb-4">
+              90% практического обучения
+            </div>
+            <div className="bg-white p-5 w-450 text-2xl sm:w-300 text-center rounded-3xl mb-4">
+              Опыт работы в команде и с клиентами
+            </div>
+            <div className="bg-white p-5 w-450 text-2xl sm:w-300 text-center rounded-3xl mb-4">
+              Новейшее оборудование
+            </div>
+            <div className="bg-white p-5 w-450 text-2xl sm:w-300 text-center rounded-3xl mb-4">
+              Сертификат по окончании
             </div>
           </div>
           <img
@@ -165,7 +210,10 @@ function Education() {
           />
         </div>
       </div>
-      <div id="education-sign-form" className="py-20 bg-primary flex flex-col items-center">
+      <div
+        id="education-sign-form"
+        className="py-20 bg-primary flex flex-col items-center"
+      >
         <SignForm name="Записаться на обучение" img={formpic} />
       </div>
     </div>
