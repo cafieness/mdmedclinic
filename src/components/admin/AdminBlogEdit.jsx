@@ -5,8 +5,6 @@ import { useMutation, useQuery } from "react-query";
 import send_mutation, { send_var_query } from "../../api";
 import { useURLQuery } from "../../transform";
 import { errorComponent, loadingComponent } from "./HelperComps";
-import { EditorState } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const get_post = gql`
