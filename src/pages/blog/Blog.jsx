@@ -31,7 +31,7 @@ function Blog() {
   );
 
   return (
-    <div className="bg-blog pt-40">
+    <div className="bg-blog pt-28">
       {(isLoading || isFetching) && loadingComponent()}
       {!isFetching && !isLoading && isError && errorComponent(error)}
       {!isFetching && !isLoading && data && data.length === 0 && (

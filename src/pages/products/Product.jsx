@@ -98,8 +98,8 @@ function Product() {
       {isError && errorComponent(error)}
       {(isLoading || isFetching) && isError && loadingComponent()}
       {isSuccess && data && !isLoading && !isFetching && (
-        <div className="flex flex-col items-center">
-          <div className="mx-8 md:flex-col min-w-[90%] flex justify-between items-center ">
+        <div className="flex w-2/3 mx-auto flex-col items-center">
+          <div className="mx-8  md:flex-col min-w-[90%] flex justify-between items-center ">
             <div className=" md:order-3 product-left-description min-w-[33%] flex-col flex lgh:pr-6">
               <div className="text-3xl mb-10 italic text-left ">
                 {data.name}

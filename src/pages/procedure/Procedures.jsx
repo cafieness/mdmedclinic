@@ -30,7 +30,7 @@ function Procedures() {
         <div className="grid grid-cols-4 gap-16 px-8 md:grid-cols-2 procedure-grid">
             {procedure.map(pr =>(
                 <Link to={`/procedure/${pr.title}`} className="flex flex-col items-center cursor-pointer hover:scale-105 transform duration-500 ease-in-out">
-                   <img src={pr.img} alt="" className="rounded-3xl w-250" /> 
+                   <img src={pr.img} alt="" className="rounded-3xl w-[250px] h-[250px]" /> 
                    <div className="mt-4 text-lg">{pr.title}</div>
                 </Link>
             ))}

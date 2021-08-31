@@ -46,5 +46,31 @@ const reqV2 = async (query, params, onSuccess, onError) => {
   }
 };
 
+const multipart = async (query, file) => {
+  let token = store.getState().user.token;
+  const formData = new FormData();
+  formData.append("query", `mutation {admin{ uploadImage(file: \"file\")}}`);
+  formData.append("file", file);
+  var resp;
+  await fetch(API_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => (resp = data));
+  return resp.data;
+};
+
 export default send_mutation;
-export { client, send_simple_query, send_mutation, send_var_query, reqV2 };
+export {
+  client,
+  send_simple_query,
+  send_mutation,
+  send_var_query,
+  reqV2,
+  multipart,
+  API_URL,
+};
