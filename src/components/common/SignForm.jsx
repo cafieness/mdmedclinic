@@ -3,9 +3,36 @@ import Dialog from "@material-ui/core/Dialog";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useMutation} from "react-query";
+import send_mutation from "../../api";
 
-function SignForm({ img, name, contacts }) {
+const mut_add_course = `
+mutation courseRegister($name:String!,$phoneNumber:String!){
+  makeCourseAppointment(input:{name:$name,phoneNumber:$phoneNumber}){
+    name
+    phoneNumber
+    id
+    status
+  }
+}
+`
+const mut_add_visit = `
+mutation visitRegister($name:String!,$phoneNumber:String!){
+  makeVisitAppointment(input:{name:$name,phoneNumber:$phoneNumber}){
+    id
+    name
+    phoneNumber
+    status
+  }
+}
+`
+
+function SignForm({ img, title, contacts }) {
   const [openDialog, setOpenDialog] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const mut = title==="Записаться на прием"?mut_add_visit:mut_add_course;
 
 
   const dialogBody = (
@@ -21,10 +48,38 @@ function SignForm({ img, name, contacts }) {
     }, 2500);
   }, [openDialog]);
 
+  function changeName(e){
+    setName(e.target.value);
+  }
+  function changePhone(e){
+    setPhoneNumber(e.target.value);
+  }
+
+  const { mutate } = useMutation(({ phoneNumber, name }) =>
+    send_mutation(mut, { phoneNumber: phoneNumber, name: name })
+  );
+
   function handleSubmit(e){
     e.preventDefault();
-    setOpenDialog(true);
-    e.preventDefault();
+    mutate(
+      { phoneNumber, name },
+      {
+        onSuccess: () => {
+          setName("");
+          setPhoneNumber("");
+          setOpenDialog(true);
+          setError("");
+        },
+        onError: (err) => {
+          if(err.response.errors[0].errors.name){
+            setError("Имя должно иметь не менее 3 букв");
+          }
+          if(err.response.errors[0].errors.phone_number){
+            setError("Неверный телефон");
+          }
+        },
+      }
+    );
   }
 
   return (
@@ -37,7 +92,7 @@ function SignForm({ img, name, contacts }) {
     >
       <div className="py-10 pl-10 sm:pl-0 sm:pr-0 flex flex-col ">
         
-        <p className="text-2xl font-bold mb-4">{name}</p>
+        <p className="text-2xl font-bold mb-4">{title}</p>
         <p className="text-gray-700 text-xs mb-8">
           Нажимая на кнопку "Записатьcя", Вы даете Согласие  на использование
           предоставленных персональных данных для получения услуг
@@ -47,6 +102,8 @@ function SignForm({ img, name, contacts }) {
           id="имя"
           type="text"
           placeholder="Имя"
+          value={name}
+          onChange={changeName}
         />
 
         <input
@@ -54,7 +111,10 @@ function SignForm({ img, name, contacts }) {
           id="номер телефона"
           type="text"
           placeholder="Номер телефона"
+          value={phoneNumber}
+          onChange={changePhone}
         />
+        <div className="text-red-600">{error}</div>
         <button type="submit" className="button btn-primary rounded-2xl focus:outline-none">Записаться</button>
         <Dialog open={openDialog} onClose={()=>setOpenDialog(false)}>{dialogBody}</Dialog>
         

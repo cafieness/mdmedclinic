@@ -214,7 +214,7 @@ function Education() {
         id="education-sign-form"
         className="py-20 bg-primary flex flex-col items-center"
       >
-        <SignForm name="Записаться на обучение" img={formpic} />
+        <SignForm title="Записаться на обучение" img={formpic} />
       </div>
     </div>
   );

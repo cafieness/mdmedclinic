@@ -80,7 +80,7 @@ function Home() {
         <ProductCarousel />
       </div>
       <div id="home-sign-form" className="py-24 flex flex-col items-center ">
-        <SignForm img={imgForm} name="Записаться на прием" />
+        <SignForm img={imgForm} title="Записаться на прием" />
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ function Procedures() {
         </div>
       </div>
       <div className="py-24 flex justify-center">
-        <SignForm img={imgForm} name="Записаться на прием" />
+        <SignForm img={imgForm} title="Записаться на прием" />
       </div>
     </div>
   );

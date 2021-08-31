@@ -108,12 +108,12 @@ function Shop() {
         !isFetching &&
         data &&
         data.getProducts.products.length < 5
-          ? "bg-primary pt-40 pb-28 sm:pt-28 h-screen"
+          ? "bg-primary pt-40 pb-28 sm:pt-28 h-screen md:h-full"
           : "bg-primary pt-40 pb-28 sm:pt-28"
       }
     >
       <div className="flex  flex-col items-center w-4/5 xl:w-full xl:px-10 mx-auto">
-        <div className=" flex items-start">
+        <div className={isLoading||isFetching?"flex items-start h-screen":" flex items-start"}>
           <div className="md:hidden pr-10 mt-24 grid gap-8 mr-20 xl:mr-10 border-black border-r-2">
             {isSuccess &&
               leftFilterButtons.map((name) => (
@@ -173,7 +173,7 @@ function Shop() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-4 gap-10 xl:grid-cols-3 shop-grid mb-10">
+            <div className="grid grid-cols-4 gap-10 xl:grid-cols-3 shop-grid mb-10 w-[1100px] xl:w-[800px] shop-products-width">
               {isError && errorComponent(error)}
               {(isLoading || isFetching) && isError && loadingComponent()}
               {isSuccess &&

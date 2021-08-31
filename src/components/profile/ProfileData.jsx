@@ -112,7 +112,7 @@ function ProfileData() {
             Если вы хотите изменить свои данные кликните кнопку изменить данные,
             измените их и кликните Сохранить
           </p>
-          <div className="flex flex-col space-y-6 text-lg mdh:mx-12">
+          <div className="flex flex-col space-y-6 text-lg mdh:mx-12 ">
             <div className="flex flex-col mdh:flex-row mdh:items-center justify-between space-y-2 ">
               <label>Имя: </label>
               <input

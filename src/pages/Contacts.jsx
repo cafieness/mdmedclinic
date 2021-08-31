@@ -28,7 +28,7 @@ function Contacts() {
         <div>Понедельник-суббота: 9:00-18:00</div>
         <div className="mb-16">Воскресенье: выходной</div>
 
-        <SignForm img={imgForm} name="Записаться на прием" contacts />
+        <SignForm img={imgForm} title="Записаться на прием" contacts />
       </div>
     </div>
   );
