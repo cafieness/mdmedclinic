@@ -102,12 +102,14 @@ function Header() {
 
   const history = useHistory();
 
+  const loc = useLocation();
+  const isEng = loc.search === "?lang=en";
   return (
     <nav
       className={
         navbar
-          ? "active nav flex justify-between items-center  py-2 px-48 lg:px-10  z-50 fixed  w-full"
-          : "nav flex justify-between items-center  py-2 px-48 lg:px-10  z-50 fixed  w-full "
+          ? "active nav flex justify-between  py-2 px-48 lg:px-10  z-50 fixed  w-full"
+          : "nav flex justify-between  py-2 px-48 lg:px-10  z-50 fixed  w-full "
       }
     >
       <Link to="/">
@@ -121,7 +123,7 @@ function Header() {
         }
       >
         <Link to="/" className="nav-link hidden-mobile">
-          Главная
+          {isEng ? "Main" : "Главная"}
         </Link>
         <div className="nav-link " ref={refAbout}>
           <button
@@ -131,12 +133,12 @@ function Header() {
               setIsAboutOpen(!isAboutOpen);
             }}
           >
-            О нас
+            {isEng ? "About" : "О нас"}
           </button>
           <div className={isAboutOpen ? "dropdown space-y-4" : "hidden"}>
-            <Link to="/about">О нас</Link>
-            <Link to="/education">Обучение</Link>
-            <Link to="/contacts">Контакты</Link>
+            <Link to="/about">{isEng ? "About" : "О нас"}</Link>
+            <Link to="/education">{isEng ? "Education" : "Обучение"}</Link>
+            <Link to="/contacts">{isEng ? "Contacts" : "Контакты"}</Link>
           </div>
         </div>
 
@@ -148,37 +150,84 @@ function Header() {
               setIsProcedureOpen(!isProcedureOpen);
             }}
           >
-            Процедуры
+            {isEng ? "Procedures" : "Процедуры"}
           </button>
           <div
             className={isProcedureOpen ? "dropdown space-y-4" : "hidden"}
             for="btnControl"
           >
-            <Link to="/procedures/inject">Инъекционные процедуры</Link>
-            <Link to="/procedures/skincare">Уход за кожей</Link>
-            <Link to="/procedures/apparat">Аппаратная косметология</Link>
+            <Link to="/procedures/inject">
+              {isEng ? "Injection procedures" : "Инъекционные процедуры"}
+            </Link>
+            <Link to="/procedures/skincare">
+              {isEng ? "Skincare" : "Уход за кожей"}
+            </Link>
+            <Link to="/procedures/apparat">
+              {isEng ? "Apparate cosmetology" : "Аппаратная косметология"}
+            </Link>
           </div>
         </div>
         <Link to="/gallery" className="nav-link">
-          Галерея
+          {isEng ? "Gallery" : "Галерея"}
         </Link>
-        <Link to="/">
+        <Link
+          to="/"
+          className="justify-self-center place-self-center self-center"
+        >
           <img className=" sm:hidden  w-4/5" src={logo} alt="" />
         </Link>
         <Link to="/shop" className="nav-link ">
-          Продукция
+          {isEng ? "Products" : "Продукция"}
         </Link>
         <Link to="/blog" className="nav-link">
-          Блог
+          {isEng ? "Blog" : "Блог"}
         </Link>
+
         {isLoggedIn === false && (
-          <Link to="/login" className="nav-link">
-            Войти
-          </Link>
+          <div className="flex md:flex-col space-x-2 items-center">
+            {loc.pathname === "/" && loc.search !== "?lang=en" && (
+              <Link to="/?lang=en" className="nav-link">
+                <img
+                  src="https://auca.kg/templates/_sources/flag_en.gif"
+                  alt=""
+                />
+              </Link>
+            )}
+
+            {loc.pathname === "/" && loc.search === "?lang=en" && (
+              <Link to="/" className="">
+                <img
+                  src="https://auca.kg/templates/_sources/flag_ru.gif"
+                  alt=""
+                />
+              </Link>
+            )}
+
+            <Link to="/login" className="nav-link">
+              {isEng ? "Sign in" : "Войти"}
+            </Link>
+          </div>
         )}
         {isLoggedIn && (
           <div className="flex sm:flex-col">
-            <div className="mr-8 nav-link sm:mr-0" ref={refAccount}>
+            {loc.pathname === "/" && loc.search !== "?lang=en" && (
+              <Link to="/?lang=en" className="nav-link mr-4">
+                <img
+                  src="https://auca.kg/templates/_sources/flag_en.gif"
+                  alt=""
+                />
+              </Link>
+            )}
+
+            {loc.pathname === "/" && loc.search === "?lang=en" && (
+              <Link to="/" className="mr-4">
+                <img
+                  src="https://auca.kg/templates/_sources/flag_ru.gif"
+                  alt=""
+                />
+              </Link>
+            )}
+            <div className="mr-4 nav-link sm:mr-0" ref={refAccount}>
               <button
                 className="dropbtn"
                 for="btnControl"

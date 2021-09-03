@@ -152,7 +152,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.education-bg-2{
+.education-bg-2 {
   background-image: url("../assets/education/bg-2.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -189,17 +189,10 @@ body {
   border-bottom: 1px solid black;
 }
 .product-table {
-  width: 450px;
 }
 .product-table tr {
   padding: 15px 0;
   border-top: 1px solid black;
-}
-.product-right-description {
-  width: 400px;
-}
-.product-width {
-  width: 1300px;
 }
 .sign-form-width {
   width: 500px;
@@ -270,12 +263,6 @@ input::-webkit-inner-spin-button {
 }
 
 @media only screen and (max-width: 1535px) {
-  .product-width {
-    width: 1100px;
-  }
-  .product-table {
-    width: 350px;
-  }
   .home-main-image {
     width: 500px;
   }
@@ -285,17 +272,8 @@ input::-webkit-inner-spin-button {
 }
 
 @media only screen and (max-width: 1279px) {
-  .shop-products-width{
+  .shop-products-width {
     width: 700px;
-  }
-  .product-width {
-    width: 900px;
-  }
-  .product-table {
-    width: 300px;
-  }
-  .product-right-description {
-    width: 300px;
   }
   .nav-link {
     margin: 0 10px;
@@ -317,19 +295,13 @@ input::-webkit-inner-spin-button {
   .procedure-width {
     width: 600px;
   }
-  .product-table,
-  .product-left-description,
-  .product-right-description,
-  .product-width {
-    width: 500px;
-  }
+
   .home-main-image {
     width: 400px;
   }
-  
 }
 @media only screen and (max-width: 768px) {
-  .shop-products-width{
+  .shop-products-width {
     width: 400px;
   }
   .sm-grid-cols-1 {
@@ -343,15 +315,6 @@ input::-webkit-inner-spin-button {
   }
   .shop-grid {
     grid-template-columns: 1fr;
-  }
-  .product-table,
-  .product-left-description,
-  .product-right-description,
-  .product-width {
-    width: 280px;
-  }
-  .product-width img {
-    width: 300px;
   }
   .product-similar {
     grid-template-columns: 1fr;
@@ -368,6 +331,9 @@ input::-webkit-inner-spin-button {
   .procedure-grid {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  .product-width img {
+    width: 300px;
   }
   .procedure-img {
     width: 300px;
@@ -437,7 +403,7 @@ input::-webkit-inner-spin-button {
   .shop-grid {
     grid-template-columns: 1fr;
   }
-  .shop-products-width{
+  .shop-products-width {
     width: 300px;
   }
 }

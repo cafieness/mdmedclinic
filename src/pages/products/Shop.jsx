@@ -100,6 +100,10 @@ function Shop() {
     }
   }, [isSuccess, data]);
 
+  const calcPages = ({ pageSize, totalCount }) => {
+    return Math.floor(totalCount / pageSize) + (totalCount % 16 !== 0 ? 1 : 0);
+  };
+
   return (
     <div
       className={
@@ -113,7 +117,13 @@ function Shop() {
       }
     >
       <div className="flex  flex-col items-center w-4/5 xl:w-full xl:px-10 mx-auto">
-        <div className={isLoading||isFetching?"flex items-start h-screen":" flex items-start"}>
+        <div
+          className={
+            isLoading || isFetching
+              ? "flex items-start h-screen"
+              : " flex items-start"
+          }
+        >
           <div className="md:hidden pr-10 mt-24 grid gap-8 mr-20 xl:mr-10 border-black border-r-2">
             {isSuccess &&
               leftFilterButtons.map((name) => (
@@ -195,14 +205,12 @@ function Shop() {
         {isSuccess && data && !isLoading && !isFetching && (
           <Pagination
             disabled={data.getProducts.pagination.totalCount <= 16}
-            count={
-              data.getProducts.pagination.totalCount % 16 === 0
-                ? data.getProducts.pagination.totalCount / 16
-                : data.getProducts.pagination.totalCount / 16 + 1
-            }
+            page={page}
+            count={calcPages(data.getProducts.pagination)}
             className="self-end"
             onChange={(el, value) => {
               setPage(value);
+              window.scrollTo(0, 0);
             }}
           />
         )}

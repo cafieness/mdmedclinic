@@ -16,7 +16,7 @@ function Contacts() {
 
         <div className="flex">
           <div className="font-bold">Телефон:⠀</div>
-          <div>8-800-555-35-35</div>
+          <div>+996 707 600 726</div>
         </div>
         <div className="flex">
           <div className="font-bold mb-8">Email:⠀⠀ ⠀</div>

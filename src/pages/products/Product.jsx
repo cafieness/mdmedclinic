@@ -27,6 +27,7 @@ const get_product = `
       price
       skinType
       volume
+      areaOfApplication
     }
   }
 `;
@@ -98,33 +99,35 @@ function Product() {
       {isError && errorComponent(error)}
       {(isLoading || isFetching) && isError && loadingComponent()}
       {isSuccess && data && !isLoading && !isFetching && (
-        <div className="flex w-2/3 mx-auto flex-col items-center">
-          <div className="mx-8  md:flex-col min-w-[90%] flex justify-between items-center ">
-            <div className=" md:order-3 product-left-description min-w-[33%] flex-col flex lgh:pr-6">
+        <div className="flex mdh:w-4/5 mx-auto flex-col">
+          <div className="mx-4 md:flex-col flex justify-between items-center ">
+            <div className="md:order-3 mdh:min-w-[33%] flex-col flex lgh:pr-6">
               <div className="text-3xl mb-10 italic text-left ">
                 {data.name}
               </div>
-              <table className="product-table">
-                <tr className="flex justify-between">
-                  <th>Зона применения</th>
-                  <td>Лицо</td>
-                </tr>
-                <tr className="flex justify-between">
-                  <th className="text-left w-1/2">Типы кожи</th>
-                  <td className="text-right">{data.skinType}</td>
-                </tr>
-                <tr className="flex justify-between">
-                  <th>Возраст</th>
-                  <td>{data.age}</td>
-                </tr>
-              </table>
+              <div>
+                <div className="flex border-t-2 py-4 px-1 border-black justify-between">
+                  <p className="font-semibold text-gray-900 w-1/2">
+                    Зона применения
+                  </p>
+                  <p className="text-right">{data.areaOfApplication}</p>
+                </div>
+                <div className="flex border-t-2 py-4 px-1 border-black justify-between">
+                  <p className="font-semibold text-gray-900 w-1/2">Типы кожи</p>
+                  <p className="text-right">{data.skinType}</p>
+                </div>
+                <div className="flex border-t-2 py-4 px-1 border-black justify-between">
+                  <p className="font-semibold text-gray-900 w-1/2">Возраст</p>
+                  <p className="text-right">{data.age}</p>
+                </div>
+              </div>
             </div>
             <img
-              className="md:order-1 w-auto md:mb-10 flex-grow  mdh:min-w-[33%] rounded-md hover:shadow duration-300 transition"
+              className="md:order-1 mdh:mx-auto w-auto md:mb-10 flex-grow  mdh:min-w-[33%] rounded-md hover:shadow duration-300 transition"
               src={data.image}
               alt=""
             />
-            <div className="md:order-2 md:mb-16 min-w-[33%] lgh:mx-10 product-right-description flex flex-col">
+            <div className="md:order-2 md:mb-16 mdh:min-w-[33%] lgh:mx-10 flex flex-col">
               <div className="text-4xl italic">{data.price} сом</div>
               <div className="italic my-4">{data.volume} мл.</div>
               <div className="flex mb-10 py-4 border-b-2 border-t-2 justify-between border-black">
