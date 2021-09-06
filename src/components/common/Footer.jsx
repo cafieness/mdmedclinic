@@ -21,7 +21,11 @@ function Footer() {
             >
               <img src={intstagram} alt="" className="h-8 mr-4" />
             </a>
-            <a target="_blank" href="">
+            <a
+              target="_blank"
+              href="https://wa.me/996707600726"
+              rel="noreferrer"
+            >
               <img src={whatsapp} alt="" className="h-8 mr-4" />
             </a>
             <a
@@ -41,7 +45,7 @@ function Footer() {
           <a href="email:mdclinic@gmail.com" className="mb-4 block">
             Почта: mdclinic@gmail.com
           </a>
-          <p className="mb-4">Адрес: ул. Уметалиева, 81</p>
+          <p className="mb-4">Адрес: ул. Московская, 191</p>
         </div>
         <div>
           <p className="font-bold text-2xl mb-8">Процедуры</p>

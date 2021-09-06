@@ -7,7 +7,12 @@ import { SignForm } from "../components";
 import Scroll from "react-scroll";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGraduationCap,
+  faCertificate,
+  faAtom,
+  faBrain,
+} from "@fortawesome/free-solid-svg-icons";
 
 const ScrollLink = Scroll.Link;
 
@@ -17,7 +22,9 @@ function Education() {
       <div className="education-bg py-40 min-h-[900px] h-screen flex items-center ">
         <div className="w-4/5 sm:w-full sm:ml-3 mx-auto flex justify-between md:justify-center">
           <div>
-            <div className="text-4xl mb-10 sm:mb-4">Курс Косметолога Дерматолога</div>
+            <div className="text-4xl mb-10 sm:mb-4">
+              Курс Косметолога Дерматолога
+            </div>
             <div className="w-450 sm:w-300">
               Предназначена для Косметологов, кто хочет получить серьезную
               практической базу по косметологии с расширенным спектром процедур.
@@ -76,7 +83,7 @@ function Education() {
       <div className="education-bg-2 min-h-[900px] py-40 h-screen flex items-center ">
         <div className="w-4/5 sm:w-full sm:ml-3 mx-auto flex justify-between md:justify-center">
           <div>
-            <div className="text-4xl mb-10">Курс Косметолога Эстетиста</div>
+            <div className="text-4xl mb-10">Курс Косметолога-эстетиста</div>
             <div className="w-450 sm:w-300">
               Предназначена для людей, желающих получить необходимые навыки для
               работы косметологом, а также уметь выполнять не только базовые
@@ -120,8 +127,7 @@ function Education() {
               ней не в одиночку, передавая своих подрастающих детей в ее
               бережные руки. Руководящий врач “Центра Косметологии и Образования
               Мээрим Давлетовой” не только знает азы косметологии, но и блестяще
-              использует свои коммуникативные и организаторские навыки. За 6 лет
-              работы собственноручно обучила
+              использует свои коммуникативные и организаторские навыки.
             </div>
           </div>
         </div>
@@ -132,48 +138,51 @@ function Education() {
           Что ожидать от обучения
         </div>
         <div className="grid grid-cols-4 w-3/5 sm-grid-cols-1 xl:w-4/5 mx-auto gap-16 md:grid-cols-2">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center text-center">
             <FontAwesomeIcon
               className="text-pink-500 ed-exp-text"
               icon={faGraduationCap}
             />
-            <div className="mb-4 text-xl">Lorem ipsum</div>
-            <div className="text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <div className="mb-4 text-xl">Гарантированный результат</div>
+            <div>
+              Специалисты клиники Мээрим Давлетовой гарантируют, что качество их
+              образования соответсвует мировым стандартам.
             </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center text-center">
             <FontAwesomeIcon
               className="text-pink-500 ed-exp-text"
-              icon={faGraduationCap}
+              icon={faBrain}
             />
-            <div className="mb-4 text-xl">Lorem ipsum</div>
-            <div className="text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <div className="mb-4 text-xl">Современные знания</div>
+            <div>
+              Вы будете работать с практикующими специалистами, которые
+              обучались в самых престижных образовательных учереждениях по всему
+              миру.
             </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center text-center">
             <FontAwesomeIcon
               className="text-pink-500 ed-exp-text"
-              icon={faGraduationCap}
+              icon={faCertificate}
             />
-            <div className="mb-4 text-xl">Lorem ipsum</div>
-            <div className="text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <div className="mb-4 text-xl">Официальный сертификат</div>
+            <div>
+              По окончанию курса вы получите официальный сертификат
+              подтвержадющий ваши достижения и опыт.
             </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center text-center">
             <FontAwesomeIcon
               className="text-pink-500 ed-exp-text"
-              icon={faGraduationCap}
+              icon={faAtom}
             />
-            <div className="mb-4 text-xl">Lorem ipsum</div>
-            <div className="text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <div className="mb-4 text-xl">
+              Опыт работы с новейшим оборудованием
+            </div>
+            <div>
+              В течении обучения вы сможете получить опыт работы с самым
+              современным и выскотехнологичным обордуованием.
             </div>
           </div>
         </div>

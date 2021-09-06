@@ -11,7 +11,7 @@ function Contacts() {
 
         <div className="flex">
           <div className="font-bold">Адрес:⠀⠀⠀</div>
-          <div>г. Бишкек, ул. Уметалиева, 81</div>
+          <div>г. Бишкек, ул. Московская, 191</div>
         </div>
 
         <div className="flex">
@@ -25,8 +25,8 @@ function Contacts() {
 
         <div className="font-bold text-2xl mb-4">График работы</div>
 
-        <div>Понедельник-суббота: 9:00-18:00</div>
-        <div className="mb-16">Воскресенье: выходной</div>
+        <div>Понедельник-воскресенье: 8:00-21:00</div>
+        <div className="mb-16"></div>
 
         <SignForm img={imgForm} title="Записаться на прием" contacts />
       </div>
