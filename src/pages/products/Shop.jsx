@@ -183,8 +183,8 @@ function Shop() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-4 gap-10 xl:grid-cols-3 shop-grid mb-10 w-[1100px] xl:w-[800px] shop-products-width">
-              {isError && errorComponent(error)}
+            <div className="grid grid-cols-4 gap-10 xl:grid-cols-3 shop-grid mx-auto mb-10 w-[1100px] xl:w-[800px] shop-products-width">
+            {isError && errorComponent(error)}
               {(isLoading || isFetching) && isError && loadingComponent()}
               {isSuccess &&
                 data &&

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
 import whatsapp from "../../assets/whatsapp.png";
@@ -7,6 +7,8 @@ import facebook from "../../assets/facebook.png";
 import intstagram from "../../assets/instagram.png";
 
 function Footer() {
+  const loc = useLocation();
+  const isEng = loc.search === "?lang=en";
   return (
     <div className="bg-primary">
       <hr className="w-full border-t-2 border-black border-solid" />
@@ -38,37 +40,51 @@ function Footer() {
           </div>
         </div>
         <div>
-          <p className="font-bold text-2xl mb-8">Контакты</p>
-          <a href="tel:+996707600726" className="mb-4 block">
-            Телефон: +996 707 600 726
+          <p className="font-bold text-2xl mb-8">
+            {isEng ? "Contacts" : "Контакты"}
+          </p>
+          <a href="tel:+996556877782" className="mb-4 block">
+            {isEng ? "Phone" : "Телефон"}: +996 556 877 782, <br />
+            +996 707 600 726
           </a>
-          <a href="email:mdclinic@gmail.com" className="mb-4 block">
-            Почта: mdclinic@gmail.com
+          <a href="email:mdclinic.service@gmail.com" className="mb-4 block">
+            {isEng ? "Email" : "Почта"}: mdclinic.service@gmail.com
           </a>
+          <p className="mb-4">
+            {isEng
+              ? "Address: Moskovskaya st., 191"
+              : "Адрес: ул. Московская,191"}
+          </p>
           <p className="mb-4">Адрес: ул. Московская, 191</p>
         </div>
         <div>
-          <p className="font-bold text-2xl mb-8">Процедуры</p>
+          <p className="font-bold text-2xl mb-8">
+            {isEng ? "Procedures ⠀⠀⠀⠀⠀⠀" : "Процедуры ⠀⠀⠀⠀⠀⠀"}
+          </p>
           <div className="flex flex-col">
             <Link to="/procedure/inject" className="mb-4">
-              Инъекционные процедуры
+              {isEng ? "Injection procedures" : "Инъекционные процедуры"}
             </Link>
             <Link to="/procedure/skincare" className="mb-4">
-              Уход за кожей
+              {isEng ? "Skincare" : "Уход за кожей"}
             </Link>
-            <Link to="/procedure/apparat">Аппаратная косметология</Link>
+            <Link to="/procedure/apparat">
+              {isEng ? "Hardware cosmetology" : "Аппаратная косметология"}
+            </Link>
           </div>
         </div>
         <div>
-          <p className="font-bold text-2xl mb-8">О нас</p>
+          <p className="font-bold text-2xl mb-8">
+            {isEng ? "About us" : "О нас"}
+          </p>
           <div className="flex flex-col">
             <Link to="/about" className="mb-4">
-              О нас⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+              {isEng ? "About us⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀" : "О нас⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"}
             </Link>
             <Link to="/education" className="mb-4">
-              Обучение
+              {isEng ? "Education" : "Обучение"}
             </Link>
-            <Link to="/gallery">Галерея</Link>
+            <Link to="/gallery">{isEng ? "Gallery" : "Галерея"}</Link>
           </div>
         </div>
       </div>

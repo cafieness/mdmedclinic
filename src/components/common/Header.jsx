@@ -188,7 +188,7 @@ function Header() {
             {loc.pathname === "/" && loc.search !== "?lang=en" && (
               <Link to="/?lang=en" className="nav-link">
                 <img
-                  src="https://auca.kg/templates/_sources/flag_en.gif"
+                  src="https://auca.kg/templates/_sources/flag_ru.gif"
                   alt=""
                 />
               </Link>
@@ -197,7 +197,7 @@ function Header() {
             {loc.pathname === "/" && loc.search === "?lang=en" && (
               <Link to="/" className="">
                 <img
-                  src="https://auca.kg/templates/_sources/flag_ru.gif"
+                  src="https://auca.kg/templates/_sources/flag_en.gif"
                   alt=""
                 />
               </Link>
@@ -213,7 +213,7 @@ function Header() {
             {loc.pathname === "/" && loc.search !== "?lang=en" && (
               <Link to="/?lang=en" className="nav-link mr-4">
                 <img
-                  src="https://auca.kg/templates/_sources/flag_en.gif"
+                  src="https://auca.kg/templates/_sources/flag_ru.gif"
                   alt=""
                 />
               </Link>
@@ -222,7 +222,7 @@ function Header() {
             {loc.pathname === "/" && loc.search === "?lang=en" && (
               <Link to="/" className="mr-4">
                 <img
-                  src="https://auca.kg/templates/_sources/flag_ru.gif"
+                  src="https://auca.kg/templates/_sources/flag_en.gif"
                   alt=""
                 />
               </Link>

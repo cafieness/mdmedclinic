@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useMutation} from "react-query";
 import send_mutation from "../../api";
+import { useLocation  } from "react-router-dom";
 
 const mut_add_course = `
 mutation courseRegister($name:String!,$phoneNumber:String!){
@@ -32,7 +33,9 @@ function SignForm({ img, title, contacts }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
-  const mut = title==="Записаться на прием"?mut_add_visit:mut_add_course;
+  const loc = useLocation();
+  const eng = loc.search === "?lang=en";
+  const mut = title==="Записаться на прием"||"Make an appointment"?mut_add_visit:mut_add_course;
 
 
   const dialogBody = (
@@ -92,16 +95,15 @@ function SignForm({ img, title, contacts }) {
     >
       <div className="py-10 pl-10 sm:pl-0 sm:pr-0 flex flex-col ">
         
-        <p className="text-2xl font-bold mb-4">{title}</p>
+        <p className="text-2xl font-bold mb-4">{eng?"Make an appointment":title}</p>
         <p className="text-gray-700 text-xs mb-8">
-          Нажимая на кнопку "Записатьcя", Вы даете Согласие  на использование
-          предоставленных персональных данных для получения услуг
+          {eng?`By clicking on the "Sign up" button, you consent to the use of the personal data provided to receive the services`:`Нажимая на кнопку "Записатьcя", Вы даете Согласие  на использование предоставленных персональных данных для получения услуг`}
         </p>
         <input
           className="signform-inp mb-4 border border-black w-full rounded-2xl py-2 px-3 text-black focus:outline-none"
           id="имя"
           type="text"
-          placeholder="Имя"
+          placeholder={eng?"Name":"Имя"}
           value={name}
           onChange={changeName}
         />
@@ -110,12 +112,12 @@ function SignForm({ img, title, contacts }) {
           className="signform-inp mb-8 border border-black w-full rounded-2xl py-2 px-3 focus:outline-none text-black "
           id="номер телефона"
           type="text"
-          placeholder="Номер телефона"
+          placeholder={eng?"Phone number":"Номер телефона"}
           value={phoneNumber}
           onChange={changePhone}
         />
         <div className="text-red-600">{error}</div>
-        <button type="submit" className="button btn-primary rounded-2xl focus:outline-none">Записаться</button>
+        <button type="submit" className="button btn-primary rounded-2xl focus:outline-none">{eng?"Enroll":"Записаться"}</button>
         <Dialog open={openDialog} onClose={()=>setOpenDialog(false)}>{dialogBody}</Dialog>
         
       </div>
