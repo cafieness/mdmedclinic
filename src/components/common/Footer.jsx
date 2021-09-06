@@ -47,8 +47,8 @@ function Footer() {
             {isEng ? "Phone" : "Телефон"}: +996 556 877 782, <br />
             +996 707 600 726
           </a>
-          <a href="email:mdclinic.service@gmail.com" className="mb-4 block">
-            {isEng ? "Email" : "Почта"}: mdclinic.service@gmail.com
+          <a  href="mailto:mdmedclinic.service@gmail.com" className="mb-4 block">
+            {isEng ? "Email" : "Почта"}: mdmedclinic.service@gmail.com
           </a>
           <p className="mb-4">
             {isEng
