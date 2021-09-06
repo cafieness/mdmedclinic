@@ -36,6 +36,7 @@ function Signup() {
     var email = e.target.value;
 
     if (validator.isEmail(email) || email === "") {
+      setSignupError("");
     } else {
       setSignupError("email недействительный");
     }
