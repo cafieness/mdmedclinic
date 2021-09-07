@@ -44,6 +44,14 @@ const adminGuard = async (to, from, next) => {
     }
     next.redirect("/");
   }
+  if (to.meta.user) {
+    const data = await send_simple_query(admin_check);
+    if (data.adminCheck === null) {
+      next.redirect("/login?reauth=true&from=" + from);
+      return;
+    }
+    next();
+  }
 };
 
 function Routes() {
@@ -63,10 +71,20 @@ function Routes() {
         <Route path="/shop/:id/:name" component={Product} exact></Route>
         <Route path="/blog" component={Blog} exact></Route>
         <Route path="/blog/:id/:name" component={BlogPost} exact></Route>
-        <Route path="/profile" component={Profile} exact></Route>
+        <GuardedRoute
+          meta={{ user: true }}
+          path="/profile"
+          component={Profile}
+          exact
+        ></GuardedRoute>
         <Route path="/basket" component={Basket} exact></Route>
 
-        <Route path="/payment" component={Payment} exact></Route>
+        <GuardedRoute
+          meta={{ user: true }}
+          path="/payment"
+          component={Payment}
+          exact
+        ></GuardedRoute>
         <GuardedRoute
           path="/admin/:tab?"
           component={Admin}
