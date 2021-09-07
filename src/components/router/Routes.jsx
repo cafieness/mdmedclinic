@@ -47,7 +47,7 @@ const adminGuard = async (to, from, next) => {
   if (to.meta.user) {
     const data = await send_simple_query(admin_check);
     if (data.adminCheck === null) {
-      next.redirect("/login?reauth=true&from=" + from);
+      next.redirect("/login?reauth=true&from=" + to.location.pathname);
       return;
     }
     next();
