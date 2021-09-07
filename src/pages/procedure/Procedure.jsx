@@ -23,7 +23,7 @@ function Procedure() {
               {procedure.description2}
             </div>
           </div>
-          <img className="procedure-img ml-32 md:mb-10 md:ml-0" src={procedure.img} alt="" />
+          <img className="procedure-img ml-32 md:mb-10 md:ml-0 rounded-3xl" src={procedure.img} alt="" />
         </div>
         <div className=" procedure-width border-b-2 pb-8 border-black">
           <div className="text-xl italic my-5">Показания</div>
@@ -89,8 +89,8 @@ function Procedure() {
                     <td>{procedure.number}</td>
                 </tr>
                 <tr className="flex justify-between">
-                    <th>Частота посещений</th>
-                    <td>{procedure.frequency}</td>
+                    <th className="text-left">Частота посещений</th>
+                    <td className="text-right">{procedure.frequency}</td>
                 </tr>
             </table>
         </div>
