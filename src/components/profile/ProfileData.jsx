@@ -40,6 +40,7 @@ const change_user_mut = gql`
   }
 `;
 
+
 function ProfileData() {
   const { data, error, refetch, isSuccess, isError, isLoading, isFetching } =
     useQuery("get_user", async () => {

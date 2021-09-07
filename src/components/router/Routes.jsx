@@ -26,6 +26,8 @@ import {
 } from "../../pages";
 import { Fragment } from "react";
 import Scroll from "./Scroll";
+import { logout } from "../../redux/user";
+
 const admin_check = gql`
   {
     adminCheck

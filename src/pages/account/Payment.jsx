@@ -50,8 +50,6 @@ function Payment() {
   const dispatch = useDispatch();
   const [paymentMethod, setPaymentMethod] = useState("");
   const [status, setStatus] = useState(false);
-
-  const isLoggedIn = useSelector((state) => (state.user.user ? true : false));
   const dialogBody = (
     <div className="p-10 flex flex-col items-center">
       <FontAwesomeIcon
@@ -114,10 +112,6 @@ function Payment() {
       setErrorMessage(false);
     }
   };
-
-  if (!isLoggedIn) {
-    return <Redirect to="/" />;
-  }
   if (status) {
     return <Redirect to="/profile" />;
   }
@@ -146,8 +140,8 @@ function Payment() {
               </div>
             ))}
             <div className="italic text-xl mt-8 md:mx-0 mx-4 text-right">
-              К оплате:
-              {cart.reduce((a, b) => (a = a + b.product.price * b.amount), 0) +
+              К оплате: 
+              {" "+cart.reduce((a, b) => (a = a + b.product.price * b.amount), 0) +
                 " "}
               сом
             </div>
@@ -207,7 +201,7 @@ function Payment() {
                   />
                   <label for="элсом">Элсом</label>
                 </div>
-                <div className="mt-2">Номер элсома: 8-800-555-35-35</div>
+                <div className="mt-2">Номер элсома: 0500-333-337</div>
               </div>
             </div>
           </div>

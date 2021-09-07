@@ -9,11 +9,7 @@ function Profile() {
   const dispatch = useDispatch();
   const [activeSection, setActiveSection] = useState("Профиль");
   const sections = ["Профиль", "Сменить пароль", "Мои заказы"];
-  const isLoggedIn = useSelector((state) => (state.user.user ? true : false));
 
-  if (!isLoggedIn) {
-    return <Redirect to="/" />;
-  }
   return (
     <div className="bg-primary pt-10 mdh:pt-40 min-h-[100vh] min-w-[100vw]">
       <div className="flex flex-col mdh:flex-row items-start">

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../../components/common/Button";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 
 import validator from "validator";
 
@@ -32,6 +32,7 @@ const login_mutation = ({ email, password }) => {
 };
 
 function Login(props) {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -75,8 +76,6 @@ function Login(props) {
     setPasswordError("");
   };
 
-  const dispatch = useDispatch();
-
   const [error, setError] = useState();
   const history = useHistory();
   const handleLogin = (e) => {
@@ -113,12 +112,16 @@ function Login(props) {
   };
 
   const query = useURLQuery();
-
+  useEffect(() => {
+    if(query.get("reauth")){
+      dispatch(logout());
+    }
+  }, [])
   if (isLoggedIn && !query.get("reauth")) {
     return <Redirect to="/profile" />;
   }
   return (
-    <div className="h-screen login-bg flex justify-center items-center">
+    <div className="h-screen login-bg flex justify-center items-center min-h-[800px]">
       <form
         onSubmit={handleLogin}
         className="bg-white py-6 2xl:px-8 s:px-3 px-5 mx-1 mt-12 rounded-xl z-20 flex flex-col items-center text-xl xl:text-lg "
