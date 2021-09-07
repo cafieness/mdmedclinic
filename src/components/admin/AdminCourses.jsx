@@ -31,12 +31,19 @@ function AdminCourses() {
   const [status, setStatus] = useState("VISIBLE");
   const statusList = ["HIDDEN", "VISIBLE"];
   const { data, error, refetch, isSuccess, isError, isLoading, isFetching } =
-    useQuery("get_courses", async () => {
-      const {
-        admin: { getCoursesAppointments },
-      } = await send_var_query(get_courses_query, { st: status });
-      return getCoursesAppointments;
-    });
+    useQuery(
+      "get_courses",
+      async () => {
+        const {
+          admin: { getCoursesAppointments },
+        } = await send_var_query(get_courses_query, { st: status });
+        return getCoursesAppointments;
+      },
+      {
+        refetchInterval: 1000 * 30,
+        refetchIntervalInBackground: true,
+      }
+    );
 
   useEffect(() => {
     refetch();

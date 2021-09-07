@@ -31,12 +31,19 @@ function AdminVisits() {
   const [status, setStatus] = useState("VISIBLE");
   const statusList = ["HIDDEN", "VISIBLE"];
   const { data, error, refetch, isSuccess, isError, isLoading, isFetching } =
-    useQuery("get_visits", async () => {
-      const {
-        admin: { getVisits },
-      } = await send_var_query(get_visits_query, { st: status });
-      return getVisits;
-    });
+    useQuery(
+      "get_visits",
+      async () => {
+        const {
+          admin: { getVisits },
+        } = await send_var_query(get_visits_query, { st: status });
+        return getVisits;
+      },
+      {
+        refetchInterval: 1000 * 30,
+        refetchIntervalInBackground: true,
+      }
+    );
 
   useEffect(() => {
     refetch();

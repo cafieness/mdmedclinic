@@ -223,12 +223,19 @@ function AdminOrders() {
   const [status, setStatus] = useState("PENDING");
   const statusList = ["CANCELLED", "CLOSED", "READY", "ACCEPTED", "PENDING"];
   const { data, isError, isLoading, isSuccess, refetch, isFetching, error } =
-    useQuery("orders", async () => {
-      const {
-        admin: { getAllOrders },
-      } = await send_var_query(get_orders_query, { st: status });
-      return getAllOrders;
-    });
+    useQuery(
+      "orders",
+      async () => {
+        const {
+          admin: { getAllOrders },
+        } = await send_var_query(get_orders_query, { st: status });
+        return getAllOrders;
+      },
+      {
+        refetchInterval: 1000 * 30,
+        refetchIntervalInBackground: true,
+      }
+    );
 
   useEffect(() => {
     refetch();
