@@ -16,16 +16,17 @@ function Contacts() {
 
         <div className="flex">
           <div className="font-bold">Телефон:⠀</div>
-          <div>+996 707 600 726</div>
+          <div>+996 556 877 782, <br />
+            +996 707 600 726</div>
         </div>
         <div className="flex">
           <div className="font-bold mb-8">Email:⠀⠀ ⠀</div>
-          <div>mdmedclinic@gmail.com</div>
+          <div>mdmedclinic.service@gmail.com</div>
         </div>
 
         <div className="font-bold text-2xl mb-4">График работы</div>
 
-        <div>Понедельник-воскресенье: 8:00-21:00</div>
+        <div>Понедельник-воскресенье: 10:00-22:00</div>
         <div className="mb-16"></div>
 
         <SignForm img={imgForm} title="Записаться на прием" contacts />

@@ -55,11 +55,10 @@ function Footer() {
               ? "Address: Moskovskaya st., 191"
               : "Адрес: ул. Московская,191"}
           </p>
-          <p className="mb-4">Адрес: ул. Московская, 191</p>
         </div>
         <div>
           <p className="font-bold text-2xl mb-8">
-            {isEng ? "Procedures ⠀⠀⠀⠀⠀⠀" : "Процедуры ⠀⠀⠀⠀⠀⠀"}
+            {isEng ? "Procedures ⠀⠀⠀⠀⠀⠀⠀⠀⠀" : "Процедуры ⠀⠀⠀⠀⠀⠀⠀⠀⠀"}
           </p>
           <div className="flex flex-col">
             <Link to="/procedure/inject" className="mb-4">
@@ -79,7 +78,7 @@ function Footer() {
           </p>
           <div className="flex flex-col">
             <Link to="/about" className="mb-4">
-              {isEng ? "About us⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀" : "О нас⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"}
+              {isEng ? "About us⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" : "О нас⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"}
             </Link>
             <Link to="/education" className="mb-4">
               {isEng ? "Education" : "Обучение"}

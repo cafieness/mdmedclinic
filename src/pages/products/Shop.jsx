@@ -111,9 +111,7 @@ function Shop() {
         !isLoading &&
         !isFetching &&
         data &&
-        data.getProducts.products.length < 5
-          ? "bg-primary pt-40 pb-28 sm:pt-28 h-screen md:h-full"
-          : "bg-primary pt-40 pb-28 sm:pt-28"
+        "bg-primary pt-40 pb-28 sm:pt-28 h-full"
       }
     >
       <div className="flex  flex-col items-center w-4/5 xl:w-full xl:px-10 mx-auto">
@@ -124,7 +122,7 @@ function Shop() {
               : " flex items-start"
           }
         >
-          <div className="md:hidden pr-10 mt-24 grid gap-8 mr-20 xl:mr-10 border-black border-r-2">
+          <div className="md:hidden pr-10 mt-24 grid gap-8 mr-20 xl:mr-10 border-black border-r-2 overflow-y-auto h-[500px]">
             {isSuccess &&
               leftFilterButtons.map((name) => (
                 <button

@@ -1,9 +1,23 @@
 import React from "react";
 import meerimCircle from "../assets/about/meerim-circle.png";
 import choose1 from "../assets/about/choose-1.png";
-import diploma1 from "../assets/about/diploma-1.png";
+import choose2 from "../assets/about/choose-2.svg";
+import choose3 from "../assets/about/choose-3.svg";
 import { Feedback } from "../components";
 import Carousel from "react-multi-carousel";
+
+import c1 from "../assets/about/certificates/1-min.jpg";
+import c2 from "../assets/about/certificates/2-min.jpg";
+import c3 from "../assets/about/certificates/3-min.jpg";
+import c4 from "../assets/about/certificates/4-min.jpg";
+import c5 from "../assets/about/certificates/5-min.jpg";
+import c6 from "../assets/about/certificates/6-min.jpg";
+import c7 from "../assets/about/certificates/7-min.jpg";
+import c8 from "../assets/about/certificates/8-min.jpg";
+import c9 from "../assets/about/certificates/9-min.jpg";
+import c10 from "../assets/about/certificates/10-min.jpg";
+import c11 from "../assets/about/certificates/11-min.jpg";
+import c12 from "../assets/about/certificates/12-min.jpg";
 
 const responsive = {
   desktop: {
@@ -21,13 +35,14 @@ const responsive = {
 };
 
 function Certificates() {
+  const images = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12];
   return (
-    <Carousel responsive={responsive}  className="mx-auto w-3/5">
-      <img className="mx-auto px-1" src={diploma1} alt="" />
-      <img className="mx-auto px-1" src={diploma1} alt="" />
-      <img className="mx-auto px-1" src={diploma1} alt="" />
-      <img className="mx-auto px-1" src={diploma1} alt="" />
-      <img className="mx-auto px-1" src={diploma1} alt="" />
+    <Carousel responsive={responsive} className="mx-auto w-3/5">
+      {images.map((image) => (
+        <div className="flex items-center h-[500px]">
+          <img className="mx-auto px-1 self-center" src={image} alt="" />
+        </div>
+      ))}
     </Carousel>
   );
 }
@@ -36,7 +51,11 @@ function About() {
   return (
     <div className="bg-about pt-40 sm:pt-10">
       <div className="lg:flex-col flex justify-center items-center py-20">
-        <img src={meerimCircle} className="mr-20 lg:mr-0 lg:mb-10 sm:w-3/5" alt="" />
+        <img
+          src={meerimCircle}
+          className="mr-20 lg:mr-0 lg:mb-10 sm:w-3/5"
+          alt=""
+        />
         <div className="w-1/3 lg:w-4/5">
           <div className="text-3xl mb-4 md:text-xl">
             Клиника эстетической медицины Мээрим Давлетовой
@@ -60,33 +79,33 @@ function About() {
         <div className="text-center text-4xl mb-24">Почему выбирают нас</div>
         <div className=" w-4/5 md:w-4/5 mx-auto flex justify-center md:flex-col md:items-center">
           <div className="flex flex-col mr-20 md:mr-0">
-            <img src={choose1} alt="" className="w-2/5 mx-auto" />
+            <img src={choose3} alt="" className="w-2/5 mx-auto" />
             <div className="text-center text-xl mt-4 mb-4">
-              Lorem ipsum dolor sit amet
+              Самое инновационное оборудование
             </div>
             <div className=" text-center mb-16 ">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Клиника MD Clinic Professional оснащена современной аппаратурой
+              для проведения косметических процедур
             </div>
           </div>
           <div className="flex flex-col  mr-20  md:mr-0 ">
-            <img src={choose1} alt="" className="w-2/5 mx-auto"  />
+            <img src={choose1} alt="" className="w-2/5 mx-auto" />
             <div className="text-center text-xl mt-4 mb-4">
-              Lorem ipsum dolor sit amet
+              Квалифицированные специалисты
             </div>
             <div className=" text-center mb-16">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              В клинике работают врачи-косметологи высокого профессионального
+              уровня с медицинским образованием
             </div>
           </div>
           <div className="flex flex-col ">
-            <img src={choose1} alt="" className="w-2/5 mx-auto" />
+            <img src={choose2} alt="" className="w-2/5 mx-auto" />
             <div className="text-center text-xl mt-4 mb-4">
-              Lorem ipsum dolor sit amet
+              Только то, что необходимо
             </div>
             <div className=" text-center mb-16">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Мы рекомендуем только те процедуры, которые вам необходимы и
+              никогда не посоветуем лишнего
             </div>
           </div>
         </div>

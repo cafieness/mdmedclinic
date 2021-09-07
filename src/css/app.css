@@ -142,6 +142,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.home-bg{
+  background-image: url("../assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .signup-bg {
   background-image: url("../assets/signup/bg.png");
   background-repeat: no-repeat;
@@ -252,7 +257,7 @@ input::-webkit-inner-spin-button {
   width: 180px;
 }
 .home-main-image {
-  width: 600px;
+  width: 690px;
 }
 .first-blog-width {
   width: 600px;

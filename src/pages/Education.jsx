@@ -1,5 +1,5 @@
 import React from "react";
-import meerim from "../assets/education/meerim.png";
+import meerim from "../assets/home-meerim.png";
 import aizada from "../assets/education/aizada.jpg";
 import program from "../assets/education/program.png";
 import formpic from "../assets/education/form.jpg";
@@ -62,8 +62,10 @@ function Education() {
       <div className="bg-about py-40 flex flex-col items-center">
         <div className="text-5xl mb-24 lg:text-3xl">Преподаватель</div>
         <div className="flex md:flex-col justify-between w-3/5 xl:w-4/5  mx-auto items-center">
-          <img src={meerim} alt="" />
-          <div className="bg-white w-500px sm:w-300 p-10 rounded-t-3xl ml-20 md:mt-16 md:ml-0">
+          <div className="rounded-3xl bg-[#9d9990]">
+          <img src={meerim} className="w-[400px] md:w-[300px]" alt="" />
+          </div>
+          <div className="bg-white w-500px sm:w-300 p-10 rounded-t-3xl ml-10 md:mt-16 md:ml-0">
             <div className="text-2xl mb-8">Мээрим Давлетова</div>
             <div>
               Главный врач и владелица одноименного “Центра Косметологии и

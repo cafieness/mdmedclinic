@@ -8,7 +8,7 @@ import {
 import { Link, useLocation  } from "react-router-dom";
 import Scroll from "react-scroll";
 
-import meerim from "../assets/home-meerim.png";
+import meerim from "../assets/meerim.png";
 
 import imgForm from "../assets/mainPageForm.jpg";
 import pr1 from "../assets/procedure-1.png";
@@ -26,8 +26,8 @@ function Home() {
   const isEng = loc.search === "?lang=en";
  
   return (
-    <div className="bg-primary pt-32 sm:pt-20 home">
-      <div className="md:flex-col flex items-center justify-center ">
+    <div className="bg-primary">
+      <div className="md:flex-col flex items-center justify-center home-bg pt-32 sm:pt-20 home">
         <img
           className="home-main-image mr-32 lg:mr-0 lg:mb-4 lg:mt-10"
           src={meerim}
