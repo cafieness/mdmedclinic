@@ -120,8 +120,8 @@ function Education() {
       <div className="bg-about py-40 flex flex-col items-center">
         <div className="text-5xl mb-24 lg:text-3xl">Преподаватель</div>
         <div className="flex md:flex-col justify-between w-3/5 xl:w-4/5  mx-auto items-center">
-          <img src={aizada} alt="" className="rounded-3xl" />
-          <div className="bg-white w-500px sm:w-300 p-10 rounded-t-3xl ml-20 md:mt-16 md:ml-0">
+          <img src={aizada} alt="" className="rounded-3xl w-[400px] md:w-[300px]" />
+          <div className="bg-white w-500px sm:w-300 p-10 rounded-t-3xl ml-10 md:mt-16 md:ml-0">
             <div className="text-2xl mb-8">Айзада Давлетова</div>
             <div>
               Одна из бьюти-покровительниц Бишкека, растит уже второе поколение
