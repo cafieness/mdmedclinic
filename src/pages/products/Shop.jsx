@@ -165,7 +165,7 @@ function Shop() {
                 <div
                   className={
                     showMobileFilter
-                      ? "rounded-2xl top-14 w-full absolute flex flex-col bg-primary z-10 border-t-2 border-l-2 border-r-2 border-black"
+                      ? "rounded-2xl top-14 w-full absolute flex flex-col bg-primary z-10 border-t-2 border-l-2 border-r-2 border-black overflow-y-auto h-[300px]"
                       : "hidden"
                   }
                 >

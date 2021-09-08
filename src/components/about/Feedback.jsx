@@ -6,58 +6,66 @@ function Feedback() {
   return (
     <div className="flex flex-col items-center  md:text-sm">
       <div className="flex md:mb-0 mb-16 md:flex-col">
-      <div className="flex flex-col items-center md:mb-10 bg-white p-10 mr-20 md:mr-0 rounded-2xl">
-        <img src={karen} className="mb-8" alt="" />
-        <div className="text-center mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br/> sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br/> sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        <div className="flex flex-col items-center justify-center md:mb-10 bg-white p-10 mr-20 md:mr-0 rounded-2xl">
+          <div className="text-center mb-8 w-[400px] sm:w-[300px]">
+            Здесь сделали то что, не мог никто другой за всю мою подростковую
+            жизнь. У меня очень проблемная кожа, и я давно находилась в поиске
+            косметолога, который бы решил все мои проблемы, угри были по всему
+            лицу и я не знала что делать. Наконец-то я нашла настоящего своего
+            специалиста!! Уже за два месяца я видела огромные улучшения, а через
+            пол года, выглядила так, будто и не было проблем вовсе. Это сильно
+            облегчило мою жизнь, я очень довольна и всем советую Мээрим
+            Давлетову, все мои родные теперь тоже ходят к ней, все в восторге!
+            Спасибо огромное!!
+          </div>
         </div>
-        <div className="font-bold">
-            Karen Karen
+        <div className="flex flex-col items-center justify-center md:mb-10 bg-white p-10 rounded-2xl">
+          <div className="text-center mb-8 w-[400px] sm:w-[300px]">
+            Хочу выразить огромную благодарность двум замечательным девушкам,
+            которые помогают нам с каждым днём становиться все красивее и
+            моложе. Мээрим и Айзадочка, спасибо вам большое за трепетное и
+            внимательное отношение! За красоту, которую вы "творите" с нами!
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center md:mb-10 bg-white p-10 rounded-2xl">
-        <img src={karen} className="mb-8" alt="" />
-        <div className="text-center mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br/> sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br/> sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        </div>
-        <div className="font-bold">
-            Karen Karen
-        </div>
-      </div>
       </div>
       <div className="flex  md:flex-col">
-      <div className="flex flex-col items-center md:mb-10 bg-white p-10 mr-20 md:mr-0 rounded-2xl">
-        <img src={karen} className="mb-8" alt="" />
-        <div className="text-center mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br/> sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br/> sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        <div className="flex flex-col items-center md:mb-10 justify-center bg-white p-10 mr-20 md:mr-0 rounded-2xl">
+          <div className="text-center mb-8 w-[400px] sm:w-[300px]">
+            Хочу выразить благодарность мастеру своего дела – Мээрим Давлетове.
+            На протяжении нескольких лет боролась с акне: испробовала все
+            возможные способы лечения, каких только дерматологов и косметологов
+            не посещала. Нашла Мээрим по отзывам в интернете и сразу же
+            записалась на приём. Обычно при многочисленных посещениях врачей уже
+            теряешь надежду, но тут сразу же после первой консультации Мээрим
+            вызвала доверие. Очень приятная атмосфера в салоне, всё стерильно.
+            Начала лечение в марте и буквально уже через месяц получила хороший
+            результат, кожа улучшилась до неузнаваемости. Очень рада, что
+            наконец-то нашла своего косметолога! Мээрим, спасибо вам огромное!
+            Вы не представляете, как сильно я радуюсь изменениям и насколько я
+            вам признательна! Лучший специалист, золотые руки, Человек с большой
+            буквы! Спасибо, спасибо, спасибо!
+          </div>
         </div>
-        <div className="font-bold">
-            Karen Karen
+        <div className="flex flex-col items-center md:mb-10 justify-center bg-white p-10 rounded-2xl">
+          <div className="text-center mb-8 w-[400px] sm:w-[300px]">
+            Моей отправной точкой похода к косметологу стало ЗАМЕЧАНИЕ мужа на
+            мои пятна на лице с которыми я выглядела как женщина с базара!
+            Сначала я обиделась и хотела высказать ему все про беременность,
+            роды и главное приношения себя в жертву - экономие на себе во всем
+            даже в кремах. Потом успокоившись реально и очень долго рассмотрела
+            себя в зеркало и увидела огромные пятна под глазами на всю щеку. Кто
+            то может сказать как она не заметила, но они к сожалению не
+            появляются резко, а потихонечку от беременности к беременности
+            тихонечко заполняют лицо. И короче я обратилась за советом к
+            подруге, она привела меня собой к Мээрим Давлетовой. Мне понравилась
+            ее простота во всем: в отношении, в процедурах, в объяснении и
+            главное искренность. По её направлению сделала УЗИ всех органов и
+            выяснилось , что есть проблемы с почками и желочным пузырем
+            подлечила их и я вижу , что пигментация уменьшается! Все таки врач
+            есть врач!!!!
+          </div>
         </div>
       </div>
-      <div className="flex flex-col items-center md:mb-10 bg-white p-10 rounded-2xl">
-        <img src={karen} className="mb-8" alt="" />
-        <div className="text-center mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br/> sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br/> sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        </div>
-        <div className="font-bold">
-            Karen Karen
-        </div>
-      </div>
-      </div>
-    
     </div>
   );
 }
