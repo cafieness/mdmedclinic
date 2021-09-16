@@ -34,6 +34,7 @@
     "react-scripts": "^4.0.3",
     "react-scroll": "^1.8.3",
     "react-transition-group": "^4.4.2",
+    "react-yandex-maps": "^4.6.0",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
@@ -43,7 +44,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "TAILWIND_MODE=watch craco start",
+    "start": "REACT_APP_API_CONFIG='http://192.168.0.126:8000' TAILWIND_MODE=watch craco start",
     "start-ar": "TAILWIND_MODE=watch REACT_APP_API_CONFIG='http://192.168.0.139:8000' craco start",
     "build": "craco build",
     "test": "craco test",

@@ -38,16 +38,17 @@ module.exports = {
         md: { max: "1023px" },
         lg: { max: "1279px" },
         xl: { max: "1535px" },
-        "2xl": { min: "1536px" },
         smh: { min: "640px" },
         mdh: { min: "768px" },
         lgh: { min: "1024px" },
         xlh: { min: "1280px" },
+        xl2: { min: "1536px" },
       },
     },
   },
   variants: {
     extend: {
+      textColor: ["hover", "focus", "group-hover"],
       display: ["hover", "focus", "group-hover"],
       ringColor: ["hover"],
     },

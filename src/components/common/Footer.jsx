@@ -12,8 +12,8 @@ function Footer() {
   return (
     <div className="bg-primary">
       <hr className="w-full border-t-2 border-black border-solid" />
-      <div className="py-6 flex space-x-10  mx-auto justify-center md:flex-col md:items-center">
-        <div className="flex flex-col items-center md:mb-8">
+      <div className="py-6 flex mdh:mx-8 lgh:mx-16 mdh:space-x-6 space-y-2 mdh:space-y-0 justify-center flex-col mx-4 mdh:flex-row ">
+        <div className="flex-1 flex flex-col items-center md:mb-4">
           <img src={logo} alt="" className="mb-4" />
           <div className="flex">
             <a
@@ -39,58 +39,53 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div>
-          <p className="font-bold text-2xl mb-8">
+        <div className="flex-1 flex flex-col space-y-2 mdh:space-y-4">
+          <p className="font-bold text-2xl mb-2 mdh:mb-3">
             {isEng ? "Contacts" : "Контакты"}
           </p>
-          <a href="tel:+996556877782" className="mb-4 block">
-            {isEng ? "Phone" : "Телефон"}: +996 556 877 782, <br />
-            +996 707 600 726
+          <div>
+            {isEng ? "Phone" : "Телефон"}:{" "}
+            <a href="tel:+996556877782">+996 556 877 782</a>, <br />
+            <a href="tel:+996707600726">+996 707 600 726</a>
+          </div>
+          <a href="mailto:mdmedclinic.service@gmail.com" className="block">
+            {isEng ? "Email" : "Почта"}: mdmedclinic@gmail.com
           </a>
-          <a  href="mailto:mdmedclinic.service@gmail.com" className="mb-4 block">
-            {isEng ? "Email" : "Почта"}: mdmedclinic.service@gmail.com
-          </a>
-          <p className="mb-4">
+          <p>
             {isEng
               ? "Address: Moskovskaya st., 191"
               : "Адрес: ул. Московская,191"}
           </p>
         </div>
-        <div>
-          <p className="font-bold text-2xl mb-8">
-            {isEng ? "Procedures ⠀⠀⠀⠀⠀⠀⠀⠀⠀" : "Процедуры ⠀⠀⠀⠀⠀⠀⠀⠀⠀"}
+        <div className="flex-1 flex flex-col space-y-2 mdh:space-y-4">
+          <p className="font-bold text-2xl mb-2 mdh:mb-3">
+            {isEng ? "Procedures" : "Процедуры"}
           </p>
-          <div className="flex flex-col">
-            <Link to="/procedure/inject" className="mb-4">
-              {isEng ? "Injection procedures" : "Инъекционные процедуры"}
-            </Link>
-            <Link to="/procedure/skincare" className="mb-4">
-              {isEng ? "Skincare" : "Уход за кожей"}
-            </Link>
-            <Link to="/procedure/apparat">
-              {isEng ? "Hardware cosmetology" : "Аппаратная косметология"}
-            </Link>
-          </div>
+          <Link to="/procedure/inject">
+            {isEng ? "Injection procedures" : "Инъекционные процедуры"}
+          </Link>
+          <Link to="/procedure/skincare">
+            {isEng ? "Skincare" : "Уход за кожей"}
+          </Link>
+          <Link to="/procedure/apparat">
+            {isEng ? "Hardware cosmetology" : "Аппаратная косметология"}
+          </Link>
         </div>
-        <div>
-          <p className="font-bold text-2xl mb-8">
+        <div className="flex-1 flex flex-col space-y-2 mdh:space-y-4">
+          <p className="font-bold text-2xl mb-2 mdh:mb-3">
             {isEng ? "About us" : "О нас"}
           </p>
-          <div className="flex flex-col">
-            <Link to="/about" className="mb-4">
-              {isEng ? "About us⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" : "О нас⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"}
-            </Link>
-            <Link to="/education" className="mb-4">
-              {isEng ? "Education" : "Обучение"}
-            </Link>
-            <Link to="/gallery">{isEng ? "Gallery" : "Галерея"}</Link>
-          </div>
+          <Link to="/about">{isEng ? "About us" : "О нас"}</Link>
+          <Link to="/education">{isEng ? "Education" : "Обучение"}</Link>
+          <Link to="/gallery">{isEng ? "Gallery" : "Галерея"}</Link>
         </div>
       </div>
-      <hr className="w-full border-t-2 border-black border-solid" />
-      <div className="flex justify-evenly md:flex-col">
-        <div className="md:mb-2">All rights reserved by MD Clinic, 2021</div>
-        <div>Developers: Camila Choroeva, Arthur Talkanbaev</div>
+      <hr className="w-full border-t-1 border-black border-solid" />
+      <div className="flex justify-evenly md:flex-col text-gray-500 text-xs">
+        <div className="md:mb-1">All rights reserved by MD Clinic, 2021</div>
+        <a className="block" href="mailto:talkanbaev.artur@outlook.com">
+          Developers: Camila Choroeva, Arthur Talkanbaev
+        </a>
       </div>
     </div>
   );

@@ -37,6 +37,7 @@ const get_products = gql`
           name
           id
         }
+        fullDesc
         volume
       }
       pagination {
@@ -122,13 +123,13 @@ function Shop() {
               : " flex items-start"
           }
         >
-          <div className="md:hidden pr-10 mt-24 grid gap-8 mr-20 xl:mr-10 border-black border-r-2 overflow-y-auto h-[500px]">
+          <div className="md:hidden pr-10 mt-24 grid gap-4 mdh:gap-6 lgh:gap-8 mr-20 xl:mr-10 border-black border-r-2 overflow-y-auto min-h-[4rem]">
             {isSuccess &&
               leftFilterButtons.map((name) => (
                 <button
                   className={
                     activeLeftFilter === name
-                      ? "shop-filter-active shop-left-filter"
+                      ? "shop-filter-active shop-left-filter py-4"
                       : "shop-left-filter"
                   }
                   onClick={() => handleLeftFilterButton(name)}
@@ -138,7 +139,7 @@ function Shop() {
               ))}
           </div>
           <div>
-            <div className="flex md:flex-col  justify-between items-center mb-16">
+            <div className="flex md:flex-col  justify-between items-center mb-8 mdh:mb-16">
               <div className="text-2xl md:mb-10">Наша продукция</div>
               <div className="flex md:flex-wrap md:justify-center md:mb-8">
                 {rightFilterButtons.map((name) => (
@@ -181,8 +182,8 @@ function Shop() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-4 gap-10 xl:grid-cols-3 shop-grid mx-auto mb-10 w-[1100px] xl:w-[800px] shop-products-width">
-            {isError && errorComponent(error)}
+            <div className="grid grid-cols-4 gap-4 mdh:gap-6 lgh:gap-10 xl:grid-cols-3 shop-grid mx-auto mb-10 w-[1100px] xl:w-[800px] shop-products-width">
+              {isError && errorComponent(error)}
               {(isLoading || isFetching) && isError && loadingComponent()}
               {isSuccess &&
                 data &&
@@ -194,6 +195,7 @@ function Shop() {
                       name={product.name}
                       price={product.price}
                       img={product.image}
+                      desc={product.fullDesc}
                     />
                   </Link>
                 ))}

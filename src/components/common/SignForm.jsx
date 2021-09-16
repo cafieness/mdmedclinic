@@ -1,11 +1,11 @@
-import React, { useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { useMutation} from "react-query";
+import { useMutation } from "react-query";
 import send_mutation from "../../api";
-import { useLocation  } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const mut_add_course = `
 mutation courseRegister($name:String!,$phoneNumber:String!){
@@ -16,7 +16,7 @@ mutation courseRegister($name:String!,$phoneNumber:String!){
     status
   }
 }
-`
+`;
 const mut_add_visit = `
 mutation visitRegister($name:String!,$phoneNumber:String!){
   makeVisitAppointment(input:{name:$name,phoneNumber:$phoneNumber}){
@@ -26,7 +26,7 @@ mutation visitRegister($name:String!,$phoneNumber:String!){
     status
   }
 }
-`
+`;
 
 function SignForm({ img, title, contacts }) {
   const [openDialog, setOpenDialog] = useState(false);
@@ -35,34 +35,40 @@ function SignForm({ img, title, contacts }) {
   const [error, setError] = useState("");
   const loc = useLocation();
   const eng = loc.search === "?lang=en";
-  const mut = title==="Записаться на прием"||"Make an appointment"?mut_add_visit:mut_add_course;
-
+  const mut =
+    title === "Записаться на прием" || "Make an appointment"
+      ? mut_add_visit
+      : mut_add_course;
 
   const dialogBody = (
     <div className="p-10 flex flex-col items-center">
-      <FontAwesomeIcon className="text-5xl mb-8 text-green-400" icon={faCheck} />
+      <FontAwesomeIcon
+        className="text-5xl mb-8 text-green-400"
+        icon={faCheck}
+      />
       <div>Вы успешно записались</div>
     </div>
   );
 
   useEffect(() => {
-     setTimeout(() => {
+    setTimeout(() => {
       setOpenDialog(false);
     }, 2500);
   }, [openDialog]);
 
-  function changeName(e){
+  function changeName(e) {
     setName(e.target.value);
   }
-  function changePhone(e){
+  function changePhone(e) {
     setPhoneNumber(e.target.value);
   }
 
-  const { mutate } = useMutation(({ phoneNumber, name }) =>
-    send_mutation(mut, { phoneNumber: phoneNumber, name: name })
-  );
+  const { mutate } = useMutation(({ phoneNumber, name }) => {
+    let num = phoneNumber.replace(/\D/g, "");
+    send_mutation(mut, { phoneNumber: num, name: name });
+  });
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
     mutate(
       { phoneNumber, name },
@@ -74,10 +80,10 @@ function SignForm({ img, title, contacts }) {
           setError("");
         },
         onError: (err) => {
-          if(err.response.errors[0].errors.name){
+          if (err.response.errors[0].errors.name) {
             setError("Имя должно иметь не менее 3 букв");
           }
-          if(err.response.errors[0].errors.phone_number){
+          if (err.response.errors[0].errors.phone_number) {
             setError("Неверный телефон");
           }
         },
@@ -86,49 +92,56 @@ function SignForm({ img, title, contacts }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}
-      className={
-        contacts
-          ? "sign-form-width bg-white flex justify-between rounded-2xl  sm:px-2"
-          : "w-1/2 sm:w-320 bg-white flex justify-between rounded-2xl  sm:px-2"
-      }
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white flex justify-between rounded-2xl mx-3 mdh:mx-auto relative lgh:w-[68%] xlh:w-3/5"
     >
-      <div className="py-10 pl-10 sm:pl-0 sm:pr-0 flex flex-col ">
-        
-        <p className="text-2xl font-bold mb-4">{eng?"Make an appointment":title}</p>
-        <p className="text-gray-700 text-xs mb-8">
-          {eng?`By clicking on the "Sign up" button, you consent to the use of the personal data provided to receive the services`:`Нажимая на кнопку "Записатьcя", Вы даете Согласие  на использование предоставленных персональных данных для получения услуг`}
+      <div className="flex flex-col z-10 py-4 px-2 mdh:pl-5 mdh:self-center">
+        <p className="text-2xl font-bold mb-2 text-center">
+          {eng ? "Make an appointment" : title}
+        </p>
+        <p className="text-gray-700 text-xs text-center mb-8">
+          {eng
+            ? `By clicking on the "Sign up" button, you consent to the use of the personal data provided to receive the services`
+            : `Нажимая на кнопку "Записатьcя", Вы даете Согласие  на использование предоставленных персональных данных для получения услуг`}
         </p>
         <input
-          className="signform-inp mb-4 border border-black w-full rounded-2xl py-2 px-3 text-black focus:outline-none"
+          className="mb-4 mdh:mb-3 border border-black rounded-2xl py-2 px-3 text-black focus:outline-none"
           id="имя"
           type="text"
-          placeholder={eng?"Name":"Имя"}
+          placeholder={eng ? "Name" : "Имя"}
           value={name}
           onChange={changeName}
         />
 
         <input
-          className="signform-inp mb-8 border border-black w-full rounded-2xl py-2 px-3 focus:outline-none text-black "
+          className="mb-6 mdh:mb-4 border border-black rounded-2xl py-2 px-3 focus:outline-none text-black "
           id="номер телефона"
           type="text"
-          placeholder={eng?"Phone number":"Номер телефона"}
+          placeholder={eng ? "Phone number" : "Номер телефона"}
           value={phoneNumber}
           onChange={changePhone}
         />
         <div className="text-red-600">{error}</div>
-        <button type="submit" className="button btn-primary rounded-2xl focus:outline-none">{eng?"Enroll":"Записаться"}</button>
-        <Dialog open={openDialog} onClose={()=>setOpenDialog(false)}>{dialogBody}</Dialog>
-        
+        <button
+          type="submit"
+          className="btn-primary rounded-2xl focus:outline-none"
+        >
+          {eng ? "Enroll" : "Записаться"}
+        </button>
+        <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+          {dialogBody}
+        </Dialog>
       </div>
       <img
         src={img}
         alt=""
-        className={
-          contacts
-            ? "md:hidden rounded-2xl border-transparent"
-            : "md:hidden w-3/5 rounded-2xl border-transparent"
-        }
+        className="absolute z-0 right-0 top-0 h-full w-auto opacity-[55%] rounded-2xl border-transparent mdh:hidden"
+      />
+      <img
+        src={img}
+        alt=""
+        className="hidden w-3/5 mdh:block rounded-2xl border-transparent"
       />
     </form>
   );

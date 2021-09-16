@@ -49,6 +49,10 @@ body {
   font-size: 24px;
 }
 
+.btn-gradient {
+  background: linear-gradient(to right, rgba(191, 105, 157, 62%), #523b6a);
+}
+
 .btn-primary-logic {
   background: linear-gradient(to right, rgba(191, 105, 157, 62%), #523b6a);
   color: white;
@@ -61,6 +65,7 @@ body {
   margin: 5px auto;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  border-radius: 5px;
   background-color: #101010;
 }
 .hamburger.active .bar:nth-child(2) {
@@ -79,15 +84,6 @@ body {
   display: none;
 }
 
-.bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px auto;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  background-color: #101010;
-}
 .nav {
   z-index: 1001;
   transition: ease-in-out 0.3s;
@@ -95,12 +91,6 @@ body {
 .nav.active {
   background: white;
   transition: ease-in-out 0.3s;
-}
-.nav-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: 0.3s ease-in-out;
 }
 
 .hamburger.active .bar:nth-child(2) {
@@ -125,6 +115,19 @@ body {
   border-radius: 15px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
+
+.dropdown-ar {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 1rem 2rem;
+  top: 3rem;
+  font-size: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
 .auth-input {
   border: solid black 1px;
   border-radius: 10px;
@@ -134,15 +137,13 @@ body {
 .hidden-mobile {
   display: none;
 }
-.button {
-  width: 300px;
-}
+
 .login-bg {
   background-image: url("../assets/login/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
-.home-bg{
+.home-bg {
   background-image: url("../assets/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -153,17 +154,53 @@ body {
   background-size: cover;
 }
 .education-bg {
+  position: relative;
+  z-index: 1;
+}
+
+.education-bg::after {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  content: "";
   background-image: url("../assets/education/main.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
 }
+
 .education-bg-2 {
+  position: relative;
+  z-index: 1;
+}
+
+.education-bg-2::after {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  content: "";
   background-image: url("../assets/education/bg-2.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-size: cover;
+  background-position: center;
 }
-.signform-inp {
-  width: 300px;
+
+@media only screen and (max-width: 768px) {
+  .education-bg::after {
+    opacity: 0.65;
+  }
+  .education-bg-2::after {
+    opacity: 0.4;
+  }
 }
 .bg-ed-3 {
   background-color: #f4e4f0;
@@ -193,8 +230,7 @@ body {
 .procedure-mobile-table tr {
   border-bottom: 1px solid black;
 }
-.product-table {
-}
+
 .product-table tr {
   padding: 15px 0;
   border-top: 1px solid black;
@@ -367,20 +403,16 @@ input::-webkit-inner-spin-button {
   }
   .nav-menu {
     position: fixed;
+    top: 0;
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: 100vh;
+    width: 80vw;
     left: -100%;
-    top: 4em;
     flex-direction: column;
-    background-color: #fff;
-    width: 100%;
-    padding: 50px 0;
-    font-size: 24px;
-    border-radius: 10px;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-  }
-  .nav-menu {
-    top: 3em;
+    background-color: rgb(243, 240, 240);
+    transition: 0.4s;
   }
 
   .nav-menu.active {

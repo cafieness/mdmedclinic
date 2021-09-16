@@ -12,7 +12,7 @@ function Profile() {
   return (
     <div className="bg-primary pt-10 mdh:pt-40 min-h-[100vh] min-w-[100vw]">
       <div className="flex flex-col mdh:flex-row items-start">
-        <div className="mx-auto mdh:mx-0 mdh:ml-8 mt-24  grid gap-8 mdh:pr-4 border-black mdh:border-r-2">
+        <div className="mx-auto mdh:mx-0 mdh:ml-8 mt-16 mdh:mt-24 grid gap-4 mdh:gap-6 lgh:gap-8 mdh:pr-4 border-black mdh:border-r-2">
           {sections.map((name) => (
             <button
               className={

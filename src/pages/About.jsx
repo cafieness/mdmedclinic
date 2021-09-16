@@ -26,7 +26,7 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 1,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -37,7 +37,14 @@ const responsive = {
 function Certificates() {
   const images = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12];
   return (
-    <Carousel responsive={responsive} className="mx-auto w-3/5">
+    <Carousel
+      responsive={responsive}
+      infinite
+      autoPlay
+      autoPlaySpeed={3000}
+      showDots
+      className="mx-auto w-full mdh:w-3/5"
+    >
       {images.map((image) => (
         <div className="flex items-center h-[500px]">
           <img className="mx-auto px-1 self-center" src={image} alt="" />
@@ -49,8 +56,8 @@ function Certificates() {
 
 function About() {
   return (
-    <div className="bg-about pt-40 sm:pt-10">
-      <div className="lg:flex-col flex justify-center items-center py-20">
+    <div className="bg-about pt-36 sm:pt-14">
+      <div className="lg:flex-col flex justify-center items-center py-6 mdh:py-16">
         <img
           src={meerimCircle}
           className="mr-20 lg:mr-0 lg:mb-10 sm:w-3/5"
@@ -66,7 +73,7 @@ function About() {
             инъекционной и аппаратной косметологии, контурной пластике,
             мезонитям, а также специалист в области массажных техник по лицу.
           </div>
-          <div className="text-xl md:text-base mb-10">
+          <div className="text-xl md:text-base">
             За многие годы практики Мээрим помогла многим женщинам стать
             увереннее в своей красоте, открыла собственную клинику эстетической
             медицины в Бишкеке и основала блог о красоте в Инстаграм - здесь
@@ -75,47 +82,51 @@ function About() {
           </div>
         </div>
       </div>
-      <div className="bg-primary py-20 px-10">
-        <div className="text-center text-4xl mb-24">Почему выбирают нас</div>
-        <div className=" w-4/5 md:w-4/5 mx-auto flex justify-center md:flex-col md:items-center">
-          <div className="flex flex-col mr-20 md:mr-0">
+      <div className="bg-primary py-6 mdh:py-12 px-10">
+        <div className="text-center font-semibold text-gray-900 mdh:font-normal text-4xl mb-10">
+          Почему выбирают нас
+        </div>
+        <div className=" w-4/5  mx-auto flex justify-center space-x-0 mdh:space-x-10 space-y-5 mdh:space-y-0 md:flex-col md:items-center">
+          <div className="flex flex-col ">
             <img src={choose3} alt="" className="w-2/5 mx-auto" />
-            <div className="text-center text-xl mt-4 mb-4">
+            <div className="text-center text-xl mb-2 mdh:mb-4">
               Самое инновационное оборудование
             </div>
-            <div className=" text-center mb-16 ">
+            <div className=" text-center">
               Клиника MD Clinic Professional оснащена современной аппаратурой
               для проведения косметических процедур
             </div>
           </div>
-          <div className="flex flex-col  mr-20  md:mr-0 ">
+          <div className="flex flex-col ">
             <img src={choose1} alt="" className="w-2/5 mx-auto" />
-            <div className="text-center text-xl mt-4 mb-4">
+            <div className="text-center text-xl mb-2 mdh:mb-4">
               Квалифицированные специалисты
             </div>
-            <div className=" text-center mb-16">
+            <div className=" text-center">
               В клинике работают врачи-косметологи высокого профессионального
               уровня с медицинским образованием
             </div>
           </div>
           <div className="flex flex-col ">
             <img src={choose2} alt="" className="w-2/5 mx-auto" />
-            <div className="text-center text-xl mt-4 mb-4">
+            <div className="text-center text-xl mb-2 mdh:mb-4">
               Только то, что необходимо
             </div>
-            <div className=" text-center mb-16">
+            <div className=" text-center">
               Мы рекомендуем только те процедуры, которые вам необходимы и
               никогда не посоветуем лишнего
             </div>
           </div>
         </div>
       </div>
-      <div className="py-20 px-10 bg-white flex flex-col">
-        <div className="text-center text-4xl mb-24">Дипломы и сертификаты</div>
+      <div className="py-8 px-10 bg-white flex flex-col">
+        <div className="text-center text-4xl mb-4 mdh:mb-8">
+          Дипломы и сертификаты
+        </div>
         <Certificates />
       </div>
-      <div className="py-20 bg-primary px-10">
-        <div className="text-center text-4xl mb-24">Отзывы</div>
+      <div className="py-8 bg-primary px-10">
+        <div className="text-center text-4xl mb-5 mdh:mb-8">Отзывы</div>
         <Feedback />
       </div>
     </div>

@@ -13,6 +13,7 @@ const get_products = gql`
       products {
         id
         image
+        fullDesc
         name
         price
       }
@@ -33,7 +34,7 @@ function ProductCarousel() {
       slidesToSlide: 2,
     },
     mobile: {
-      breakpoint: { max: 768, min: 1 },
+      breakpoint: { max: 767, min: 1 },
       items: 1,
       slidesToSlide: 1,
     },
@@ -52,18 +53,28 @@ function ProductCarousel() {
   return (
     <Carousel
       responsive={responsive}
+      swipeable
+      draggable
+      keyBoardControl
       infinite
       autoPlay
       autoPlaySpeed={4000}
-      itemClass="px-1"
-      className="w-3/5"
+      itemClass="px-1 mb-2"
+      className="w-full lgh:w-4/5"
+      showDots
     >
       {!isLoading &&
         isSuccess &&
         data &&
         data.map((el) => (
-          <a href={`/shop/${el.id}/${el.name}`}>
-            <ProductCard name={el.name} price={el.price} img={el.image} />
+          <a href={`/shop/${el.id}/${el.name}`} key={el.id}>
+            <ProductCard
+              name={el.name}
+              price={el.price}
+              img={el.image}
+              desc={el.fullDesc}
+              show_desc
+            />
           </a>
         ))}
     </Carousel>

@@ -14,4 +14,12 @@
   .inp-ar {
     @apply rounded-full px-3 py-2 focus:outline-none border-gray-300 text-gray-500 focus:text-gray-900 ring ring-transparent focus:ring-green-600 transition duration-300 ease-in-out;
   }
+
+  .nav-link-mob {
+    @apply text-center text-xl text-gray-900 py-1.5 items-center border-t  border-[#101010];
+  }
+
+  .education-point {
+    @apply bg-white p-3 mdh:p-5 w-450 text-lg lgh:text-2xl sm:w-300 text-center rounded-3xl;
+  }
 }

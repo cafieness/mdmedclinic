@@ -23,7 +23,11 @@ function Procedure() {
               {procedure.description2}
             </div>
           </div>
-          <img className="procedure-img ml-32 md:mb-10 md:ml-0 rounded-3xl" src={procedure.img} alt="" />
+          <img
+            className="procedure-img ml-32 md:mb-10 md:ml-0 rounded-3xl"
+            src={procedure.img}
+            alt=""
+          />
         </div>
         <div className=" procedure-width border-b-2 pb-8 border-black">
           <div className="text-xl italic my-5">Показания</div>
@@ -51,7 +55,7 @@ function Procedure() {
         </div>
         <div className=" flex flex-col items-center procedure-width ">
           <div className="text-xl italic my-12">Стоймость процедуры</div>
-          <table class="w-full procedure-table sm:hidden">
+          <table className="w-full procedure-table sm:hidden">
             <thead className="border-b-2 border-black">
               <tr>
                 <th>Процедура</th>
@@ -63,7 +67,7 @@ function Procedure() {
             </thead>
             <tbody>
               <tr>
-              <td className="text-center">{procedure.title}</td>
+                <td className="text-center">{procedure.title}</td>
                 <td className="text-center">{procedure.time}</td>
                 <td className="text-center">{procedure.price}</td>
                 <td className="text-center">{procedure.number}</td>
@@ -71,28 +75,28 @@ function Procedure() {
               </tr>
             </tbody>
           </table>
-            <table className="procedure-mobile-table w-11/12">
-                <tr className="flex justify-between">
-                    <th>Процедура</th>
-                    <td>{procedure.title}</td>
-                </tr>
-                <tr className="flex justify-between">
-                    <th>Время</th>
-                    <td>{procedure.time}</td>
-                </tr>
-                <tr className="flex justify-between">
-                    <th>Цена за 1 процедуру</th>
-                    <td>{procedure.price}</td>
-                </tr>
-                <tr className="flex justify-between">
-                    <th>Кол-во посещений</th>
-                    <td>{procedure.number}</td>
-                </tr>
-                <tr className="flex justify-between">
-                    <th className="text-left">Частота посещений</th>
-                    <td className="text-right">{procedure.frequency}</td>
-                </tr>
-            </table>
+          <table className="procedure-mobile-table w-11/12">
+            <tr className="flex justify-between">
+              <th>Процедура</th>
+              <td>{procedure.title}</td>
+            </tr>
+            <tr className="flex justify-between">
+              <th>Время</th>
+              <td>{procedure.time}</td>
+            </tr>
+            <tr className="flex justify-between">
+              <th>Цена за 1 процедуру</th>
+              <td>{procedure.price}</td>
+            </tr>
+            <tr className="flex justify-between">
+              <th>Кол-во посещений</th>
+              <td>{procedure.number}</td>
+            </tr>
+            <tr className="flex justify-between">
+              <th className="text-left">Частота посещений</th>
+              <td className="text-right">{procedure.frequency}</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>

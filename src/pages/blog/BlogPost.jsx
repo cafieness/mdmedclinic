@@ -31,7 +31,7 @@ function BlogPost() {
   );
 
   return (
-    <div className="py-28">
+    <div className="pt-28 mdh:pt-32 pb-10">
       {(isLoading || isFetching) && loadingComponent()}
       {!isLoading && !isFetching && isError && errorComponent(error)}
       {isSuccess && !data && (
@@ -43,9 +43,13 @@ function BlogPost() {
       )}
       {isSuccess && !isLoading && !isFetching && data && (
         <div className="mx-6 mdh:mx-20 lgh:mx-32 flex flex-col">
-          <img src={data.image} alt="" className="rounded-3xl mx-auto w-1/2" />
+          <img
+            src={data.image}
+            alt=""
+            className="rounded-3xl mx-auto w-[90%] mdh:w-1/2"
+          />
 
-          <h1 className="text-4xl sm:text-2xl font-bold pt-20 mb-8 md:text-center">
+          <h1 className="text-4xl sm:text-2xl font-bold pt-6 mdh:pt-16 lgh:pt-20 mb-8 md:text-center">
             {data.title}
           </h1>
           <p className="break-all whitespace-pre-wrap">{data.body}</p>

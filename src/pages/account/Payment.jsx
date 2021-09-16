@@ -76,11 +76,12 @@ function Payment() {
     setAddress(el.target.value);
   };
 
-  const { mutate, error } = useMutation(({ orderedProducts, paymentType }) =>
-    send_mutation(add_order_mut, {
-      orderedProducts: orderedProducts,
-      paymentType: paymentType,
-    })
+  const { mutate, error, isLoading } = useMutation(
+    ({ orderedProducts, paymentType }) =>
+      send_mutation(add_order_mut, {
+        orderedProducts: orderedProducts,
+        paymentType: paymentType,
+      })
   );
   const transformCart = (cart) => {
     const orders = [];
@@ -91,7 +92,7 @@ function Payment() {
   };
 
   const handleSubmit = () => {
-    if (phonePattern.test(phone) && paymentMethod !== "") {
+    if (paymentMethod !== "") {
       mutate(
         { orderedProducts: transformCart(cart), paymentType: paymentMethod },
         {
@@ -123,25 +124,28 @@ function Payment() {
           <div className="text-3xl mb-8">Ваш заказ</div>
           <div className="md:flex-col w-500px md:w-full">
             {cart.map((el) => (
-              <div className="border-b-2 flex md:flex-col md:mx-0 mx-4 py-2">
+              <div className="border-b-2 flex md:flex-col md:space-y-2 md:mx-0 mx-4 py-2">
                 <img
                   src={el.product.image}
-                  className="w-32 h-32 rounded-xl"
+                  className="w-32 h-32 mx-auto rounded-xl"
                   alt=""
                 />
                 <div className="ml-8">
-                  <div className="text-2xl mb-4 italic font-bold">{`${el.product.name}, ${el.product.volume}`}</div>
+                  <div className="text-xl mdh:text-2xl mb-2 italic font-bold">{`${el.product.name}, ${el.product.volume}`}</div>
 
-                  <div className="text-xl mb-2">
+                  <div className="text-lg mdh:text-xl mb-2">
                     Сумма: {el.product.price * el.amount} сом
                   </div>
-                  <div className="text-xl ">Количество: {el.amount} шт.</div>
+                  <div className="text-lg mdh:text-xl ">
+                    Количество: {el.amount} шт.
+                  </div>
                 </div>
               </div>
             ))}
             <div className="italic text-xl mt-8 md:mx-0 mx-4 text-right">
-              К оплате: 
-              {" "+cart.reduce((a, b) => (a = a + b.product.price * b.amount), 0) +
+              К оплате:
+              {" " +
+                cart.reduce((a, b) => (a = a + b.product.price * b.amount), 0) +
                 " "}
               сом
             </div>
@@ -161,16 +165,19 @@ function Payment() {
               />
             </div>
           )}
-          <div>
-            <div className=" mb-4">Номер телефона</div>
-            <input
-              type="number"
-              className="outline-none rounded-3xl p-2 px-4 w-300 mb-6"
-              onChange={handlePhoneChange}
-              value={phone}
-              required
-            />
-          </div>
+          {false && (
+            <div>
+              <div className=" mb-4">Номер телефона</div>
+              <input
+                type="number"
+                className="outline-none rounded-3xl p-2 px-4 w-300 mb-6"
+                onChange={handlePhoneChange}
+                value={phone}
+                required
+              />
+            </div>
+          )}
+
           <div>
             <div>Способ оплаты</div>
             <div className="ml-12 md:ml-0 mb-10 mt-4">
@@ -211,8 +218,9 @@ function Payment() {
           <button
             className="btn-primary rounded-3xl mx-auto"
             onClick={handleSubmit}
+            disabled={isLoading}
           >
-            Отправить
+            {isLoading ? "Заказ оформляется..." : "Заказать"}
           </button>
 
           <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>

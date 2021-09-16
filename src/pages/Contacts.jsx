@@ -5,8 +5,8 @@ import imgForm from "../assets/mainPageForm.jpg";
 
 function Contacts() {
   return (
-    <div className="bg-primary py-40 sm:py-28">
-      <div className="mx-auto px-40 md:px-5 contacts-px">
+    <div className="bg-primary py-40 sm:py-20">
+      <div className="mx-auto px-40 md:px-4">
         <div className="font-bold text-3xl mb-8">Контакты</div>
 
         <div className="flex">
@@ -16,12 +16,14 @@ function Contacts() {
 
         <div className="flex">
           <div className="font-bold">Телефон:⠀</div>
-          <div>+996 556 877 782, <br />
-            +996 707 600 726</div>
+          <div>
+            <a href="tel:+996556877782">+996 556 877 782,</a> <br />
+            <a href="tel:+996707600726">+996 707 600 726</a>
+          </div>
         </div>
-        <div className="flex">
-          <div className="font-bold mb-8">Email:⠀⠀ ⠀</div>
-          <div>mdmedclinic.service@gmail.com</div>
+        <div className="flex flex-wrap">
+          <div className="font-bold mb-8">Email:⠀⠀ </div>
+          <a href="mailto:mdmedclinic@gmail.com">mdmedclinic@gmail.com</a>
         </div>
 
         <div className="font-bold text-2xl mb-4">График работы</div>

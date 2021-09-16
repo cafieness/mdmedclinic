@@ -42,7 +42,7 @@ function Blog() {
         </div>
       )}
       {!isFetching && !isLoading && data && data.length !== 0 && (
-        <div className="flex flex-col mx-6 mb-8 mdh:flex-row mdh:justify-around lgh:mx-20">
+        <div className="flex flex-col mx-4 mb-8 mdh:flex-row mdh:justify-around lgh:mx-20">
           <img
             className="mb-8 mdh:w-1/2 lgh:w-[40%] rounded-md"
             src={data[0].image}
@@ -65,7 +65,7 @@ function Blog() {
       )}
 
       <div className=" bg-white">
-        <div className="w-full blogposts-width xl:grid-cols-2 grid grid-cols-3 justify-items-center">
+        <div className="grid grid-cols-1 mdh:grid-cols-2 pt-10 justify-items-center">
           {!isFetching &&
             !isLoading &&
             data &&
@@ -73,7 +73,10 @@ function Blog() {
             data.map(
               (post) =>
                 data[0] !== post && (
-                  <div className="p-4 w-450 mb-8 sm:w-300">
+                  <Link
+                    to={`/blog/${post.id}/${post.title}`}
+                    className="block hover:ring-2 rounded-lg ring-purple-700 p-4 w-450 mb-8 sm:w-300"
+                  >
                     <img className="rounded-md" src={post.image} alt="" />
                     <div className="text-2xl mb-4 mt-8 font-bold">
                       {post.title}
@@ -85,7 +88,7 @@ function Blog() {
                     >
                       Подробнее
                     </Link>
-                  </div>
+                  </Link>
                 )
             )}
         </div>

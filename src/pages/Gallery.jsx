@@ -30,19 +30,47 @@ import img28 from "../assets/gallery/28.JPG";
 import img29 from "../assets/gallery/29.JPG";
 
 function Gallery() {
-  const images = [img1, img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15,img16,img17,img20,img21,img22,img23,img24,img25,img26,img27,img28,img29];
+  const images = [
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    img7,
+    img8,
+    img9,
+    img10,
+    img11,
+    img12,
+    img13,
+    img14,
+    img15,
+    img16,
+    img17,
+    img20,
+    img21,
+    img22,
+    img23,
+    img24,
+    img25,
+    img26,
+    img27,
+    img28,
+    img29,
+  ];
   return (
-    <div className="bg-primary pt-40 pb-28 sm:pt-32">
+    <div className="bg-primary pt-24 mdh:pt-40 pb-20">
       <div className="flex flex-col items-center px-5">
-        <div className="text-5xl md:text-2xl mb-16">Галерея</div>
-        <div className="gallery-grid grid grid-cols-3 gap-20 md:grid-cols-2">
+        <div className="text-4xl md:text-3xl mb-10">Галерея</div>
+        <div className="mx-2 mdh:mx-6 lgh:mx-20 items-center gallery-grid grid lgh:grid-cols-3 gap-8 mdh:gap-12 lgh:gap-16 grid-cols-1 mdh:grid-cols-2">
           {images.map((image) => (
             <div>
-              <img className="w-[250px] h-[250px]" src={image} alt="" />
-              <div className="text-xl mt-4 flex justify-between">
-                <div>До</div>
-                <div>После</div>
-              </div>
+              <img
+                className="rounded-lg hover:ring-2 ring-purple-700 hover:scale-105 transform transition duration-500 ease-in-out"
+                src={image}
+                alt=""
+              />
             </div>
           ))}
         </div>
