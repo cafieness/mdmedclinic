@@ -19,6 +19,11 @@ import pr4 from "../assets/procedure-4.png";
 import pr5 from "../assets/procedure-5.png";
 import pr6 from "../assets/procedure-6.png";
 import { procedures } from "../db";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleDown,
+  faChevronCircleDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 const ScrollLink = Scroll.Link;
 
@@ -47,12 +52,26 @@ function Home() {
           <div className="text-5xl mb-8 font-bold sm:text-3xl text-center sm:w-full ">
             MD Clinic Professional
           </div>
-          <div className="text-2xl sm:text-xl lg:w-full sm:px-2 mb-12 w-500px text-center">
+          <div className="text-2xl sm:text-xl lg:w-full sm:px-2 mb-6 w-500px text-center">
             {isEng
               ? "Cosmetology and Education Clinic of Meerim Davletova"
               : "Клиника косметологии и образования Мээрим Давлетовой"}
           </div>
-          <div className="lg:flex-col lg:items-center flex mb-24 items-baseline px-4">
+          <div className="lg:flex-col lg:items-center space-x-0 lgh:space-x-10 space-y-4 lgh:space-y-0 flex mb-24 items-baseline px-4">
+            <ScrollLink
+              to="procs"
+              className="lgh:order-3 lgh:ml-4"
+              spy={true}
+              smooth={true}
+              duration={500}
+            >
+              <button className="h-10 w-10 border-2 flex items-center  border-gray-900 bg-transparent rounded-full">
+                <FontAwesomeIcon
+                  className="text-2xl mx-auto"
+                  icon={faAngleDown}
+                ></FontAwesomeIcon>
+              </button>
+            </ScrollLink>
             <ScrollLink
               to="home-sign-form"
               spy={true}
@@ -65,13 +84,16 @@ function Home() {
               />
             </ScrollLink>
 
-            <div className="lg:ml-0 lg:mt-5 lg:text-base home__right-bottom-detail ml-16 text-2xl underline cursor-pointer">
+            <div className="lg:text-base home__right-bottom-detail  text-2xl underline cursor-pointer">
               <Link to="/about">{isEng ? "Details" : "Подробнее"}</Link>
             </div>
           </div>
         </div>
       </div>
-      <div className=" bg-secondary flex py-4 mdh:py-8 items-center flex-col ">
+      <div
+        id="procs"
+        className=" bg-secondary flex py-4 mdh:py-8 items-center flex-col "
+      >
         <h2 className="text-3xl font-semibold text-gray-900 mb-4 text-center">
           {isEng ? "Popular procedures" : "Популярные процедуры"}
         </h2>
