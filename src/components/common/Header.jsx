@@ -200,6 +200,9 @@ function Header() {
             <Link to={"/" + (isEng ? "?lang=en" : "")} className="nav-link-mob">
               {isEng ? "Home" : "Главная"}
             </Link>
+            <Link className="nav-link-mob" to="/procedures">
+              {isEng ? "Procedures" : "Услуги"}
+            </Link>
             <Link to="/gallery" className="nav-link-mob">
               {isEng ? "Gallery" : "Галерея"}
             </Link>
@@ -223,29 +226,6 @@ function Header() {
             <Link className="nav-link-mob" to="/contacts">
               {isEng ? "Contacts" : "Контакты"}
             </Link>
-            <div className="nav-link-mob relative" ref={refProcedure}>
-              <button
-                className=""
-                onClick={() => {
-                  setIsProcedureOpen(!isProcedureOpen);
-                }}
-              >
-                {isEng ? "Procedures" : "Процедуры"}
-              </button>
-              <div
-                className={isProcedureOpen ? "dropdown-ar space-y-4" : "hidden"}
-              >
-                <Link to="/procedures/inject">
-                  {isEng ? "Injection procedures" : "Инъекционные процедуры"}
-                </Link>
-                <Link to="/procedures/skincare">
-                  {isEng ? "Skincare" : "Уход за кожей"}
-                </Link>
-                <Link to="/procedures/apparat">
-                  {isEng ? "Apparate cosmetology" : "Аппаратная косметология"}
-                </Link>
-              </div>
-            </div>
           </div>
           <div className="flex flex-col space-y-2 items-center">
             <div className="flex space-x-4 items-center">
@@ -324,27 +304,9 @@ function Header() {
               <Link to="/contacts">{isEng ? "Contacts" : "Контакты"}</Link>
             </div>
           </div>
-          <div className="nav-link" ref={refProcedure}>
-            <button
-              className="dropbtn"
-              onClick={() => {
-                setIsProcedureOpen(!isProcedureOpen);
-              }}
-            >
-              {isEng ? "Procedures" : "Процедуры"}
-            </button>
-            <div className={isProcedureOpen ? "dropdown space-y-4" : "hidden"}>
-              <Link to="/procedures/inject">
-                {isEng ? "Injection procedures" : "Инъекционные процедуры"}
-              </Link>
-              <Link to="/procedures/skincare">
-                {isEng ? "Skincare" : "Уход за кожей"}
-              </Link>
-              <Link to="/procedures/apparat">
-                {isEng ? "Apparate cosmetology" : "Аппаратная косметология"}
-              </Link>
-            </div>
-          </div>
+
+          <Link to="/procedures">{isEng ? "Procedures" : "Услуги"}</Link>
+
           <Link to="/gallery" className="nav-link">
             {isEng ? "Gallery" : "Галерея"}
           </Link>

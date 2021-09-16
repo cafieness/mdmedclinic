@@ -66,7 +66,7 @@ function Routes() {
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} exact />
         <Route path="/contacts" component={Contacts} exact></Route>
-        <Route path="/procedures/:id" component={Procedures} exact></Route>
+        <Route path="/procedures" component={Procedures} exact></Route>
         <Route path="/procedure/:name" component={Procedure} exact></Route>
         <Route path="/gallery" component={Gallery} exact></Route>
         <Route exact path="/shop" component={Shop}></Route>

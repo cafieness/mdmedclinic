@@ -7,30 +7,17 @@ import { Link, useParams } from "react-router-dom";
 import { procedures } from "../../db";
 
 function checkProcedure(title) {
-  if (title === "inject") {
-    return procedures.inject;
-  }
-  if (title === "apparat") {
-    return procedures.apparat;
-  }
-  if (title === "skincare") {
-    return procedures.skincare;
-  }
+  return [...procedures.skincare, ...procedures.apparat, ...procedures.inject];
 }
 
 function Procedures() {
   let id = useParams();
   const procedure = checkProcedure(id.id);
-  const title =
-    id.id === "inject"
-      ? "Инъекционная косметология"
-      : id.id === "apparat"
-      ? "Аппаратная косметология"
-      : "Уход за кожей";
+
   return (
-    <div className="pt-40 sm:pt-32">
+    <div className="pt-40 sm:pt-32 bg-primary">
       <div className="flex flex-col items-center">
-        <div className="text-4xl mb-16 sm:text-xl">{title}</div>
+        <div className="text-4xl mb-16 sm:text-xl">Услуги клиники MD</div>
         <div className="grid gap-8 lgh:gap-12 px-8 grid-cols-1 mdh:grid-cols-2 lgh:grid-cols-1 procedure-grid">
           {procedure.map((pr) => (
             <Link
